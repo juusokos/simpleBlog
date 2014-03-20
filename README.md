@@ -1,2 +1,4 @@
 simpleBlog
 ==========
+
+Welcome to mummola!
