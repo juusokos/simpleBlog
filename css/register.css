@@ -2,7 +2,7 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
- background-image: url('../img/cream_dust.png');
+  background-image: url('../img/cream_dust.png');
 }
 
 .form-signin {
@@ -30,17 +30,12 @@ body {
   z-index: 2;
 }
 
-.form-signin input[type="etunimi"] {
+.form-signin input[type="käyttäjätunnus"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-.form-signin input[type="sukunimi"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
 
 .form-signin input[type="email"] {
   margin-bottom: 10px;
