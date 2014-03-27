@@ -1,6 +1,6 @@
 <?php
-include_once 'includes/register.inc.php';
-include_once 'includes/functions.php';
+include_once 'register.inc.php';
+include_once 'functions.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,25 +34,24 @@ include_once 'includes/functions.php';
             </li>
             <li>Your password and confirmation must match exactly</li>
         </ul>
-        <form action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" 
-                method="post" 
-                name="registration_form">
-            Username: <input type="käyttäjätunnus" class="form-control" 
-						     placeholder="Käyttäjätunnus" required autofocus>
-			Email: <input type="email" class="form-control" 
-					      placeholder="Sähköpostiosoite" required autofocus><br>
-            Password:  <input type="password" class="form-control" 
-							  placeholder="Salasana" required><br>
-            Confirm password:<input type="password_again" class="form-control"
-									placeholder="Salasana uudelleen" required><br><br>
-            <button type="submit" 
-				    class="btn btn-lg btn-primary btn-block"
-                    value="Rekisteröidy" 
-                    onclick="return regformhash(this.form,
+        <form method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" class="form-signin">
+            Username: <input id="username" name="username" type="text" class="form-control" 
+						     placeholder="Käyttäjätunnus" ><br>
+			Email: <input id="email" name="email" type="text" class="form-control" 
+					      placeholder="Sähkäpostiosoite" ><br>
+            Password:  <input id="password" name="password" type="password" class="form-control" 
+							  placeholder="Salasana" ><br>
+            Confirm password:<input id="confirmpwd" name="confirmpwd" type="password" class="form-control"
+									placeholder="Salasana uudelleen"><br><br>
+      
+            <input type="button" 
+                   value="Rekisteröidy" 
+				   class="btn btn-lg btn-primary btn-block"
+                   onclick="return regformhash(this.form,
                                    this.form.username,
                                    this.form.email,
                                    this.form.password,
-                                   this.form.confirmpwd);">Rekisteröidy</button> 
+                                   this.form.confirmpwd);" /> 
         </form>
         <p>Return to the <a href="index.php">login page</a>.</p>
     </body>
