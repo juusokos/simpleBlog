@@ -9,7 +9,8 @@ include_once 'includes/functions.php';
         <title>Secure Login: Registration Form</title>
         <script type="text/JavaScript" src="js/sha512.js"></script> 
         <script type="text/JavaScript" src="js/forms.js"></script>
-        <link rel="stylesheet" href="styles/main.css" />
+        <link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/register.css" rel="stylesheet">
     </head>
     <body>
         <!-- Registration form to be output if the POST variables are not
@@ -36,7 +37,7 @@ include_once 'includes/functions.php';
         <form action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" 
                 method="post" 
                 name="registration_form">
-            Username: <input type="etunimi" class="form-control" 
+            Username: <input type="käyttäjätunnus" class="form-control" 
 						     placeholder="Käyttäjätunnus" required autofocus>
 			Email: <input type="email" class="form-control" 
 					      placeholder="Sähköpostiosoite" required autofocus><br>
@@ -44,14 +45,14 @@ include_once 'includes/functions.php';
 							  placeholder="Salasana" required><br>
             Confirm password:<input type="password_again" class="form-control"
 									placeholder="Salasana uudelleen" required><br><br>
-            <input type="button" 
-				   class="btn btn-lg btn-primary btn-block"
-                   value="Rekisteröidy" 
-                   onclick="return regformhash(this.form,
+            <button type="submit" 
+				    class="btn btn-lg btn-primary btn-block"
+                    value="Rekisteröidy" 
+                    onclick="return regformhash(this.form,
                                    this.form.username,
                                    this.form.email,
                                    this.form.password,
-                                   this.form.confirmpwd);">Rekisteröidy</input> 
+                                   this.form.confirmpwd);">Rekisteröidy</button> 
         </form>
         <p>Return to the <a href="index.php">login page</a>.</p>
     </body>
