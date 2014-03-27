@@ -8,10 +8,10 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Kirjaudu sisään</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/singnin.css" rel="stylesheet">
@@ -29,15 +29,16 @@
   <body>
 
     <div class="container">
-
+	<button type="button" class="btn btn-success" id="luoBlogi">Luo Blogi</button>
+	<div id="logo"><img src="http://placekitten.com/300/100"></img></div>
       <form class="form-signin" role="form">
+	  
         <h2 class="form-signin-heading">Kirjaudu sisään</h2>
-        <input type="email" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <input type="email" class="form-control" placeholder="Sähköpostiosoite" required autofocus>
+        <input type="password" class="form-control" placeholder="Salasana" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Kirjaudu</button>
+		<br/>
+		<a href="#">Unohtuiko salasana?</a>
       </form>
 
     </div> <!-- /container -->
