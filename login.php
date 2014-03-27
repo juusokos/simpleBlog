@@ -1,6 +1,4 @@
 <?php
-
-
 include_once 'db_connect.php';
 include_once 'functions.php';
  
@@ -11,7 +9,6 @@ include_once 'functions.php';
 	} else {
 		$logged = 'out';
 	}
-
 ?>
 
 
@@ -19,6 +16,7 @@ include_once 'functions.php';
 <html>
         <head>
                 <title> Log In </title>
+				<meta charset="utf-8">
                 <script type="text/javascript" src="js/sha512.js"></script>
                 <script type="text/javascript" src="js/forms.js"></script>
                 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -26,21 +24,10 @@ include_once 'functions.php';
         </head>
         <body>
             <?php
-				require_once('process_login.php');
-				require_once('db_connect.php');
-				require_once('functions.php');
-				
-                if(isset($_GET['error'])){
-                        echo ' Error Logging IN!';
-                }
-				
-				sec_session_start();
-				if(login_check($mysqli) == true){
-					echo 'mitä vaan <br/>';
-				} else{
-					echo 'You are not authorized to access this page, please login. <br/>';
+				if (isset($_GET['error'])) {
+					echo '<p class="error">Error Logging In!</p>';
 				}
-                ?> 
+			?> 
                 <form class="form-signin" action="process_login.php" method="post" name="login_form">
 				<h2 class="form-signin-heading">Kirjaudu sisään</h2>
                 Email: <input type="text" name="email" class="form-control" placeholder="Sähköpostiosoite"  /> <br/>
