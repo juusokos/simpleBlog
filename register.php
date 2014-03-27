@@ -16,9 +16,9 @@ include_once 'includes/functions.php';
         set or if the registration script caused an error. -->
         <h1>Register with us</h1>
         <?php
-        if (!empty($error_msg)) {
-            echo $error_msg;
-        }
+			if (!empty($error_msg)) {
+				echo $error_msg;
+			}
         ?>
         <ul>
             <li>Usernames may contain only digits, upper and lower case letters and underscores</li>
@@ -36,23 +36,22 @@ include_once 'includes/functions.php';
         <form action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" 
                 method="post" 
                 name="registration_form">
-            Username: <input type='text' 
-                name='username' 
-                id='username' /><br>
-            Email: <input type="text" name="email" id="email" /><br>
-            Password: <input type="password"
-                             name="password" 
-                             id="password"/><br>
-            Confirm password: <input type="password" 
-                                     name="confirmpwd" 
-                                     id="confirmpwd" /><br>
+            Username: <input type="etunimi" class="form-control" 
+						     placeholder="Käyttäjätunnus" required autofocus>
+			Email: <input type="email" class="form-control" 
+					      placeholder="Sähköpostiosoite" required autofocus><br>
+            Password:  <input type="password" class="form-control" 
+							  placeholder="Salasana" required><br>
+            Confirm password:<input type="password_again" class="form-control"
+									placeholder="Salasana uudelleen" required><br><br>
             <input type="button" 
-                   value="Register" 
+				   class="btn btn-lg btn-primary btn-block"
+                   value="Rekisteröidy" 
                    onclick="return regformhash(this.form,
                                    this.form.username,
                                    this.form.email,
                                    this.form.password,
-                                   this.form.confirmpwd);" /> 
+                                   this.form.confirmpwd);">Rekisteröidy</input> 
         </form>
         <p>Return to the <a href="index.php">login page</a>.</p>
     </body>
