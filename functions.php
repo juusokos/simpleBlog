@@ -13,9 +13,9 @@ function sec_session_start() {
     }
     // Gets current cookies params.
     $cookieParams = session_get_cookie_params();
-    session_set_cookie_params($cookieParams["lifetime"],
-        $cookieParams["/"], 
-        $cookieParams["http://users.metropolia.fi/~juusokos/internetOhjelmoinninProjekti/simpleBlog/"], 
+    session_set_cookie_params($cookieParams[3600],
+        $cookieParams['/'], 
+        $cookieParams['http://users.metropolia.fi/~juusokos/internetOhjelmoinninProjekti/simpleBlog/'], 
         $secure,
         $httponly);
     // Sets the session name to the one set above.
