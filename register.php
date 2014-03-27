@@ -15,37 +15,37 @@ include_once 'functions.php';
     <body>
         <!-- Registration form to be output if the POST variables are not
         set or if the registration script caused an error. -->
-        <h1>Register with us</h1>
+        <h1>Rekisteröidy</h1>
         <?php
 			if (!empty($error_msg)) {
 				echo $error_msg;
 			}
         ?>
         <ul>
-            <li>Usernames may contain only digits, upper and lower case letters and underscores</li>
-            <li>Emails must have a valid email format</li>
-            <li>Passwords must be at least 6 characters long</li>
-            <li>Passwords must contain
+            <li>Käyttäjätunnus saa sisältää ainoastaan numeroita, isoja ja pieniä alkukirjaimia sekä alaviivoja</li>
+            <li>Sähköpostiosoite pitää olla  muotoa esim. aila@gmail.com </li>
+            <li>Salasanassa tulee olla vähintään kuusi merkkiä</li>
+            <li>Salasanan pitää sisältää
                 <ul>
-                    <li>At least one upper case letter (A..Z)</li>
-                    <li>At least one lower case letter (a..z)</li>
-                    <li>At least one number (0..9)</li>
+                    <li>Vähintään yksi iso kirjain (A..Z)</li>
+                    <li>Vähintään yksi pieni kirjain (a..z)</li>
+                    <li>Vähintään yksi numero (0..9)</li>
                 </ul>
             </li>
-            <li>Your password and confirmation must match exactly</li>
+            
         </ul>
         <form method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" class="form-signin">
             Username: <input id="username" name="username" type="text" class="form-control" 
-						     placeholder="Käyttäjätunnus" ><br>
+						     placeholder="KÃ¤yttÃ¤jÃ¤tunnus" ><br>
 			Email: <input id="email" name="email" type="text" class="form-control" 
-					      placeholder="Sähkäpostiosoite" ><br>
+					      placeholder="SÃ¤hkÃ¤postiosoite" ><br>
             Password:  <input id="password" name="password" type="password" class="form-control" 
 							  placeholder="Salasana" ><br>
             Confirm password:<input id="confirmpwd" name="confirmpwd" type="password" class="form-control"
 									placeholder="Salasana uudelleen"><br><br>
       
             <input type="button" 
-                   value="Rekisteröidy" 
+                   value="RekisterÃ¶idy" 
 				   class="btn btn-lg btn-primary btn-block"
                    onclick="return regformhash(this.form,
                                    this.form.username,
