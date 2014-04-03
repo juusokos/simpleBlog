@@ -74,37 +74,25 @@
 		
           <h1 class="page-header">Ulkonäkö</h1>
 			
-			<h3 class="subtitle">Teema</h3>
-			<ul class="media-list">
-				<li class="media">
-					<a class="pull-left" href="#">
-						<img class="media-object" src="../img/cream_dust.png" alt="sininen">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">Vaalea</h4>
-					</div>
-				</li>
-				<li class="media">
-					<a class="pull-left" href="#">
-						<img class="media-object" src="../img/cream_dust_blue.png" alt="sininen">
-					</a>
-					<div class="media-body">
-						<h4 class="media-heading">Sininen</h4>
-					</div>
-				</li>
-			</ul>
-			
-			<h3 class="subtitle">Fontti</h3>
 			<form action="#">
-			<ul class="list-group">
-				<li class="list-group-item"><input type="radio" name="fontti" value="times"><span style="font-family: times, 'Times New Roman', serif; margin-left: 5px;">Times New Roman</span></li>
-				<li class="list-group-item"><input type="radio" name="fontti" value="verdana"><span style="font-family: verdana; margin-left: 5px;">Verdana</span></li>
-				<li class="list-group-item"><input type="radio" name="fontti" value="georgia"><span style="font-family: Georgia; margin-left: 5px;">Georgia</span></li>
-				<li class="list-group-item"><input type="radio" name="fontti" value="comic"><span style="font-family: 'Comic Sans MS', cursive, sans-serif; margin-left: 5px;">Comic Sans</span></li>
-			</ul>
-			<input type="submit" class="btn btn-success" value="Hyväksy"></input>
-			<button class="btn">Peruuta</button>
+				<h3 class="subtitle">Teema</h3>
+				<input type='radio' name='teema' value='vaalea' class="teemanapit" id="vaaleaTeema"/><label for="vaaleaTeema">Vaalea</label><span> </span>
+				<br/>
+				<input type='radio' name='teema' value='tummanSininen' class="teemanapit" id="tummanSininenTeema"/><label for="tummanSininenTeema" >Tummansininen</label> <span> </span>
+				
+				<h3 class="subtitle">Fontti</h3>
+			
+				<ul class="list-group">
+					<li class="list-group-item"><input type="radio" name="fontti" value="times"><span style="font-family: times, 'Times New Roman', serif; margin-left: 5px;">Times New Roman</span></li>
+					<li class="list-group-item"><input type="radio" name="fontti" value="verdana"><span style="font-family: verdana; margin-left: 5px;">Verdana</span></li>
+					<li class="list-group-item"><input type="radio" name="fontti" value="georgia"><span style="font-family: Georgia; margin-left: 5px;">Georgia</span></li>
+					<li class="list-group-item"><input type="radio" name="fontti" value="comic"><span style="font-family: 'Comic Sans MS', cursive, sans-serif; margin-left: 5px;">Comic Sans</span></li>
+				</ul>
+				
+				<input type="submit" class="btn btn-success" value="Hyväksy"></input>
+				<button class="btn">Peruuta</button>
 			</form>
+			
 			<span id="testi"> </span>
 			
         	
