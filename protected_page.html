@@ -48,18 +48,69 @@ include_once 'functions.php';
 				</div>
 			  </div>
 		</div>
-            <p>Welcome <?php echo htmlentities($_SESSION['username']); ?>!</p>
-            <p>
-                This is an example protected page.  To access this page, users
-                must be logged in.  At some stage, we'll also check the role of
-                the user, so pages will be able to determine the type of user
-                authorised to access the page.
-            </p>
-            <p>Return to <a href="index.php">login page</a></p>
-        <?php else : ?>
-            <p>
-                <span class="error">You are not authorized to access this page.</span> Please <a href="index.php">login</a>.
-            </p>
-        <?php endif; ?>
+            <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar ">
+          <ul class="nav nav-sidebar">
+			<li><h3>Asetukset</h3></li>
+            <li><a href="artikkelit.html">Artikkelit</a></li>
+			<li class="active"><a href="ulkonako.html">Ulkonäkö</a></li>
+			<li><a href="#">Kuvat ja videot</a></li>
+	
+          </ul>
+
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		
+          <h1 class="page-header">Ulkonäkö</h1>
+			
+			<form action="#">
+				<h3 class="subtitle">Teema</h3>
+				<input type='radio' name='teema' value='vaalea' class="teemanapit" id="vaaleaTeema"/><label for="vaaleaTeema">Vaalea</label><span> </span>
+				<br/>
+				<input type='radio' name='teema' value='tummanSininen' class="teemanapit" id="tummanSininenTeema"/><label for="tummanSininenTeema" >Tummansininen</label> <span> </span>
+				
+				<h3 class="subtitle">Fontti</h3>
+			
+				<ul class="list-group">
+					<li class="list-group-item"><input type="radio" name="fontti" value="times"><span style="font-family: times, 'Times New Roman', serif; margin-left: 5px;">Times New Roman</span></li>
+					<li class="list-group-item"><input type="radio" name="fontti" value="verdana"><span style="font-family: verdana; margin-left: 5px;">Verdana</span></li>
+					<li class="list-group-item"><input type="radio" name="fontti" value="georgia"><span style="font-family: Georgia; margin-left: 5px;">Georgia</span></li>
+					<li class="list-group-item"><input type="radio" name="fontti" value="comic"><span style="font-family: 'Comic Sans MS', cursive, sans-serif; margin-left: 5px;">Comic Sans</span></li>
+				</ul>
+				
+				<input type="submit" class="btn btn-success" value="Hyväksy"></input>
+				<button class="btn">Peruuta</button>
+			</form>
+			
+			<span id="testi"> </span>
+			
+        	
+        </div>  <!-- div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" -->
+		
+      </div>  <!-- div row -->
+	 
+		
+    </div>  <!-- div container-fluid -->
+	
+			<div class="dashboard-footer">
+				<ul class="nav navbar-nav navbar-right" role="menu">
+					<li><h3>Asetukset</h3></li>
+					<li><a href="artikkelit.html">Artikkelit</a></li>
+					<li class="active"><a href="ulkonako.html">Ulkonäkö</a></li>
+					<li><a href="#">Kuvat ja videot</a></li>
+				</ul>
+			</div> <!-- div footer -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	
+	
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	
+	
+     <script src="../js/bootstrap.js"></script>
+    <script src="../js/docs.js"></script>
     </body>
 </html>
