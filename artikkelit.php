@@ -27,7 +27,6 @@ include_once 'functions.php';
     </head>
     <body>
         <?php if (login_check($mysqli) == true) : ?>
-            <p>Welcome <?php echo htmlentities($_SESSION['username']); ?>! User id is <?php echo htmlentities($_SESSION['user_id']); ?></p>
              <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			  <div class="container-fluid">
 				<div class="navbar-header">
@@ -56,6 +55,7 @@ include_once 'functions.php';
 			  <div class="row">
 				<div class="col-sm-3 col-md-2 sidebar">
 				  <ul class="nav nav-sidebar">
+				   <p>Tervetuloa <?php echo htmlentities($_SESSION['username']); ?>!</p>
 				  <li><h3>Asetukset</h3></li>
 					<li class="active"><a href="artikkelit.html">Artikkelit</a></li>
 					<li><a href="ulkonako.php">Ulkonäkö</a></li>
