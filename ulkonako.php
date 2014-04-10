@@ -62,6 +62,7 @@ include_once 'functions.php';
 			  <div class="row">
 				<div class="col-sm-3 col-md-2 sidebar ">
 				  <ul class="nav nav-sidebar">
+					<p>Tervetuloa <?php echo htmlentities($_SESSION['username']); ?>!</p>
 					<li><h3>Asetukset</h3></li>
 					<li><a href="artikkelit.php">Artikkelit</a></li>
 					<li class="active"><a href="ulkonako.html">Ulkonäkö</a></li>
