@@ -27,7 +27,6 @@ include_once 'functions.php';
     </head>
     <body>
         <?php if (login_check($mysqli) == true) : ?>
-            <p>Welcome <?php echo htmlentities($_SESSION['username']); ?>! User id is <?php echo htmlentities($_SESSION['user_id']); ?></p>
              <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			  <div class="container-fluid">
 				<div class="navbar-header">
