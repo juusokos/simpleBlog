@@ -5,6 +5,17 @@ include_once 'db_connect.php';
 include_once 'functions.php';
  
 	sec_session_start();
+$id = htmlentities($_SESSION['user_id']);
+	
+$SQL = "SELECT * FROM simple_sites
+    INNER JOIN simple_themes ON simple_sites.theme_ID = simple_themes.ID
+    INNER JOIN simple_posts ON simple_posts.site_ID = simple_sites.ID
+	INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
+	WHERE simple_users.ID=".$id.";";
+	
+	$STH = @$DBH->query($SQL);
+	$STH->setFetchMode(PDO::FETCH_OBJ);
+	$page = $STH->fetch();
 ?>
 
 <!DOCTYPE html>
@@ -82,28 +93,28 @@ include_once 'functions.php';
 						  <th>Kategoria</th>
 						</tr>
 					  </thead>
-					  <tbody>
-						<tr>
-						  <td>Lorem</td>
-							<td>30.03.2014</td>
-						   <td><a href="#">Muokkaa</a></td>
-						  <td><a href="#">Poista</a></td>
-						  <td><a href="#">ipsum</a></td>
-						</tr>
+					  <tbody>												
+						<?php
+			
+						  $SQL = "SELECT * FROM simple_posts WHERE site_ID = ".$page->site_ID.";";
+							
+						  $STH = @$DBH->query($SQL);
+						  $STH->setFetchMode(PDO::FETCH_OBJ);
+						  while ($pages = $STH->fetch()):
+							
+						 ?>
 						 <tr>
-						  <td>ipsum</td>
-						  <td>15.03.2014</td>
+						   <td><?php echo $pages->title; ?></td>
+						   <td><?php echo $pages->date; ?></td>
 						   <td><a href="#">Muokkaa</a></td>
-						  <td><a href="#">Poista</a></td>
-						  <td><a href="#">ipsum</a></td>
-						</tr>
-						 <tr>
-						  <td>dolore</td>
-						   <td>01.03.2014</td>
-						   <td><a href="#">Muokkaa</a></td>
-						  <td><a href="#">Poista</a></td>
+						   <td><a href="#">Poista</a></td>
 						   <td><a href="#">ipsum</a></td>
 						</tr>
+						<?php 
+							endwhile; 
+						?>
+						
+						
 					  </tbody>
 					</table>
 				  </div>
