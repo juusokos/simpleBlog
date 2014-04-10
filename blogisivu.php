@@ -5,7 +5,7 @@ include_once 'functions.php';
  
 sec_session_start();
 if ( !empty($_GET['id']) ){
-$SQL = "SELECT * FROM simple_sites
+	$SQL = "SELECT * FROM simple_sites
     INNER JOIN simple_themes ON simple_sites.theme_ID = simple_themes.ID
     INNER JOIN simple_posts ON simple_posts.site_ID = simple_sites.ID
 	INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
@@ -14,10 +14,14 @@ $SQL = "SELECT * FROM simple_sites
 	$STH = @$DBH->query($SQL);
 	$STH->setFetchMode(PDO::FETCH_OBJ);
 	$page = $STH->fetch();
+	
 } else {
 
 }
+
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,11 +44,11 @@ $SQL = "SELECT * FROM simple_sites
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
 	<script type="text/javascript">
 function swapStyleSheet(sheet){
 document.getElementById('pagestyle').setAttribute('href', sheet);
 }
+
 </script>
 
   </head>
@@ -57,7 +61,7 @@ document.getElementById('pagestyle').setAttribute('href', sheet);
           <a class="blog-nav-item active blog-nav-logo" href="#">SIMPLE BLOG</a>
 			
 		  <?php if (login_check($mysqli) == true) : ?>
-			<a class="blog-nav-new" href="protected_page.php">Asetukset</a>
+			<a class="blog-nav-new" href="artikkelit.php">Asetukset</a>
 			<a class="blog-nav-login" href="logout.php">Kirjaudu ulos</a>
 		  <?php else : ?>
 			<a class="blog-nav-new" href="register.php">Luo blogi</a>
