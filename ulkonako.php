@@ -70,12 +70,22 @@ include_once 'functions.php';
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
 				  <h1 class="page-header">Ulkonäkö</h1>
-
-					<form action="#">
+				  	
+					<?php
+						$site_id = htmlentities($_SESSION['site_id']);
+						
+						if(isset($_GET['submit'])){
+						$data = array($_GET['teema']);
+						$STH = $DBH->prepare("UPDATE simple_sites SET theme_ID = ? WHERE ID = '$site_id';");
+						$STH->execute($data);
+												
+					}
+					?>	
+					<form action="<?php echo $_SERVER['PHP_SELF']; ?>">
 						<h3 class="subtitle">Teema</h3>
-						<input type='radio' name='teema' value='vaalea' class="teemanapit" id="vaaleaTeema"/><label for="vaaleaTeema">Vaalea</label><span> </span>
+						<input type='radio' name='teema' value='1' class="teemanapit" id="vaaleaTeema"/><label for="vaaleaTeema">Vaalea</label><span> </span>
 						<br/>
-						<input type='radio' name='teema' value='tummanSininen' class="teemanapit" id="tummanSininenTeema"/><label for="tummanSininenTeema" >Tummansininen</label> <span> </span>
+						<input type='radio' name='teema' value='2' class="teemanapit" id="tummanSininenTeema"/><label for="tummanSininenTeema" >Tummansininen</label> <span> </span>
 
 						<h3 class="subtitle">Fontti</h3>
 
@@ -86,7 +96,7 @@ include_once 'functions.php';
 							<li class="list-group-item"><input type="radio" name="fontti" value="comic"><span style="font-family: 'Comic Sans MS', cursive, sans-serif; margin-left: 5px;">Comic Sans</span></li>
 						</ul>
 
-						<input type="submit" class="btn btn-success" value="Hyväksy"></input>
+						<input type="submit" name="submit" class="btn btn-success" value="Hyväksy"></input>
 						<button class="btn">Peruuta</button>
 					</form>
 
