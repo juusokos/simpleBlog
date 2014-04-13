@@ -10,6 +10,17 @@ if (isset($_POST['email'], $_POST['p'])) {
  
     if (login($email, $password, $mysqli) == true) {
         // Login success 
+        
+        $user_id = htmlentities($_SESSION['user_id']);
+        $SQL = "SELECT simple_sites.ID FROM simple_sites
+                    		INNER JOIN simple_users ON simple_users.ID = simple_sites.user_ID
+    						WHERE simple_users.ID = '$user_id';";
+	
+					$STH = @$DBH->query($SQL);
+					$STH->setFetchMode(PDO::FETCH_OBJ);
+					$site_id = $STH->fetch();
+					
+					$_SESSION['site_id'] = $site_id->ID;
         header('Location: ./artikkelit.php');
     } else {
         // Login failed 
