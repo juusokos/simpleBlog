@@ -1,23 +1,10 @@
-
 <?php
 
 include_once 'db_connect.php';
 include_once 'functions.php';
  
-	sec_session_start();
-$id = htmlentities($_SESSION['user_id']);
-	
-$SQL = "SELECT * FROM simple_sites
-    INNER JOIN simple_themes ON simple_sites.theme_ID = simple_themes.ID
-    INNER JOIN simple_posts ON simple_posts.site_ID = simple_sites.ID
-	INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
-	WHERE simple_users.ID=".$id.";";
-	
-	$STH = @$DBH->query($SQL);
-	$STH->setFetchMode(PDO::FETCH_OBJ);
-	$page = $STH->fetch();
+	sec_session_start();	
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,7 +16,6 @@ $SQL = "SELECT * FROM simple_sites
 		<meta name="author" content="">
 		<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 
-
 	   <!-- Bootstrap core CSS -->
 		<link href="./css/bootstrap.min.css" rel="stylesheet">
 
@@ -37,7 +23,19 @@ $SQL = "SELECT * FROM simple_sites
 		<link href="./css/dashboard.css" rel="stylesheet">
     </head>
     <body>
-        <?php if (login_check($mysqli) == true) : ?>
+        <?php if (login_check($mysqli) == true) : 
+			$id = htmlentities($_SESSION['user_id']);
+	
+			$SQL = "SELECT * FROM simple_sites
+					INNER JOIN simple_themes ON simple_sites.theme_ID = simple_themes.ID
+					INNER JOIN simple_posts ON simple_posts.site_ID = simple_sites.ID
+					INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
+					WHERE simple_users.ID=".$id.";";
+							
+			$STH = @$DBH->query($SQL);
+			$STH->setFetchMode(PDO::FETCH_OBJ);
+			$page = $STH->fetch();
+		?>
              <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			  <div class="container-fluid">
 				<div class="navbar-header">
@@ -66,9 +64,9 @@ $SQL = "SELECT * FROM simple_sites
 			  <div class="row">
 				<div class="col-sm-3 col-md-2 sidebar">
 				  <ul class="nav nav-sidebar">
-				   <p>Tervetuloa <?php echo htmlentities($_SESSION['username']); ?>!</p>
+				   <p>Tervetuloa <?php echo htmlentities($_SESSION['username']);?>!</p>
 				  <li><h3>Asetukset</h3></li>
-					<li class="active"><a href="artikkelit.html">Artikkelit</a></li>
+					<li class="active"><a href="artikkelit.php">Artikkelit</a></li>
 					<li><a href="ulkonako.php">Ulkonäkö</a></li>
 					<li><a href="#">Kuvat ja videot</a></li>
 					 
@@ -77,7 +75,7 @@ $SQL = "SELECT * FROM simple_sites
 			
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				  <h1 class="page-header">Artikkelit <button class="btn btn-success">Kirjoita uusi</button></h1>
+				  <h1 class="page-header">Artikkelit <a class="btn btn-success" href="uusi.php">Kirjoita uusi</a></h1>
 
 				
 				 
@@ -93,21 +91,20 @@ $SQL = "SELECT * FROM simple_sites
 						  <th>Kategoria</th>
 						</tr>
 					  </thead>
-					  <tbody>												
+					  <tbody>											
 						<?php
-			
-						  $SQL = "SELECT * FROM simple_posts WHERE site_ID = ".$page->site_ID.";";
-							
-						  $STH = @$DBH->query($SQL);
-						  $STH->setFetchMode(PDO::FETCH_OBJ);
-						  while ($pages = $STH->fetch()):
+							$SQL = "SELECT * FROM simple_posts WHERE site_ID = ".$page->site_ID.";";
+								
+							$STH = @$DBH->query($SQL);
+							$STH->setFetchMode(PDO::FETCH_OBJ);
+							while ($pages = $STH->fetch()):
 							
 						 ?>
 						 <tr>
 						   <td><?php echo $pages->title; ?></td>
 						   <td><?php echo $pages->date; ?></td>
-						   <td><a href="#">Muokkaa</a></td>
-						   <td><a href="#">Poista</a></td>
+						   <td><a href="muokkaa.php?id=<?php echo $pages->ID; ?>">Muokkaa</a></td>
+						   <td><a href="poista.php?id=<?php echo $pages->ID; ?>">Poista</a></td>
 						   <td><a href="#">ipsum</a></td>
 						</tr>
 						<?php 
