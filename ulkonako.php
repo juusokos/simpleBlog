@@ -75,10 +75,11 @@ include_once 'functions.php';
 						$site_id = htmlentities($_SESSION['site_id']);
 						
 						if(isset($_GET['submit'])){
-						$data = array($_GET['teema']);
-						$STH = $DBH->prepare("UPDATE simple_sites SET theme_ID = ? WHERE ID = '$site_id';");
-						$STH->execute($data);
-												
+							if($_GET['teema'] != null){
+								$data = array($_GET['teema']);
+								$STH = $DBH->prepare("UPDATE simple_sites SET theme_ID = ? WHERE ID = '$site_id';");
+								$STH->execute($data);
+							}					
 					}
 					?>	
 					<form action="<?php echo $_SERVER['PHP_SELF']; ?>">
