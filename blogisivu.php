@@ -5,11 +5,12 @@ include_once 'functions.php';
  
 sec_session_start();
 if ( !empty($_GET['id']) ){
+	$user_id = $_GET['id'];
 	$SQL = "SELECT * FROM simple_sites
     INNER JOIN simple_themes ON simple_sites.theme_ID = simple_themes.ID
     INNER JOIN simple_posts ON simple_posts.site_ID = simple_sites.ID
 	INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
-	WHERE simple_users.ID=".$_GET['id'].";";
+	WHERE simple_users.ID = '$user_id';";
 	
 	$STH = @$DBH->query($SQL);
 	$STH->setFetchMode(PDO::FETCH_OBJ);
@@ -31,26 +32,19 @@ if ( !empty($_GET['id']) ){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Template for Bootstrap</title>
+    <title>simpleBlog: <?php echo $page->blog_title; ?></title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link id="pagestyle" href="css/blog.css" rel="stylesheet">
+    <link id="pagestyle" href="<?php echo $page->theme_url; ?>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script type="text/javascript">
-function swapStyleSheet(sheet){
-document.getElementById('pagestyle').setAttribute('href', sheet);
-}
-
-</script>
-
   </head>
 
   <body>
@@ -95,7 +89,7 @@ document.getElementById('pagestyle').setAttribute('href', sheet);
 		  ?>
           <div class="blog-post">
             <h2 class="blog-post-title"><?php echo $pages->title; ?></h2>
-            <p class="blog-post-meta"><?php echo $pages->date; ?> <a href="#">Jacob</a></p>
+            <p class="blog-post-meta"><?php echo $pages->date; ?> <a href="#"><?php echo $page->username; ?></a></p>
 			<img src="<?php echo $pages->image_url; ?>"></img>
             <p><?php echo $pages->content; ?></p>
           </div><!-- /.blog-post -->
@@ -116,10 +110,6 @@ document.getElementById('pagestyle').setAttribute('href', sheet);
             <h4>About</h4>
             <p><?php echo $page->about; ?></p>
           </div>
-		 <div class="sidebar-module">
-		<button onclick="swapStyleSheet('css/sini.css')"> Sininen</button>
-		<button onclick="swapStyleSheet('css/blog.css')">Vihreä</button>
-		</div>
           <div class="sidebar-module">
             <h4>Archives</h4>
             <ol class="list-unstyled">
