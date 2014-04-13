@@ -1,4 +1,3 @@
-
 <?php
 
 include_once 'db_connect.php';
@@ -6,7 +5,6 @@ include_once 'functions.php';
  
 	sec_session_start();
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,7 +15,6 @@ include_once 'functions.php';
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-
 
 	   <!-- Bootstrap core CSS -->
 		<link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -64,7 +61,7 @@ include_once 'functions.php';
 					<p>Tervetuloa <?php echo htmlentities($_SESSION['username']); ?>!</p>
 					<li><h3>Asetukset</h3></li>
 					<li><a href="artikkelit.php">Artikkelit</a></li>
-					<li class="active"><a href="ulkonako.html">Ulkonäkö</a></li>
+					<li class="active"><a href="ulkonako.php">Ulkonäkö</a></li>
 					<li><a href="#">Kuvat ja videot</a></li>
 
 				  </ul>
@@ -107,7 +104,7 @@ include_once 'functions.php';
 						<ul class="nav navbar-nav navbar-right" role="menu">
 							<li><h3>Asetukset</h3></li>
 							<li><a href="artikkelit.php">Artikkelit</a></li>
-							<li class="active"><a href="ulkonako.html">Ulkonäkö</a></li>
+							<li class="active"><a href="ulkonako.php">Ulkonäkö</a></li>
 							<li><a href="#">Kuvat ja videot</a></li>
 						</ul>
 					</div> <!-- div footer -->
