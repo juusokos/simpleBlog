@@ -51,17 +51,26 @@ if ( !empty($_GET['id']) ){
 
     <div class="blog-masthead">
       <div class="container">
-        <nav class="blog-nav">
-          <a class="blog-nav-item active blog-nav-logo" href="#">SIMPLE BLOG</a>
-			
-		  <?php if (login_check($mysqli) == true) : ?>
-			<a class="blog-nav-new" href="artikkelit.php">Asetukset</a>
-			<a class="blog-nav-login" href="logout.php">Kirjaudu ulos</a>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php">SIMPLE BLOG</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-right">
+          <ul class="nav navbar-nav">
+            <?php if (login_check($mysqli) == true) : ?>
+			<li><a class="blog-nav-new" href="sivuAsetukset.php">Asetukset</a></li>
+			<li><a class="blog-nav-login" href="logout.php">Kirjaudu ulos</a></li>
 		  <?php else : ?>
-			<a class="blog-nav-new" href="register.php">Luo blogi</a>
-			<a class="blog-nav-login" href="login.php">Kirjaudu sisään</a>
+			<li><a class="blog-nav-new" href="register.php">Luo blogi</a></li>
+			<li><a class="blog-nav-login" href="login.php">Kirjaudu sisään</a></li>
 		  <?php endif; ?>
-        </nav>
+          </ul>
+        </div><!-- /.nav-collapse -->
       </div>
     </div>
 
