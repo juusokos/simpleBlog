@@ -95,11 +95,15 @@ if ( !empty($_GET['id']) ){
           $STH = @$DBH->query($SQL);
           $STH->setFetchMode(PDO::FETCH_OBJ);
 		  if($STH->rowCount() != 0):
-		  while ($pages = $STH->fetch()):			
+		  while ($pages = $STH->fetch()):
+		  
+			$time = strtotime($pages->date);
+			$formatedTime = date('d.m.Y',$time);
+			
 		  ?>
           <div class="blog-post">
             <h2 class="blog-post-title"><?php echo $pages->title; ?></h2>
-            <p class="blog-post-meta"><?php echo $pages->date; ?> <?php echo $page->username; ?></p>
+            <p class="blog-post-meta"><?php echo $formatedTime; ?> <?php echo $page->username; ?></p>
 			<?php if(!empty($pages->image_url)):?>
 			<img src="<?php echo $pages->image_url; ?>"></img>
 			<?php endif; ?>
