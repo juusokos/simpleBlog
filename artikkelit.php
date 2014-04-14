@@ -91,7 +91,7 @@ include_once 'functions.php';
 					  <tbody>											
 						<?php
 							$site_id = htmlentities($_SESSION['site_id']);
-							$SQL = "SELECT * FROM simple_posts WHERE site_ID = '$site_id';";
+							$SQL = "SELECT * FROM simple_posts WHERE site_ID = '$site_id' ORDER BY date DESC;";
 								
 							
 							$STH = @$DBH->query($SQL);
