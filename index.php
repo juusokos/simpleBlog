@@ -1,16 +1,13 @@
 <?php 
-include_once 'funktiot/db_connect.php';
-include_once 'funktiot/funktiot.php';
+include_once 'db_connect.php';
+include_once 'functions.php';
  
 	sec_session_start();	
+	
 		$SQL = "SELECT * FROM simple_sites INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID";
 
-			$STH = @$DBH->query($SQL);
-			$STH->setFetchMode(PDO::FETCH_OBJ);
-			
-			
-			//$page = $STH->fetch();
-
+		$STH = @$DBH->query($SQL);
+		$STH->setFetchMode(PDO::FETCH_OBJ);
 ?>
 
 <!DOCTYPE html>
@@ -56,8 +53,14 @@ include_once 'funktiot/funktiot.php';
         </div>
         <div class="collapse navbar-collapse navbar-right">
           <ul class="nav navbar-nav">
-            <li><a href="login.php">Kirjaudu sisään</a></li>
-            <li><a href="register.php">Luo Blogi</a></li>
+            <?php if (login_check($mysqli) == true) : ?>
+			<li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Oma blogi</a></li>
+			<li><a class="blog-nav-new" href="artikkelit.php">Asetukset</a></li>
+			<li><a class="blog-nav-login" href="logout.php">Kirjaudu ulos</a></li>
+		  <?php else : ?>
+			<li><a class="blog-nav-new" href="register.php">Luo blogi</a></li>
+			<li><a class="blog-nav-login" href="login.php">Kirjaudu sisään</a></li>
+		  <?php endif; ?>
           </ul>
         </div><!-- /.nav-collapse -->
       </div><!-- /.container -->
