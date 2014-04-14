@@ -112,10 +112,12 @@ include_once 'functions.php';
 				
 							else:	
 							while ($pages = $STH->fetch()):
+								$time = strtotime($pages->date);
+								$formatedTime = date('d.m.Y',$time);
 						?>
 						 <tr>
 						   <td><?php echo $pages->title; ?></td>
-						   <td><?php echo $pages->date; ?></td>
+						   <td><?php echo $formatedTime; ?></td>
 						   <td><a href="muokkaa.php?id=<?php echo $pages->ID; ?>">Muokkaa</a></td>
 						   <td><a href="poista.php?id=<?php echo $pages->ID; ?>">Poista</a></td>
 						   <td><a href="#">ipsum</a></td>
