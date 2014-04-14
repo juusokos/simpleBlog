@@ -78,7 +78,7 @@ include_once 'functions.php';
 					$site_id = htmlentities($_SESSION['site_id']);
 					
 					if(isset($_GET['submit'])){
-						if($_GET['blog_title'] != null && $_GET['about']){
+						if(!empty($_GET['blog_title']) && !empty($_GET['about'])){
 							$data = array($_GET['blog_title'], $_GET['blog_description'], $_GET['about']);
 							$STH = $DBH->prepare("UPDATE simple_sites SET blog_title = ?, blog_description = ?, about = ? WHERE ID = '$site_id';");
 							$STH->execute($data);
