@@ -5,19 +5,27 @@ Welcome to mummola!
 
 TODO:
 
-- Rekisteröinnin bloginluonti loppuun
-  - input validation (?)
-
-- Artikkelit input validation
+- Artikkelit input validation - HENKAL HOIDOS
   - uusi.php
   - muokkaa.php
 
-- Artikkelien luonti ja muokkaamisnäkymien ulkonäön parantaminen
-
 - Mahdollisuus uploadaa kuva artikkeliin
- 
-- index.php layout pohja
  
 - kuvat ja videot.php
  
+- Bannerin vaihto
+ 
+- Salasanan palautus
+
+- Salasanan vaihto
+
+- Blogin parantelu, että hyväksyy tyhjiä kuvia ja postittomuutta
+
+- Blogin archives toiminto
+
+
+
+
+
+
 
