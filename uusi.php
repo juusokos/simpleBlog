@@ -69,12 +69,13 @@ include_once 'functions.php';
 					$site_id = htmlentities($_SESSION['site_id']);
 					
 					if(isset($_GET['submit'])){
-
-						$postDate = date("Y-m-d"); 
-						$data = array($site_id, $_GET['title'], 'dummy' ,$_GET['content'], $postDate);
-						$STH = $DBH->prepare("INSERT INTO simple_posts (site_ID, title, image_url, content, date) VALUES (?,?,?,?,?);");
-						$STH->execute($data);
-						header('Location: ./artikkelit.php');						
+						if(!empty($_GET['title']) && !empty($_GET['content'])){
+							$postDate = date("Y-m-d"); 
+							$data = array($site_id, $_GET['title'], 'dummy' ,$_GET['content'], $postDate);
+							$STH = $DBH->prepare("INSERT INTO simple_posts (site_ID, title, image_url, content, date) VALUES (?,?,?,?,?);");
+							$STH->execute($data);
+							header('Location: ./artikkelit.php');
+						}						
 					}
 					
 					
