@@ -3,7 +3,7 @@ simpleBlog
 
 Welcome to mummola!
 
-TODO:
+TODO-lintu:
 
 - Artikkelit input validation - HENKAL HOIDOS
   - uusi.php
