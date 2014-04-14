@@ -8,16 +8,15 @@ if ( !empty($_GET['id']) ){
 	$user_id = $_GET['id'];
 	$SQL = "SELECT * FROM simple_sites
     INNER JOIN simple_themes ON simple_sites.theme_ID = simple_themes.ID
-    INNER JOIN simple_posts ON simple_posts.site_ID = simple_sites.ID
 	INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
 	WHERE simple_users.ID = '$user_id';";
 	
 	$STH = @$DBH->query($SQL);
 	$STH->setFetchMode(PDO::FETCH_OBJ);
 	$page = $STH->fetch();
-	
+	// INNER JOIN simple_posts ON simple_posts.site_ID = simple_sites.ID
 } else {
-
+	header('Location: ./index.php');
 }
 
 ?>
@@ -81,7 +80,9 @@ if ( !empty($_GET['id']) ){
       <div class="blog-header">
 	  
         <h1 class="blog-title"><?php echo $page->blog_title; ?></h1>
+		<?php if(!empty($page->blog_description)):?>
         <p class="lead blog-description"><?php echo $page->blog_description; ?></p>
+		<?php endif; ?>
       </div>
 
       <div class="row">
@@ -89,24 +90,27 @@ if ( !empty($_GET['id']) ){
         <div class="col-sm-8 blog-main">
 		  <?php
 			
-		  $SQL = "SELECT * FROM simple_posts WHERE site_ID = ".$page->site_ID.";";
+		  $SQL = "SELECT * FROM simple_posts WHERE site_ID = ".$page->ID." ORDER BY date DESC;";
 			
           $STH = @$DBH->query($SQL);
           $STH->setFetchMode(PDO::FETCH_OBJ);
-		  while ($pages = $STH->fetch()):
-			
+		  if($STH->rowCount() != 0):
+		  while ($pages = $STH->fetch()):			
 		  ?>
           <div class="blog-post">
             <h2 class="blog-post-title"><?php echo $pages->title; ?></h2>
-            <p class="blog-post-meta"><?php echo $pages->date; ?> <a href="#"><?php echo $page->username; ?></a></p>
+            <p class="blog-post-meta"><?php echo $pages->date; ?> <?php echo $page->username; ?></p>
+			<?php if(!empty($pages->image_url)):?>
 			<img src="<?php echo $pages->image_url; ?>"></img>
+			<?php endif; ?>
             <p><?php echo $pages->content; ?></p>
           </div><!-- /.blog-post -->
 		  <?php 
 		  	endwhile; 
+			else:
 		  ?>
-          
-
+			<h2>Et ole kirjoittaut yhtäkään artikkelia! <a href="uusi.php">Kirjoita niitä painamalla tätä linkkiä.</a></h2>
+		  <?php endif; ?>
           <ul class="pager">
             <li><a href="#">Previous</a></li>
             <li><a href="#">Next</a></li>
