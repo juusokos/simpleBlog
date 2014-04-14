@@ -53,23 +53,43 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
  
         // Create salted password 
         $password = hash('sha512', $password . $random_salt);
- 
+		
+		
         // Insert the new user into the database 
         if ($insert_stmt = $mysqli->prepare("INSERT INTO simple_users (username, email, password, salt) VALUES (?, ?, ?, ?)")) {
             $insert_stmt->bind_param('ssss', $username, $email, $password, $random_salt);
             // Execute the prepared query.
             if (! $insert_stmt->execute()) {
                 header('Location: ../error.php?err=Registration failure: INSERT');
-            }
+            }else{
+				 // SIVUSTON LUOMINEN
+				// Valitaan ID tietokannasta
+				$select = $mysqli->prepare("SELECT ID FROM simple_users WHERE email=?");
+				
+				$select->bind_param('s', $email);
+				// Execute the prepared query.
+				$select->execute();
+				$select->bind_result($user_id);
+				$select->fetch();
+				$select->close();
+				
+				// Luodaan uusi sivu oletusteksteillä 
+				//  Tähän voit kirjoittaa kuvauksen itsestäsi tai blogistasi. Muokkaa tätä tekstiä Asetukset - välilehdellä.
+				$theme_id = 1;
+				$banner_id = 1;
+				$about = 'Hei! Tähän voit kirjoittaa kuvauksen itsestäsi tai blogistasi';
+				$blog_title = 'Uusi Simple Blogi';
+				$blog_description = 'Sivuston kuvaus tulee tähän halutessasi.';
+				
+				$luoBlogi = $mysqli->prepare("INSERT INTO simple_sites (user_ID, theme_ID, banner_ID, about, blog_title, blog_description) VALUES (?, ?, ?, ?, ?, ?)");
+				$luoBlogi->bind_param('iiisss', $user_id, $theme_id, $banner_id, $about, $blog_title, $blog_description);
+				$luoBlogi->execute();
+			}
         }
-        header('Location: ./register_success.php');
+       header('Location: login.php');
+	
     }
+	
+	
 }
 ?>
-
-
-
-
-
-
-
