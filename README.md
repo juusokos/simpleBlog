@@ -23,6 +23,8 @@ TODO:
 
 - Blogin archives toiminto
 
+- Lisää palikka/rautalanka selvennöksiä kaikkialle!!!
+
 
 
 
