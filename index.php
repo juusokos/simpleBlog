@@ -59,7 +59,7 @@ include_once 'funktiot/funktiot.php';
           <ul class="nav navbar-nav">
               <?php if (login_check($mysqli) == true) : ?>
 			<li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Oma blogi</a></li>
-			<li><a class="blog-nav-new" href="artikkelit.php">Asetukset</a></li>
+			<li><a class="blog-nav-new" href="sivuAsetukset.php">Asetukset</a></li>
 			<li><a class="blog-nav-login" href="logout.php">Kirjaudu ulos</a></li>
 		  <?php else : ?>
 			<li><a class="blog-nav-new" href="register.php">Luo blogi</a></li>
