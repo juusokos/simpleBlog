@@ -33,7 +33,7 @@ include_once 'functions.php';
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				  </button>
-				  <a class="navbar-brand" href="#">SIMPLE BLOG</a>
+				  <a class="navbar-brand" href="index.php">SIMPLE BLOG</a>
 				</div>
 				<div class="navbar-collapse collapse">
 				  <ul class="nav navbar-nav navbar-right">
@@ -41,9 +41,6 @@ include_once 'functions.php';
 					<li><a href="#">Profiili</a></li>
 					<li><a href="logout.php">Kirjaudu ulos</a></li>
 				  </ul>
-				  <form class="navbar-form navbar-right">
-					<input type="text" class="form-control" placeholder="Search...">
-				  </form>
 				</div>
 			  </div>
 			</div>
@@ -54,6 +51,7 @@ include_once 'functions.php';
 				  <ul class="nav nav-sidebar">
 				   <p>Tervetuloa <?php echo htmlentities($_SESSION['username']); ?>!</p>
 				  <li><h3>Asetukset</h3></li>
+					<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
 					<li class="active"><a href="artikkelit.php">Artikkelit</a></li>
 					<li><a href="ulkonako.php">Ulkonäkö</a></li>
 					<li><a href="#">Kuvat ja videot</a></li>
@@ -82,8 +80,9 @@ include_once 'functions.php';
 					<div class="dashboard-footer">
 						<ul class="nav navbar-nav navbar-right" role="menu">
 							<li><h3>Asetukset</h3></li>
-							<li><a href="artikkelit.php">Artikkelit</a></li>
-							<li class="active"><a href="ulkonako.php">Ulkonäkö</a></li>
+							<<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
+							<li class="active"><a href="artikkelit.php">Artikkelit</a></li>
+							<li><a href="ulkonako.php">Ulkonäkö</a></li>
 							<li><a href="#">Kuvat ja videot</a></li>
 						</ul>
 					</div> <!-- div footer -->
