@@ -1,13 +1,17 @@
 <?php 
-include_once 'db_connect.php';
-include_once 'functions.php';
+include_once 'funktiot/db_connect.php';
+include_once 'funktiot/funktiot.php';
  
 	sec_session_start();	
-	
-		$SQL = "SELECT * FROM simple_sites INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID LIMIT 0,6";
 
-		$STH = @$DBH->query($SQL);
-		$STH->setFetchMode(PDO::FETCH_OBJ);
+		$SQL = "SELECT * FROM simple_sites INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID LIMIT 0, 6";
+
+			$STH = @$DBH->query($SQL);
+			$STH->setFetchMode(PDO::FETCH_OBJ);
+			
+			
+			//$page = $STH->fetch();
+
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +48,7 @@ include_once 'functions.php';
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">Klik</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -53,9 +57,9 @@ include_once 'functions.php';
         </div>
         <div class="collapse navbar-collapse navbar-right">
           <ul class="nav navbar-nav">
-            <?php if (login_check($mysqli) == true) : ?>
+              <?php if (login_check($mysqli) == true) : ?>
 			<li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Oma blogi</a></li>
-			<li><a class="blog-nav-new" href="sivuAsetukset.php">Asetukset</a></li>
+			<li><a class="blog-nav-new" href="artikkelit.php">Asetukset</a></li>
 			<li><a class="blog-nav-login" href="logout.php">Kirjaudu ulos</a></li>
 		  <?php else : ?>
 			<li><a class="blog-nav-new" href="register.php">Luo blogi</a></li>
@@ -72,7 +76,7 @@ include_once 'functions.php';
 
         <div class="col-xs-12 col-sm-9">
           <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Valikko</button>
           </p>
           <div class="jumbotron">
             <h1>Hei, sinä!</h1>
@@ -80,32 +84,28 @@ include_once 'functions.php';
 			<a href="register.php" class="btn btn-success"> Luo uusi blogi </a>
 			<a href="login.php" class="btn btn-default"> Kirjaudu sisään </a>
 		
-			
           </div>
           <div class="row">
+		  <h1>Uusimmat blogit:</h1>
 		  <?php while($row = $STH->fetch()): ?>
-            <div class="col-6 col-sm-6 col-lg-4">
+            <div class="col-6 col-sm-6  blogit">
 			 <h2><?php echo $row->blog_title; ?></h2>
 			 <p><i><?php echo $row->blog_description; ?></i></p> <br/>
               <p><?php echo $row->about; ?></p>
-              <p><a class="btn btn-default" href="blogisivu.php?id=<?php echo $row->user_ID  ?>" role="button">Katso blogi &raquo;</a></p>
+              <a class="btn btn-info " href="blogisivu.php?id=<?php echo $row->user_ID  ?>" role="button">Katso blogi &raquo;</a>
             </div><!--/span-->
 			<?php endwhile; ?>
           </div><!--/row-->
+		  <a href="blogilista.php" class="text-right">Kaikki Blogit &raquo;</a>
+          
         </div><!--/span-->
+		
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="list-group">
-            <a href="#" class="list-group-item active">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
+            <a href="index.php" class="list-group-item active">Etusivu</a>
+			 <a href="blogilista.php" class="list-group-item ">Blogilistaus</a>
+			
           </div>
         </div><!--/span-->
       </div><!--/row-->
@@ -113,7 +113,7 @@ include_once 'functions.php';
       <hr>
 
       <footer>
-        <p>&copy; Company 2014</p>
+        <p>&copy; Simple Blog 2014</p>
       </footer>
 
     </div><!--/.container-->
@@ -128,3 +128,4 @@ include_once 'functions.php';
     <script src="js/offcanvas.js"></script>
   </body>
 </html>
+
