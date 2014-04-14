@@ -4,7 +4,7 @@ include_once 'functions.php';
  
 	sec_session_start();	
 	
-		$SQL = "SELECT * FROM simple_sites INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID";
+		$SQL = "SELECT * FROM simple_sites INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID LIMIT 0,6";
 
 		$STH = @$DBH->query($SQL);
 		$STH->setFetchMode(PDO::FETCH_OBJ);
@@ -55,7 +55,7 @@ include_once 'functions.php';
           <ul class="nav navbar-nav">
             <?php if (login_check($mysqli) == true) : ?>
 			<li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Oma blogi</a></li>
-			<li><a class="blog-nav-new" href="artikkelit.php">Asetukset</a></li>
+			<li><a class="blog-nav-new" href="sivuAsetukset.php">Asetukset</a></li>
 			<li><a class="blog-nav-login" href="logout.php">Kirjaudu ulos</a></li>
 		  <?php else : ?>
 			<li><a class="blog-nav-new" href="register.php">Luo blogi</a></li>
