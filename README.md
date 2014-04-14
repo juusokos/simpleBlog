@@ -8,6 +8,7 @@ TODO:
 - Artikkelit input validation - HENKAL HOIDOS
   - uusi.php
   - muokkaa.php
+  - sivuAsetukset.php
 
 - Mahdollisuus uploadaa kuva artikkeliin
  
