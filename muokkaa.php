@@ -69,10 +69,12 @@ include_once 'functions.php';
 					$post_id = $_GET['id'];
 					
 					if(isset($_GET['submit'])){
-						$data = array($_GET['title'], $_GET['content']);
-						$STH = $DBH->prepare("UPDATE simple_posts SET title = ?, content = ? WHERE ID = '$post_id' AND site_ID = '$site_id';");
-						$STH->execute($data);
-						header('Location: ./artikkelit.php');						
+						if(!empty($_GET['title']) && !empty($_GET['content'])){
+							$data = array($_GET['title'], $_GET['content']);
+							$STH = $DBH->prepare("UPDATE simple_posts SET title = ?, content = ? WHERE ID = '$post_id' AND site_ID = '$site_id';");
+							$STH->execute($data);
+							header('Location: ./artikkelit.php');	
+						}
 					}
 					
 					$SQL = "SELECT * FROM simple_posts WHERE ID = '$post_id' AND site_ID = '$site_id';";
