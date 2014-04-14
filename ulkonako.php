@@ -69,7 +69,7 @@ include_once 'functions.php';
 						$site_id = htmlentities($_SESSION['site_id']);
 						
 						if(isset($_GET['submit'])){
-							if($_GET['teema'] != null){
+							if(!empty($_GET['teema'])){
 								$data = array($_GET['teema']);
 								$STH = $DBH->prepare("UPDATE simple_sites SET theme_ID = ? WHERE ID = '$site_id';");
 								$STH->execute($data);
