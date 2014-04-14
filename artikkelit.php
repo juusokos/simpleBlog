@@ -28,9 +28,8 @@ include_once 'functions.php';
 	
 			$SQL = "SELECT * FROM simple_sites
 					INNER JOIN simple_themes ON simple_sites.theme_ID = simple_themes.ID
-					INNER JOIN simple_posts ON simple_posts.site_ID = simple_sites.ID
 					INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
-					WHERE simple_users.ID=".$id.";";
+					WHERE simple_users.ID = '$id';";
 							
 			$STH = @$DBH->query($SQL);
 			$STH->setFetchMode(PDO::FETCH_OBJ);
@@ -93,13 +92,29 @@ include_once 'functions.php';
 					  </thead>
 					  <tbody>											
 						<?php
-							$SQL = "SELECT * FROM simple_posts WHERE site_ID = ".$page->site_ID.";";
+							$site_id = htmlentities($_SESSION['site_id']);
+							$SQL = "SELECT * FROM simple_posts WHERE site_ID = '$site_id';";
 								
+							
 							$STH = @$DBH->query($SQL);
 							$STH->setFetchMode(PDO::FETCH_OBJ);
-							while ($pages = $STH->fetch()):
+
+							if($STH->rowCount() == 0):
 							
 						 ?>
+						 <tr>
+						  <th></th>
+						  <th></th>
+						  <th>Sinulla ei ole artikkeleita!</th>
+						  <th></th>
+						  <th></th>
+						</tr>
+					
+						<?php 
+				
+							else:	
+							while ($pages = $STH->fetch()):
+						?>
 						 <tr>
 						   <td><?php echo $pages->title; ?></td>
 						   <td><?php echo $pages->date; ?></td>
@@ -107,11 +122,10 @@ include_once 'functions.php';
 						   <td><a href="poista.php?id=<?php echo $pages->ID; ?>">Poista</a></td>
 						   <td><a href="#">ipsum</a></td>
 						</tr>
-						<?php 
+						<?php
 							endwhile; 
+							endif;
 						?>
-						
-						
 					  </tbody>
 					</table>
 				  </div>
