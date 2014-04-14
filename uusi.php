@@ -2,7 +2,14 @@
 
 include_once 'db_connect.php';
 include_once 'functions.php';
- 
+require_once 'htmlpurifier/library/HTMLPurifier.auto.php';
+
+// HTML purifier
+$content = $dirty_html;
+$config = HTMLPurifier_Config::createDefault();
+$purifier = new HTMLPurifier($config);
+$clean_html = $purifier->purify($dirty_html); 
+$clean_html = 'kontentti OK'; 	
 	sec_session_start();
 	
 ?>
@@ -34,7 +41,7 @@ include_once 'functions.php';
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				  </button>
-				  <a class="navbar-brand" href="index.php">SIMPLE BLOG</a>
+				  <a class="navbar-brand" href="#">SIMPLE BLOG</a>
 				</div>
 				<div class="navbar-collapse collapse">
 				  <ul class="nav navbar-nav navbar-right">
@@ -42,6 +49,9 @@ include_once 'functions.php';
 					<li><a href="#">Profiili</a></li>
 					<li><a href="logout.php">Kirjaudu ulos</a></li>
 				  </ul>
+				  <form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search...">
+				  </form>
 				</div>
 			  </div>
 			</div>
@@ -51,8 +61,7 @@ include_once 'functions.php';
 				<div class="col-sm-3 col-md-2 sidebar">
 				  <ul class="nav nav-sidebar">
 				   <p>Tervetuloa <?php echo htmlentities($_SESSION['username']); ?>!</p>
-				    <li><h3>Asetukset</h3></li>
-					<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
+				  <li><h3>Asetukset</h3></li>
 					<li class="active"><a href="artikkelit.php">Artikkelit</a></li>
 					<li><a href="ulkonako.php">Ulkonäkö</a></li>
 					<li><a href="#">Kuvat ja videot</a></li>
@@ -69,22 +78,56 @@ include_once 'functions.php';
 					$site_id = htmlentities($_SESSION['site_id']);
 					
 					if(isset($_GET['submit'])){
-						if(!empty($_GET['title']) && !empty($_GET['content'])){
-							$postDate = date("Y-m-d"); 
-							$data = array($site_id, $_GET['title'], 'dummy' ,$_GET['content'], $postDate);
-							$STH = $DBH->prepare("INSERT INTO simple_posts (site_ID, title, image_url, content, date) VALUES (?,?,?,?,?);");
-							$STH->execute($data);
-							header('Location: ./artikkelit.php');
-						}						
+
+						
+						$data = array($site_id, $_GET['title'], 'dummy' ,$_GET['content'], $_GET['date']);
+						$STH = $DBH->prepare("INSERT INTO simple_posts (site_ID, title, image_url, content, date) VALUES (?,?,?,?,?);");
+						$STH->execute($data);
+						header('Location: ./artikkelit.php');						
 					}
 					
 					
 				 ?>
-				  <form action="<?php echo $_SERVER['PHP_SELF']; ?>">
+				  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
+					
 					<input type="text" name="title" placeholder="Otsikkosi" /><br/><br/>
 					<textarea placeholder="Kirjoita tekstisi tänne" name="content" rows="10" cols="100"></textarea><br/>
+					<input type="date" name="date" value="<?php echo date('Y-m-d'); ?>"/><br/><br/>
 					<input type="submit" name="submit" value="Tallenna" />
 				  </form>
+				
+				<?php
+				
+					
+				
+				if( !empty($_POST['submit']) ){
+					$title = $_POST['title'];
+					$content = $_POST['content'];
+					
+					$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
+					
+				
+				if( preg_match($testi1, $title) ){
+					echo 'titteli OK<br/>';
+				} else {
+					echo 'titteli ei ole OK<br/>';	
+				}
+				
+					$testi2 = '/^[A-Za-z0-9\s\W]{20,3000}$/i';
+					
+				if( preg_match($testi2, $content) ){
+							echo ''. $clean_html .'<br/>';
+				} else {
+						echo 'kontentti ei ole OK<br/>';	
+				}
+				
+				} 
+				
+				/*if( isset($_POST['submit'])) {
+					$dirty_html = $_POST['content'];
+				}*/
+				
+				?>
 				
 				  <div class="table-responsive">
 					
@@ -95,9 +138,8 @@ include_once 'functions.php';
 					<div class="dashboard-footer">
 						<ul class="nav navbar-nav navbar-right" role="menu">
 							<li><h3>Asetukset</h3></li>
-							<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
-							<li class="active"><a href="artikkelit.php">Artikkelit</a></li>
-							<li><a href="ulkonako.php">Ulkonäkö</a></li>
+							<li><a href="artikkelit.php">Artikkelit</a></li>
+							<li class="active"><a href="ulkonako.php">Ulkonäkö</a></li>
 							<li><a href="#">Kuvat ja videot</a></li>
 						</ul>
 					</div> <!-- div footer -->
