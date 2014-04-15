@@ -4,6 +4,8 @@ simpleBlog
 Welcome to mummola!
 
 TODO-lintu:
+
+- Fontit
  
 - Salasanan palautus
 
