@@ -2,7 +2,7 @@
 
 include_once 'db_connect.php';
 include_once 'functions.php';
-require_once 'library/HTMLPurifier.auto.php'
+require_once 'library/HTMLPurifier.auto.php';
  
 sec_session_start();	
 ?>
@@ -66,21 +66,28 @@ sec_session_start();
 
 				<?php
 					
+					
 					$site_id = htmlentities($_SESSION['site_id']);
+					
+					
 					$post_id = $_GET['id'];
+					$testi3 = '/^[0-9]{1,11}$/i';
+					
+					if(preg_match($testi3, $post_id)):
 					
 					if(isset($_GET['submit'])){
 						if(!empty($_GET['title']) && !empty($_GET['content'])){
 						
 							$config = HTMLPurifier_Config::createDefault();
 							$purifier = new HTMLPurifier($config);
-							$title = $purifier->purify($_GET['title');
-							$content = $purifier->purify($_GET['content');
+							$title = $purifier->purify($_GET['title']);
+							$content = $purifier->purify($_GET['content']);
 							
 							$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
 							$testi2 = '/^[A-Za-z0-9\s\W]{20,3000}$/i';
+							$testi3 = '/^[0-9]{1,11}$/i';
 
-							if(preg_match($testi1, $title) && preg_match($testi2, $content)){							
+							if(preg_match($testi1, $title) && preg_match($testi2, $content) && preg_match($testi3, $post_id)){							
 								$data = array($title, $content);
 								$STH = $DBH->prepare("UPDATE simple_posts SET title = ?, content = ? WHERE ID = '$post_id' AND site_ID = '$site_id';");
 								$STH->execute($data);
@@ -105,7 +112,7 @@ sec_session_start();
 					<input type="hidden" name="id" value="<?php echo $post_id; ?>" />
 					<input type="submit" name="submit" value="Tallenna" />
 				  </form>
-				 <?php endwhile; ?>
+				 <?php endwhile; else: echo 'turha luulo'; endif; ?>
 				  <div class="table-responsive">
 					
 				  </div>
