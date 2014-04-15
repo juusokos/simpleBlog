@@ -67,9 +67,16 @@ include_once 'functions.php';
 				
 					$post_id = $_GET['id'];
 					$site_id = htmlentities($_SESSION['site_id']);
-					$sql = "DELETE FROM simple_posts WHERE ID = '$post_id' AND site_ID = '$site_id';";
-					$STH = $DBH->query($sql);
-					header('Location: ./artikkelit.php');
+					$testi = '/^[0-9]{1,11}$/i';
+					
+					if(preg_match($testi, $post_id)){
+						$sql = "DELETE FROM simple_posts WHERE ID = '$post_id' AND site_ID = '$site_id';";
+						$STH = $DBH->query($sql);
+						header('Location: ./artikkelit.php');
+					} else {
+						header('Location: ./artikkelit.php');
+					}
+					
 				 ?>
 				  <div class="table-responsive">
 					
