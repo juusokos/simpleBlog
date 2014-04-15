@@ -76,13 +76,12 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
 				// Luodaan uusi sivu oletusteksteillä 
 				//  Tähän voit kirjoittaa kuvauksen itsestäsi tai blogistasi. Muokkaa tätä tekstiä Asetukset - välilehdellä.
 				$theme_id = 1;
-				$banner_id = 1;
-				$about = 'Hei! Tähän voit kirjoittaa kuvauksen itsestäsi tai blogistasi';
+				$about = 'Hei! Kerro, jotain sinustasi tai blogistasi';
 				$blog_title = 'Uusi Simple Blogi';
-				$blog_description = 'Sivuston kuvaus tulee tähän halutessasi.';
+				$blog_description = 'Kirjoita halutessasi blogillesi kuvaus';
 				
-				$luoBlogi = $mysqli->prepare("INSERT INTO simple_sites (user_ID, theme_ID, banner_ID, about, blog_title, blog_description) VALUES (?, ?, ?, ?, ?, ?)");
-				$luoBlogi->bind_param('iiisss', $user_id, $theme_id, $banner_id, $about, $blog_title, $blog_description);
+				$luoBlogi = $mysqli->prepare("INSERT INTO simple_sites (user_ID, theme_ID, about, blog_title, blog_description) VALUES (?, ?, ?, ?, ?)");
+				$luoBlogi->bind_param('iisss', $user_id, $theme_id, $about, $blog_title, $blog_description);
 				$luoBlogi->execute();
 			}
         }
