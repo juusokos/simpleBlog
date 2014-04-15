@@ -4,10 +4,6 @@ simpleBlog
 Welcome to mummola!
 
 TODO-lintu:
-
-- Mahdollisuus uploadaa kuva artikkeliin
- 
-- Bannerin vaihto
  
 - Salasanan palautus
 
@@ -18,6 +14,9 @@ TODO-lintu:
 - registration.css
 
 - Lisää palikka/rautalanka selvennöksiä kaikkialle!!!
+
+- BWAHAHAHAHAAHA TÄÄ ON MELKEIN VALMIS!!11111 
+
 
 
 
