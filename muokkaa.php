@@ -111,7 +111,7 @@ sec_session_start();
 					<input type="hidden" name="id" value="<?php echo $post_id; ?>" />
 					<input type="submit" name="submit" value="Tallenna" />
 				  </form>
-				 <?php endwhile; else: echo 'turha luulo'; endif; ?>
+				 <?php endwhile; else: header('Location: ./artikkelit.php'); endif; ?>
 				  <div class="table-responsive">
 					
 				  </div>
