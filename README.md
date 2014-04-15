@@ -5,8 +5,6 @@ Welcome to mummola!
 
 TODO-lintu:
 
-- MySQL uusiks
-
 - Mahdollisuus uploadaa kuva artikkeliin
  
 - Bannerin vaihto
@@ -16,6 +14,8 @@ TODO-lintu:
 - Salasanan vaihto
 
 - Blogin archives toiminto
+ 
+- registration.css
 
 - Lisää palikka/rautalanka selvennöksiä kaikkialle!!!
 
