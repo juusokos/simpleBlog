@@ -2,8 +2,9 @@
 
 include_once 'db_connect.php';
 include_once 'functions.php';
+require_once 'library/HTMLPurifier.auto.php'
  
-	sec_session_start();	
+sec_session_start();	
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,10 +71,23 @@ include_once 'functions.php';
 					
 					if(isset($_GET['submit'])){
 						if(!empty($_GET['title']) && !empty($_GET['content'])){
-							$data = array($_GET['title'], $_GET['content']);
-							$STH = $DBH->prepare("UPDATE simple_posts SET title = ?, content = ? WHERE ID = '$post_id' AND site_ID = '$site_id';");
-							$STH->execute($data);
-							header('Location: ./artikkelit.php');	
+						
+							$config = HTMLPurifier_Config::createDefault();
+							$purifier = new HTMLPurifier($config);
+							$title = $purifier->purify($_GET['title');
+							$content = $purifier->purify($_GET['content');
+							
+							$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
+							$testi2 = '/^[A-Za-z0-9\s\W]{20,3000}$/i';
+
+							if(preg_match($testi1, $title) && preg_match($testi2, $content)){							
+								$data = array($title, $content);
+								$STH = $DBH->prepare("UPDATE simple_posts SET title = ?, content = ? WHERE ID = '$post_id' AND site_ID = '$site_id';");
+								$STH->execute($data);
+								header('Location: ./artikkelit.php');
+							} else {
+								echo 'Täytä kentät oikein!<br/>';	
+							}
 						}
 					}
 					
