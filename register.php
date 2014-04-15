@@ -1,6 +1,9 @@
 <?php
 include_once 'register.inc.php';
 include_once 'functions.php';
+
+sec_session_start();
+if (login_check($mysqli) != true):
 ?>
 <!DOCTYPE html>
 <html>
@@ -101,3 +104,8 @@ include_once 'functions.php';
 	</div> <!-- /container -->
     </body>
 </html>
+<?php 
+else:
+	header('Location: ./index.php');
+endif;
+?>
