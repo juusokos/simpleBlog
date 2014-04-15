@@ -12,6 +12,7 @@ if ( !empty($_GET['id']) ){
 		$user_id = $_GET['id'];
 		$SQL = "SELECT * FROM simple_sites
 		INNER JOIN simple_themes ON simple_sites.theme_ID = simple_themes.ID
+		INNER JOIN simple_banner ON simple_sites.ID = simple_banner.site_ID
 		INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
 		WHERE simple_users.ID = '$user_id';";
 	
@@ -49,13 +50,20 @@ if ( !empty($_GET['id']) ){
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link id="pagestyle" href="<?php echo $page->theme_url; ?>" rel="stylesheet">
+    <link href="<?php echo $page->theme_url; ?>" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+	<script src="js/jquery-2.0.3.min.js"></script>
+	<script>
+	//id="pagestyle"
+	$(function() {
+		$(".blog-cover-image").css("background-image","url(<?php echo $page->banner_url ?>)");
+	});
+	</script>
   </head>
 
   <body>
@@ -184,7 +192,6 @@ if ( !empty($_GET['id']) ){
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/docs.min.js"></script>
   </body>
