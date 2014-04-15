@@ -2,7 +2,7 @@
 
 include_once 'db_connect.php';
 include_once 'functions.php';
-require_once 'library/HTMLPurifier.auto.php'
+require_once 'library/HTMLPurifier.auto.php';
  
 sec_session_start();	
 ?>
@@ -73,8 +73,8 @@ sec_session_start();
 							
 							$config = HTMLPurifier_Config::createDefault();
 							$purifier = new HTMLPurifier($config);
-							$title = $purifier->purify($_GET['title');
-							$content = $purifier->purify($_GET['content');
+							$title = $purifier->purify($_GET['title']);
+							$content = $purifier->purify($_GET['content']);
 							
 							$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
 							$testi2 = '/^[A-Za-z0-9\s\W]{20,3000}$/i';
