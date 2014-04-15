@@ -5,16 +5,28 @@ include_once 'functions.php';
  
 sec_session_start();
 if ( !empty($_GET['id']) ){
+	$testi = '/^[0-9]{1,11}$/i';
 	$user_id = $_GET['id'];
-	$SQL = "SELECT * FROM simple_sites
-    INNER JOIN simple_themes ON simple_sites.theme_ID = simple_themes.ID
-	INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
-	WHERE simple_users.ID = '$user_id';";
 	
-	$STH = @$DBH->query($SQL);
-	$STH->setFetchMode(PDO::FETCH_OBJ);
-	$page = $STH->fetch();
+	if(preg_match($testi, $user_id)){
+		$user_id = $_GET['id'];
+		$SQL = "SELECT * FROM simple_sites
+		INNER JOIN simple_themes ON simple_sites.theme_ID = simple_themes.ID
+		INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
+		WHERE simple_users.ID = '$user_id';";
+	
+		$STH = @$DBH->query($SQL);
+		$STH->setFetchMode(PDO::FETCH_OBJ);
+		
+		if($STH->rowCount() != 0){
+			$page = $STH->fetch();
+		} else {
+			header('Location: ./index.php');
+		}				
 	// INNER JOIN simple_posts ON simple_posts.site_ID = simple_sites.ID
+	}else{
+		header('Location: ./index.php');
+	}	
 } else {
 	header('Location: ./index.php');
 }
@@ -90,30 +102,33 @@ if ( !empty($_GET['id']) ){
         <div class="col-sm-8 blog-main">
 		  <?php
 			
-		  $SQL = "SELECT * FROM simple_posts WHERE site_ID = ".$page->ID." ORDER BY date DESC;";
+		  $SQL = "SELECT * FROM simple_posts ORDER BY date DESC;
+				INNER JOIN simple_posts ON simple_sites.ID = simple_posts.site_ID
+				INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
+				WHERE simple_users.ID = '$user_id'";
 			
           $STH = @$DBH->query($SQL);
           $STH->setFetchMode(PDO::FETCH_OBJ);
 		  if($STH->rowCount() != 0):
-		  while ($pages = $STH->fetch()):
-		  
-			$time = strtotime($pages->date);
-			$formatedTime = date('d.m.Y',$time);
-			
-		  ?>
-          <div class="blog-post">
-            <h2 class="blog-post-title"><?php echo $pages->title; ?></h2>
-            <p class="blog-post-meta"><?php echo $formatedTime; ?> <?php echo $page->username; ?></p>
-			<?php if(!empty($pages->image_url)):?>
-			<img src="<?php echo $pages->image_url; ?>"></img>
-			<?php endif; ?>
-            <p><?php echo $pages->content; ?></p>
-          </div><!-- /.blog-post -->
+			  while ($pages = $STH->fetch()):
+			  
+				$time = strtotime($pages->date);
+				$formatedTime = date('d.m.Y',$time);
+				
+			  ?>
+			  <div class="blog-post">
+				<h2 class="blog-post-title"><?php echo $pages->title; ?></h2>
+				<p class="blog-post-meta"><?php echo $formatedTime; ?> <?php echo $page->username; ?></p>
+				<?php if(!empty($pages->image_url)):?>
+				<img src="<?php echo $pages->image_url; ?>"></img>
+				<?php endif; ?>
+				<p><?php echo $pages->content; ?></p>
+			  </div><!-- /.blog-post -->
 		  <?php 
-		  	endwhile; 
+				endwhile; 
 			else:
 		  ?>
-			<h2>Et ole kirjoittaut yhtäkään artikkelia! <a href="uusi.php">Kirjoita niitä painamalla tätä linkkiä.</a></h2>
+			<h2>Et ole kirjoittaut yhtäkään artikkelia! <a href="uusi.php">Kirjoita artikkeleja painamalla tätä linkkiä.</a></h2>
 		  <?php endif; ?>
           <ul class="pager">
             <li><a href="#">Previous</a></li>
