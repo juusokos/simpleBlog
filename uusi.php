@@ -4,13 +4,7 @@ include_once 'db_connect.php';
 include_once 'functions.php';
 require_once 'library/HTMLPurifier.auto.php'
  
-sec_session_start();
-
-$content = $dirty_html;
-$config = HTMLPurifier_Config::createDefault();
-$purifier = new HTMLPurifier($config);
-$clean_html = $purifier->purify($dirty_html); 
-$clean_html = 'kontentti OK'; 	
+sec_session_start();	
 ?>
 <!DOCTYPE html>
 <html>
