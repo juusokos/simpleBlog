@@ -71,7 +71,6 @@ sec_session_start();
 					if(isset($_GET['submit'])){
 						if(!empty($_GET['title']) && !empty($_GET['content'])){
 							
-							$content = $dirty_html;
 							$config = HTMLPurifier_Config::createDefault();
 							$purifier = new HTMLPurifier($config);
 							$title = $purifier->purify($_GET['title');
@@ -87,7 +86,7 @@ sec_session_start();
 								$STH->execute($data);
 								header('Location: ./artikkelit.php');
 							} else {
-								echo 'titteli ei ole OK<br/>';	
+								echo 'Täytä kentät oikein!<br/>';	
 							}
 						}						
 					}
