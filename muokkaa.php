@@ -85,9 +85,8 @@ sec_session_start();
 							
 							$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
 							$testi2 = '/^[A-Za-z0-9\s\W]{20,3000}$/i';
-							$testi3 = '/^[0-9]{1,11}$/i';
 
-							if(preg_match($testi1, $title) && preg_match($testi2, $content) && preg_match($testi3, $post_id)){							
+							if(preg_match($testi1, $title) && preg_match($testi2, $content)){							
 								$data = array($title, $content);
 								$STH = $DBH->prepare("UPDATE simple_posts SET title = ?, content = ? WHERE ID = '$post_id' AND site_ID = '$site_id';");
 								$STH->execute($data);
