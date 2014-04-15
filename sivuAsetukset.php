@@ -2,8 +2,9 @@
 
 include_once 'db_connect.php';
 include_once 'functions.php';
- 
-	sec_session_start();	
+require_once 'library/HTMLPurifier.auto.php'
+
+sec_session_start();	
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,10 +80,24 @@ include_once 'functions.php';
 					
 					if(isset($_GET['submit'])){
 						if(!empty($_GET['blog_title']) && !empty($_GET['about'])){
-							$data = array($_GET['blog_title'], $_GET['blog_description'], $_GET['about']);
-							$STH = $DBH->prepare("UPDATE simple_sites SET blog_title = ?, blog_description = ?, about = ? WHERE ID = '$site_id';");
-							$STH->execute($data);
-							header('Location: ./sivuAsetukset.php');
+							$config = HTMLPurifier_Config::createDefault();
+							$purifier = new HTMLPurifier($config);
+							$blog_title = $purifier->purify($_GET['blog_title');
+							$blog_description = $purifier->purify($_GET['blog_description')
+							$about = $purifier->purify($_GET['about');
+							
+							$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
+							$testi2 = '/^[A-Za-z0-9\s\W]{0,500}$/i';
+							$testi2 = '/^[A-Za-z0-9\s\W]{20,500}$/i';
+
+							if(preg_match($testi1, $blog_title) && preg_match($testi2, $blog_description) && preg_match($testi3, $about)){
+								$data = array($blog_title, $blog_description, $about);
+								$STH = $DBH->prepare("UPDATE simple_sites SET blog_title = ?, blog_description = ?, about = ? WHERE ID = '$site_id';");
+								$STH->execute($data);
+								header('Location: ./sivuAsetukset.php');
+							} else {
+								echo 'Täytä kentät oikein!<br/>';	
+							}
 						}
 					}
 					
