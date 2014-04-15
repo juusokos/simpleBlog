@@ -83,6 +83,21 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
 				$luoBlogi = $mysqli->prepare("INSERT INTO simple_sites (user_ID, theme_ID, about, blog_title, blog_description) VALUES (?, ?, ?, ?, ?)");
 				$luoBlogi->bind_param('iisss', $user_id, $theme_id, $about, $blog_title, $blog_description);
 				$luoBlogi->execute();
+				$luoBlogi->close();
+				
+				$select2 = $mysqli->prepare("SELECT simple_sites.ID FROM simple_sites, simple_users WHERE simple_sites.user_ID = simple_users.ID AND simple_users.email = ?");			
+				$select2->bind_param('s', $email);
+				$select2->execute();
+				$select2->bind_result($site_id);
+				$select2->fetch();
+				$select2->close();
+				
+				$banner_url = './img/defaultBanner.JPG';
+				$banner_url_thumb = './img/defaultBanner.JPG';
+				$luoBanner = $mysqli->prepare("INSERT INTO simple_banner (site_ID, banner_url, banner_url_thumb) VALUES (?, ?, ?)");
+				$luoBanner->bind_param('iss', $site_id, $banner_url, $banner_url_thumb);
+				$luoBanner->execute();
+				
 			}
         }
        header('Location: login.php');
