@@ -2,7 +2,7 @@
 
 include_once 'db_connect.php';
 include_once 'functions.php';
-require_once 'library/HTMLPurifier.auto.php'
+require_once 'library/HTMLPurifier.auto.php';
 
 sec_session_start();	
 ?>
@@ -82,13 +82,13 @@ sec_session_start();
 						if(!empty($_GET['blog_title']) && !empty($_GET['about'])){
 							$config = HTMLPurifier_Config::createDefault();
 							$purifier = new HTMLPurifier($config);
-							$blog_title = $purifier->purify($_GET['blog_title');
-							$blog_description = $purifier->purify($_GET['blog_description')
-							$about = $purifier->purify($_GET['about');
+							$blog_title = $purifier->purify($_GET['blog_title']);
+							$blog_description = $purifier->purify($_GET['blog_description']);
+							$about = $purifier->purify($_GET['about']);
 							
 							$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
 							$testi2 = '/^[A-Za-z0-9\s\W]{0,500}$/i';
-							$testi2 = '/^[A-Za-z0-9\s\W]{20,500}$/i';
+							$testi3 = '/^[A-Za-z0-9\s\W]{20,500}$/i';
 
 							if(preg_match($testi1, $blog_title) && preg_match($testi2, $blog_description) && preg_match($testi3, $about)){
 								$data = array($blog_title, $blog_description, $about);
