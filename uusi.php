@@ -123,9 +123,7 @@ $clean_html = 'kontentti OK';
 				
 				} 
 				
-				/*if( isset($_POST['submit'])) {
-					$dirty_html = $_POST['content'];
-				}*/
+			
 				
 				?>
 				
