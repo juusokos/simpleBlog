@@ -3,15 +3,8 @@ include_once 'db_connect.php';
 include_once 'functions.php';
  
 		sec_session_start();
- 
-	if (login_check($mysqli) == true) {
-		$logged = 'in';
-	} else {
-		$logged = 'out';
-	}
+if (login_check($mysqli) != true) :
 ?>
-
-
 <!DOCTYPE html>
 <html>
         <head>
@@ -37,3 +30,8 @@ include_once 'functions.php';
 				</form>
         </body>
 </html>
+<?php 
+else:
+	header('Location: ./index.php');
+endif;
+?>
