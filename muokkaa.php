@@ -131,10 +131,7 @@ sec_session_start();
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 			<script src="./js/bootstrap.js"></script>
 			<script src="./js/docs.min.js"></script>
-        <?php else : ?>
-            <p>
-                <span class="error">You are not authorized to access this page.</span> Please <a href="login.php">login</a>.
-            </p>
-        <?php endif; ?>
+        <?php else : header('Location: ./login.php'); endif; ?>
+           
     </body>
 </html>
