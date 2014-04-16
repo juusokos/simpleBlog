@@ -55,8 +55,6 @@ sec_session_start();
 					<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
 					<li><a href="artikkelit.php">Artikkelit</a></li>
 					<li class="active"><a href="ulkonako.php">Ulkonäkö</a></li>
-					<li><a href="#">Kuvat ja videot</a></li>
-
 				  </ul>
 
 				</div>
@@ -110,7 +108,6 @@ sec_session_start();
 							<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
 							<li><a href="artikkelit.php">Artikkelit</a></li>
 							<li class="active"><a href="ulkonako.php">Ulkonäkö</a></li>
-							<li><a href="#">Kuvat ja videot</a></li>
 						</ul>
 					</div> <!-- div footer -->
 
