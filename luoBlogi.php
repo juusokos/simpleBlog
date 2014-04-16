@@ -1,4 +1,4 @@
-
+<?php SSLon(); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -58,7 +58,4 @@
 		
 		</div>
     </body>
-<?php
-require_once('upload.php');
-?>
 </html>
