@@ -1,9 +1,9 @@
 <?php
-
 include_once 'db_connect.php';
 include_once 'functions.php';
- 
+SSLon();
 sec_session_start();
+
 if ( !empty($_GET['id']) ){
 	$testi = '/^[0-9]{1,11}$/i';
 	$user_id = $_GET['id'];
@@ -24,17 +24,13 @@ if ( !empty($_GET['id']) ){
 		} else {
 			header('Location: ./index.php');
 		}				
-	// INNER JOIN simple_posts ON simple_posts.site_ID = simple_sites.ID
 	}else{
 		header('Location: ./index.php');
 	}	
 } else {
 	header('Location: ./index.php');
 }
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
