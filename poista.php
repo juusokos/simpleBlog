@@ -1,9 +1,8 @@
 <?php
-
 include_once 'db_connect.php';
 include_once 'functions.php';
- 
-	sec_session_start();	
+SSLon();
+sec_session_start();	
 ?>
 <!DOCTYPE html>
 <html>
@@ -99,6 +98,6 @@ include_once 'functions.php';
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 			<script src="./js/bootstrap.js"></script>
 			<script src="./js/docs.min.js"></script>
-       <?php else: header('Location: ./login.php'); endif; ?>
+         <?php else : header('Location: ./login.php'); endif; ?>
     </body>
 </html>
