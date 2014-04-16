@@ -1,8 +1,8 @@
 <?php
-
 include_once 'db_connect.php';
 include_once 'functions.php';
-require_once 'library/HTMLPurifier.auto.php'; 
+require_once 'library/HTMLPurifier.auto.php';
+SSLon(); 
 sec_session_start();
 ?>
 <!DOCTYPE html>
@@ -92,6 +92,6 @@ sec_session_start();
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 			<script src="./js/bootstrap.js"></script>
 			<script src="./js/docs.min.js"></script>
-        <?php else : header('Location: ./login.php'); endif; ?> 
+         <?php else : header('Location: ./login.php'); endif; ?>
     </body>
 </html>
