@@ -1,8 +1,8 @@
 <?php
 include_once 'db_connect.php';
 include_once 'functions.php';
- 
-		sec_session_start();
+SSLon();
+sec_session_start();
 if (login_check($mysqli) != true) :
 ?>
 <!DOCTYPE html>
