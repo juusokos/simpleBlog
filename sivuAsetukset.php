@@ -1,10 +1,8 @@
 <?php
-
 include_once 'db_connect.php';
 include_once 'functions.php';
-require_once 'library/HTMLPurifier.auto.php';
-
-sec_session_start();	
+SSLon(); 
+sec_session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,11 +23,11 @@ sec_session_start();
     </head>
     <body>
         <?php if (login_check($mysqli) == true) : 
-			$id = htmlentities($_SESSION['user_id']);
+			$user_id = htmlentities($_SESSION['user_id']);
 	
 			$SQL = "SELECT * FROM simple_sites
 					INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
-					WHERE simple_users.ID = '$id';";
+					WHERE simple_users.ID = '$user_id';";
 							
 			$STH = @$DBH->query($SQL);
 			$STH->setFetchMode(PDO::FETCH_OBJ);
@@ -65,58 +63,31 @@ sec_session_start();
 					<li class="active"><a href="sivuAsetukset.php">Sivun tiedot</a></li>
 					<li><a href="artikkelit.php">Artikkelit</a></li>
 					<li><a href="ulkonako.php">Ulkonäkö</a></li>
-					<li><a href="#">Kuvat ja videot</a></li>
-					 
-				  </ul>
-				  
-			
+					<li><a href="#">Kuvat ja videot</a></li>					 
+				  </ul>			
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				  <h1 class="page-header">Sivun Tiedot <a class="btn btn-success" href="uusi.php">Kirjoita uusi</a></h1>
-
 				<?php
 					
 					$site_id = htmlentities($_SESSION['site_id']);
-					
-					if(isset($_GET['submit'])){
-						if(!empty($_GET['blog_title']) && !empty($_GET['about'])){
-							$config = HTMLPurifier_Config::createDefault();
-							$purifier = new HTMLPurifier($config);
-							$blog_title = $purifier->purify($_GET['blog_title']);
-							$blog_description = $purifier->purify($_GET['blog_description']);
-							$about = $purifier->purify($_GET['about']);
-							
-							$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
-							$testi2 = '/^[A-Za-z0-9\s\W]{0,500}$/i';
-							$testi3 = '/^[A-Za-z0-9\s\W]{20,500}$/i';
-
-							if(preg_match($testi1, $blog_title) && preg_match($testi2, $blog_description) && preg_match($testi3, $about)){
-								$data = array($blog_title, $blog_description, $about);
-								$STH = $DBH->prepare("UPDATE simple_sites SET blog_title = ?, blog_description = ?, about = ? WHERE ID = '$site_id';");
-								$STH->execute($data);
-								header('Location: ./sivuAsetukset.php');
-							} else {
-								echo 'Täytä kentät oikein!<br/>';	
-							}
-						}
-					}
-					
-					$SQL = "SELECT * FROM simple_sites WHERE ID = '$site_id';";
-								
+					$SQL = "SELECT * FROM simple_sites WHERE ID = '$site_id';";								
 					$STH = @$DBH->query($SQL);
 					$STH->setFetchMode(PDO::FETCH_OBJ);
 					while($row = $STH->fetch()):
 				 ?>
-				  <form action="<?php echo $_SERVER['PHP_SELF']; ?>">
+				 <form action="sivuAsetuksetUpload.php" method="post" enctype="multipart/form-data">
 					<h3>Blogin otsikko</h3>
 					<input type="text" name="blog_title" value="<?php echo $row->blog_title; ?>" /><br/><br/>
 					<h3>Blogin kuvaus</h3>
 					<textarea name="blog_description" rows="10" cols="100"><?php echo $row->blog_description; ?></textarea><br/>
 					<h3>Kuvaus itsestäsi</h3>
 					<textarea name="about" rows="10" cols="100"><?php echo $row->about; ?></textarea><br/>
-					<input type="submit" name="submit" value="Tallenna" />
+					<h3>Blogin banner kuva</h3>
+					<input type="file" name="banner" /><br/>
+					<input type="submit" name="submit" value="Tallenna muutokset" />
 				  </form>
-				 <?php endwhile; ?>
+				  <?php endwhile; ?>
 				  <div class="table-responsive">
 					
 				  </div>
@@ -138,7 +109,6 @@ sec_session_start();
 			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 			<script src="./js/bootstrap.js"></script>
 			<script src="./js/docs.min.js"></script>
-        <?php else : header('Location: ./login.php'); endif; ?>
-            
+         <?php else : header('Location: ./login.php'); endif; ?>
     </body>
 </html>
