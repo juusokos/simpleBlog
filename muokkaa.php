@@ -53,9 +53,7 @@ sec_session_start();
 				  <li><h3>Asetukset</h3></li>
 					<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
 					<li class="active"><a href="artikkelit.php">Artikkelit</a></li>
-					<li><a href="ulkonako.php">Ulkonäkö</a></li>
-					<li><a href="#">Kuvat ja videot</a></li>
-					 
+					<li><a href="ulkonako.php">Ulkonäkö</a></li>	 
 				  </ul>
 				  
 			
@@ -123,7 +121,6 @@ sec_session_start();
 							<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
 							<li class="active"><a href="artikkelit.php">Artikkelit</a></li>
 							<li><a href="ulkonako.php">Ulkonäkö</a></li>
-							<li><a href="#">Kuvat ja videot</a></li>
 						</ul>
 					</div> <!-- div footer -->
 			<!-- Bootstrap core JavaScript
