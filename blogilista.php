@@ -1,19 +1,12 @@
 <?php 
-include_once 'funktiot/db_connect.php';
-include_once 'funktiot/funktiot.php';
- 
-	sec_session_start();	
-
-		$SQL = "SELECT * FROM simple_sites INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID";
-
-			$STH = @$DBH->query($SQL);
-			$STH->setFetchMode(PDO::FETCH_OBJ);
-			
-			
-			//$page = $STH->fetch();
-
+include_once 'db_connect.php';
+include_once 'functions.php';
+SSLon();
+sec_session_start();	
+$SQL = "SELECT * FROM simple_sites INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID";
+$STH = @$DBH->query($SQL);
+$STH->setFetchMode(PDO::FETCH_OBJ);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
