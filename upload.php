@@ -1,88 +1,131 @@
 <?php
-require_once('funktiot.php');
-require_once('db_connect.php');
 
-// Luodaan uploads ja thumb kansio, jos ne on jo olemassa niin ilmoitetaan siitä eikä luoda uudestaan.
-$upload = 'uploads';
-$thumb = 'thumb';
-
-if(!file_exists($upload)){
-	mkdir('uploads', 0755);
-	exit;
-} else {
-	echo '<script>console.log("Uploads kansio on jo luotu");</script>';
-}
-
-if(!file_exists($thumb)){
-	mkdir('thumb', 0755);
-	exit;
-} else {
-	echo '<script>console.log("Thumbs kansio on jo luotu");</script>';
-}
-
-
-//jos haluaa em. kansiot poistaa: rmdir.
-
-// kuvan näyttö
-if (!empty($_FILES['test'])) {
-	
-	//Haetaan kuvatiedosto post methodista
-    $upload = Upload::factory('uploads');
-    $upload->file($_FILES['test']);
-
-    //Määritetään tiedoston enimmäis koko megabitteinä
-    $upload->set_max_file_size(8.58);
-
-	//Arrayhin lisätään ehdot (mime type), jotka se hyväksyy eli siis jpeg, png ja gif
-    $upload->set_allowed_mime_types(array('image/jpeg', 'image/png', 'image/gif'));
-
-
-    $results = $upload->upload();
-
-	//kommentoin var_dumpin pois, mutta siinä olisi kaikki kuvasta luodut tiedot.
-    //var_dump($results);
-	
-	//Haetaan $results arrayn rivi full_path jonka echoamalla imagetagin sisällä saadaan kuva näkyviin.
-	
-	$banneri = $results["full_path"];
-
-	echo ("<br/><img src=\"$banneri\">");
-
-	$thumb = new easyphpthumbnail;
-	$thumb -> Thumblocation = 'thumb/';
-	$thumb -> Thumbsize = 150;
-	$thumb -> Createthumb($banneri, 'file');
-
-	$pikkukuva = $results["filename"];
-	
-	echo ("<br/><img src=\"thumb/$pikkukuva\">");
-	
-	//LATAA kuva tietokantaan
-	$data = array();
-	$data['banner'] = $banneri;
-	$data['thumb'] = $pikkukuva;
-	$data['ID'] = 1;
-	
-	/*
-	$SQL = "UPDATE simple_banner SET banner_url_thumb = ".$pikkukuva.",
-					banner_url = ".$banneri." WHERE ID =:ID";
-	
-	$STH = $DBH->prepare(SQL);
-	
- $STH->execute($data) */
+include_once 'db_connect.php';
+include_once 'functions.php';
  
- 
-$sql= "INSERT INTO `juusokos`.`simple_banner` 
-	(`ID`, `banner_url`, `banner_url_thumb`)
-	VALUES 
-	(' ',
-	'".$banneri."', 
-	'".$pikkukuva."'
-	);";
-	
-	$STH = $DBH->prepare($sql);
-	
-	$STH->execute($data);	
-
-}
+	sec_session_start();
 ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Asetukset</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+	   <!-- Bootstrap core CSS -->
+		<link href="./css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="./css/dashboard.css" rel="stylesheet">
+    </head>
+    <body>
+        <?php if (login_check($mysqli) == true) : ?>
+             <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			  <div class="container-fluid">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				  <a class="navbar-brand" href="index.php">SIMPLE BLOG</a>
+				</div>
+				<div class="navbar-collapse collapse">
+				  <ul class="nav navbar-nav navbar-right">
+				  <li ></li>
+				   <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Oma blogi</a></li>
+					<li><a href="#">Profiili</a></li>
+					<li><a href="logout.php">Kirjaudu ulos</a></li>
+					<li></li>
+				  </ul>
+				</div>
+			  </div>
+			</div>
+
+			<div class="container-fluid">
+			  <div class="row">
+				<div class="col-sm-3 col-md-2 sidebar ">
+				  <ul class="nav nav-sidebar">
+					<p>Tervetuloa <?php echo htmlentities($_SESSION['username']); ?>!</p>
+					<li><h3>Asetukset</h3></li>
+					<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
+					<li><a href="artikkelit.php">Artikkelit</a></li>
+					<li class="active"><a href="ulkonako.php">Ulkonäkö</a></li>
+					<li><a href="#">Kuvat ja videot</a></li>
+
+				  </ul>
+
+				</div>
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+				  <h1 class="page-header">Ulkonäkö</h1>
+				  	
+					<?php
+						$site_id = htmlentities($_SESSION['site_id']);
+						
+						if(isset($_GET['submit'])){
+							if(!empty($_GET['teema'])){
+								$data = array($_GET['teema']);
+								$STH = $DBH->prepare("UPDATE simple_sites SET theme_ID = ? WHERE ID = '$site_id';");
+								$STH->execute($data);
+							}					
+						}
+					?>	
+					<form action="<?php echo $_SERVER['PHP_SELF']; ?>">
+						<h3 class="subtitle">Teema</h3>
+						<input type='radio' name='teema' value='1' class="teemanapit" id="vaaleaTeema" checked/><label for="vaaleaTeema">Vaalea</label><span> </span>
+						<br/>
+						<input type='radio' name='teema' value='2' class="teemanapit" id="tummanSininenTeema"/><label for="tummanSininenTeema" >Tummansininen</label> <span> </span>
+
+						<h3 class="subtitle">Fontti</h3>
+
+						<ul class="list-group">
+							<li class="list-group-item"><input type="radio" name="fontti" value="times"><span style="font-family: times, 'Times New Roman', serif; margin-left: 5px;">Times New Roman</span></li>
+							<li class="list-group-item"><input type="radio" name="fontti" value="verdana"><span style="font-family: verdana; margin-left: 5px;">Verdana</span></li>
+							<li class="list-group-item"><input type="radio" name="fontti" value="georgia"><span style="font-family: Georgia; margin-left: 5px;">Georgia</span></li>
+							<li class="list-group-item"><input type="radio" name="fontti" value="comic"><span style="font-family: 'Comic Sans MS', cursive, sans-serif; margin-left: 5px;">Comic Sans</span></li>
+						</ul>
+
+						<input type="submit" name="submit" class="btn btn-success" value="Hyväksy"></input>
+						<button class="btn">Peruuta</button>
+					</form>
+
+					<span id="testi"> </span>
+
+					
+				</div>  <!-- div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" -->
+
+			  </div>  <!-- div row -->
+
+
+			</div>  <!-- div container-fluid -->
+
+					<div class="dashboard-footer">
+						<ul class="nav navbar-nav navbar-right" role="menu">
+							<li><h3>Asetukset</h3></li>
+							<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
+							<li><a href="artikkelit.php">Artikkelit</a></li>
+							<li class="active"><a href="ulkonako.php">Ulkonäkö</a></li>
+							<li><a href="#">Kuvat ja videot</a></li>
+						</ul>
+					</div> <!-- div footer -->
+
+			<!-- Bootstrap core JavaScript
+			================================================== -->
+			<!-- Placed at the end of the document so the pages load faster -->
+
+
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+			 <script src="./js/bootstrap.js"></script>
+			<script src="./js/docs.min.js"></script>
+        <?php else : header('Location: ./login.php'); endif; ?>
+        
+    </body>
+</html>
