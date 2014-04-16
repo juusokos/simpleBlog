@@ -59,7 +59,6 @@ if ( !empty($_GET['id']) ){
     <![endif]-->
 	<script src="js/jquery-2.0.3.min.js"></script>
 	<script>
-	//id="pagestyle"
 	$(function() {
 		$(".blog-cover-image").css("background-image","url(<?php echo $page->banner_url ?>)");
 	});
@@ -110,10 +109,10 @@ if ( !empty($_GET['id']) ){
         <div class="col-sm-8 blog-main">
 		  <?php
 			
-		  $SQL = "SELECT * FROM simple_posts ORDER BY date DESC;
-				INNER JOIN simple_posts ON simple_sites.ID = simple_posts.site_ID
+		  $SQL = "SELECT * FROM simple_posts
+				INNER JOIN simple_sites ON simple_sites.ID = simple_posts.site_ID
 				INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
-				WHERE simple_users.ID = '$user_id'";
+				WHERE simple_users.ID = '$user_id' ORDER BY date DESC";
 			
           $STH = @$DBH->query($SQL);
           $STH->setFetchMode(PDO::FETCH_OBJ);
