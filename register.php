@@ -1,7 +1,7 @@
 <?php
 include_once 'register.inc.php';
 include_once 'functions.php';
-
+SSLon();
 sec_session_start();
 if (login_check($mysqli) != true):
 ?>
