@@ -1,9 +1,7 @@
 <?php
-
 include_once 'db_connect.php';
 include_once 'functions.php';
 require_once 'library/HTMLPurifier.auto.php';
- 
 sec_session_start();	
 ?>
 <!DOCTYPE html>
@@ -67,32 +65,26 @@ sec_session_start();
 				<?php
 					
 					
-					$site_id = htmlentities($_SESSION['site_id']);
-					
-					
+					$site_id = htmlentities($_SESSION['site_id']);				
 					$post_id = $_GET['id'];
-					$testi3 = '/^[0-9]{1,11}$/i';
+					$testi = '/^[0-9]{1,11}$/i';
 					
-					if(preg_match($testi3, $post_id)):
+					if(preg_match($testi, $post_id)):
 					
-					if(isset($_GET['submit'])){
-						if(!empty($_GET['title']) && !empty($_GET['content'])){
-						
+					if(isset($_GET['poista'])){
+						if(!empty($_GET['id'])){					
 							$config = HTMLPurifier_Config::createDefault();
 							$purifier = new HTMLPurifier($config);
-							$title = $purifier->purify($_GET['title']);
-							$content = $purifier->purify($_GET['content']);
-							
-							$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
-							$testi2 = '/^[A-Za-z0-9\s\W]{20,3000}$/i';
+							$post_id2 = $purifier->purify($_GET['id']);
+							$image_url = ' ';
 
-							if(preg_match($testi1, $title) && preg_match($testi2, $content)){							
-								$data = array($title, $content);
-								$STH = $DBH->prepare("UPDATE simple_posts SET title = ?, content = ? WHERE ID = '$post_id' AND site_ID = '$site_id';");
+							if(preg_match($testi, $post_id2)){							
+								$data = array($image_url);
+								$STH = $DBH->prepare("UPDATE simple_posts SET image_url = ? WHERE ID = '$post_id2' AND site_ID = '$site_id';");
 								$STH->execute($data);
-								header('Location: ./artikkelit.php');
+								header('Location: ./muokkaa.php?id='.$post_id2.'');
 							} else {
-								echo 'Täytä kentät oikein!<br/>';	
+								header('Location: ./artikkelit.php');	
 							}
 						}
 					}
@@ -103,13 +95,19 @@ sec_session_start();
 					$STH->setFetchMode(PDO::FETCH_OBJ);
 					while($row = $STH->fetch()):
 				 ?>
-				  <form action="<?php echo $_SERVER['PHP_SELF']; ?>">
+				  <form action="muokkaaArtikkeliUpload.php" method="post" enctype="multipart/form-data">
 					<h3>Otsikko</h3>
 					<input type="text" name="title" value="<?php echo $row->title; ?>" /><br/><br/>
 					<h3>Teksti</h3>
 					<textarea name="content" rows="10" cols="100"><?php echo $row->content; ?></textarea><br/>
+					<h3>Artikkeleihin voi myös liittää halutessa kuvan</h3>
+					<input type="file" name="image"/><br/>
 					<input type="hidden" name="id" value="<?php echo $post_id; ?>" />
-					<input type="submit" name="submit" value="Tallenna" />
+					<input type="submit" name="submit" value="Tallenna muutokset artikkeliin" />
+				  </form><br/><br/>
+				  <form action="<?php echo $_SERVER['PHP_SELF']; ?>">
+				  	<input type="hidden" name="id" value="<?php echo $post_id; ?>" />
+					<input type="submit" name="poista" value="Poista artikkelin kuva" />
 				  </form>
 				 <?php endwhile; else: header('Location: ./artikkelit.php'); endif; ?>
 				  <div class="table-responsive">
