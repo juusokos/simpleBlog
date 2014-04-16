@@ -4,7 +4,7 @@ include_once 'functions.php';
 require_once 'library/HTMLPurifier.auto.php';
 require_once 'uploadPHP.php';
 require_once 'easyphpthumbnail.php';
- 
+SSLon(); 
 sec_session_start();
 
 if (login_check($mysqli) == true):
