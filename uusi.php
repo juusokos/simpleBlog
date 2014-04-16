@@ -2,9 +2,8 @@
 
 include_once 'db_connect.php';
 include_once 'functions.php';
-require_once 'library/HTMLPurifier.auto.php';
- 
-sec_session_start();	
+require_once 'library/HTMLPurifier.auto.php'; 
+sec_session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -64,39 +63,12 @@ sec_session_start();
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				  <h1 class="page-header">Artikkelit</h1>
 
-				<?php
-				
-					$site_id = htmlentities($_SESSION['site_id']);
-					
-					if(isset($_GET['submit'])){
-						if(!empty($_GET['title']) && !empty($_GET['content'])){
-							
-							$config = HTMLPurifier_Config::createDefault();
-							$purifier = new HTMLPurifier($config);
-							$title = $purifier->purify($_GET['title']);
-							$content = $purifier->purify($_GET['content']);
-							
-							$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
-							$testi2 = '/^[A-Za-z0-9\s\W]{20,3000}$/i';
-
-							if(preg_match($testi1, $title) && preg_match($testi2, $content)){
-								$postDate = date("Y-m-d"); 
-								$data = array($site_id, $title, ' ' ,$content, $postDate);
-								$STH = $DBH->prepare("INSERT INTO simple_posts (site_ID, title, image_url, content, date) VALUES (?,?,?,?,?);");
-								$STH->execute($data);
-								header('Location: ./artikkelit.php');
-							} else {
-								echo 'Täytä kentät oikein!<br/>';	
-							}
-						}						
-					}
-					
-					
-				 ?>
-				  <form action="<?php echo $_SERVER['PHP_SELF']; ?>">
+				  <form action="uusiArtikkeliUpload.php" method="post" enctype="multipart/form-data">
 					<input type="text" name="title" placeholder="Otsikkosi" /><br/><br/>
 					<textarea placeholder="Kirjoita tekstisi tänne" name="content" rows="10" cols="100"></textarea><br/>
-					<input type="submit" name="submit" value="Tallenna" />
+					<h3>Artikkeleihin voi myös liittää halutessa kuvan</h3>
+					<input type="file" name="image"/><br/>
+					<input type="submit" name="submit" value="Tallenna artikkeli" />
 				  </form>
 				
 				  <div class="table-responsive">
