@@ -14,8 +14,6 @@ TODO-lintu:
 - Blogin archives toiminto
  
 - registration.css
- 
-- SSLon kaikkialle
 
 - Lisää palikka/rautalanka selvennöksiä kaikkialle!!!
 
