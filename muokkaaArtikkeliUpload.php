@@ -87,8 +87,6 @@ if($_FILES['image']['size'] != 0 ){
 	header('Location: ./artikkelit.php');
 }
 ?>
-<?php else:	?>
-<p>
-    <span class="error">You are not authorized to access this page.</span> Please <a href="login.php">login</a>.
-</p>
-<?php endif; ?>
+<?php else: header('Location: ./login.php'); endif; ?>
+
+
