@@ -71,6 +71,7 @@ if ( !empty($_GET['id']) ){
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span style="font-size: 25px; color: #FFF;">&#9636;</span>
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
