@@ -13,16 +13,18 @@ if (login_check($mysqli) != true):
         <script type="text/JavaScript" src="js/sha512.js"></script> 
         <link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/register.css" rel="stylesheet">
+		<link href="css/login.css" rel="stylesheet">
 		<script type="text/JavaScript" src="js/forms.js"></script>
-		<script src="js/jquery-2.0.3.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     </head>
     <body>
 	<div id="container">
         <!-- Registration form to be output if the POST variables are not
         set or if the registration script caused an error. -->
-        <h1>Rekisteröidy
-			<button class="btn btn-primary "data-toggle="modal" data-target="#myModal">?</button>
-		</h1>
+		<div id="logo">
+				<a class="brand" href="index.php"><img src="img/logo.png" alt="Simple Blog logo" width= "200px"></a>
+            </div>
+        
 		
         <?php
 			if (!empty($error_msg)) {
@@ -61,7 +63,10 @@ if (login_check($mysqli) != true):
 	
 		
         <form role="form" method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" class="form-horizontal">
-            <div id="form-group col-sm-2">
+            <h1>Rekisteröidy
+			<button class="btn btn-primary "data-toggle="modal" data-target="#myModal">?</button>
+		</h1>
+			<div id="form-group col-sm-2">
 				<label for="username" class="control-label">Käyttäjätunnus:</label>
 				<input id="username" name="username" type="text" class="form-control" 
 						     placeholder="Käyttäjätunnus" ><br>
@@ -91,7 +96,7 @@ if (login_check($mysqli) != true):
                                    this.form.email,
                                    this.form.password,
                                    this.form.confirmpwd);" /> 
-			<p class="help-block">Palaa <a href="index.php">kirjautumissivulle</a>.</p>
+			<p class="help-block">Palaa <a href="index.php">etusivulle</a>.</p>
 			
         </form>
 		
