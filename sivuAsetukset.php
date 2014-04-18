@@ -66,7 +66,7 @@ sec_session_start();
 				  </ul>			
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				  <h1 class="page-header">Sivun Tiedot <a class="btn btn-success" href="uusi.php">Kirjoita uusi</a></h1>
+				  <h1 class="page-header">Sivun Tiedot</h1>
 				<?php
 					
 					$site_id = htmlentities($_SESSION['site_id']);
