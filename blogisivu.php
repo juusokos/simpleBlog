@@ -184,9 +184,9 @@ if ( !empty($_GET['id']) ){
     </div><!-- /.container -->
 
     <div class="blog-footer">
-      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p> &copy; <?php echo $page->username; ?> & simple Blog</p>
       <p>
-        <a href="#">Back to top</a>
+        <a href="#">Sivun alkuun</a>
       </p>
     </div>
 
