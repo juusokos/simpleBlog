@@ -38,7 +38,10 @@ $STH->setFetchMode(PDO::FETCH_OBJ);
   </head>
 
   <body>
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+	
+		
+	
+    <div class="navbar  navbar-inverse" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -47,7 +50,9 @@ $STH->setFetchMode(PDO::FETCH_OBJ);
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">SIMPLE BLOG</a>
+		  <div id="logo">
+		  <a class="navbar-brand" href="index.php"><img src="img/logo.png"></a>
+          </div>
         </div>
         <div class="collapse navbar-collapse navbar-right">
           <ul class="nav navbar-nav">
@@ -72,18 +77,36 @@ $STH->setFetchMode(PDO::FETCH_OBJ);
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Valikko</button>
           </p>
-          <div class="jumbotron">
-            <h1>Hei, sinä!</h1>
-            <p> Luo uusi blogi tai lue muiden blogeja</p>
-			<a href="register.php" class="btn btn-success"> Luo uusi blogi </a>
-			<a href="login.php" class="btn btn-default"> Kirjaudu sisään </a>
 		
+			
+		
+          <div class="jumbotron">
+			
+			<div id="etusivuKuvaus">
+			<?php if (login_check($mysqli) == true) : ?>
+				<h1>Tervetuloa <?php echo htmlentities($_SESSION['username']); ?>!</h1>
+				<p> Muokkaa blogiasi tai lue muiden blogeja.</p>
+				<a href="artikkelit.php" class="btn btn-success"> Kirjoita uusi artikkeli </a>
+				<a href="ulkonako.php" class="btn btn-success"> Muokkaa blogisi ulkonäköä </a>
+				<br><br>
+				<a href="blogilista.php" class="btn btn-primary"> Lue Blogeja </a>
+				<a href="logout.php" class="btn btn-default"> Kirjaudu ulos </a>
+			<?php else : ?>
+				<h1>Hei, sinä!</h1>
+				<p> Luo uusi blogi tai lue muiden blogeja</p>
+				<a href="register.php" class="btn btn-success"> Luo uusi blogi </a>
+				<a href="blogilista.php" class="btn btn-primary"> Lue Blogeja </a>
+				<a href="login.php" class="btn btn-default"> Kirjaudu sisään </a>
+			  <?php endif; ?>
+			</div>
           </div>
           <div class="row">
 		  <h1>Uusimmat blogit:</h1>
 		  <?php while($row = $STH->fetch()): ?>
             <div class="col-6 col-sm-6  blogit">
+			 
 			 <h2><?php echo $row->blog_title; ?></h2>
+			 
 			 <p><i><?php echo $row->blog_description; ?></i></p> <br/>
               <p><?php echo $row->about; ?></p>
               <a class="btn btn-info " href="blogisivu.php?id=<?php echo $row->user_ID  ?>" role="button">Katso blogi &raquo;</a>
