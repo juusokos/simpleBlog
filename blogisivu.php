@@ -14,6 +14,7 @@ if ( !empty($_GET['id']) ){
 		INNER JOIN simple_themes ON simple_sites.theme_ID = simple_themes.ID
 		INNER JOIN simple_banner ON simple_sites.ID = simple_banner.site_ID
 		INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
+		INNER JOIN simple_fonts ON simple_sites.font_ID = simple_fonts.ID
 		WHERE simple_users.ID = '$user_id';";
 	
 		$STH = @$DBH->query($SQL);
@@ -53,15 +54,18 @@ if ( !empty($_GET['id']) ){
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	<script src="js/jquery-2.0.3.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script>
 	$(function() {
 		$(".blog-cover-image").css("background-image","url(<?php echo $page->banner_url ?>)");
+		$("p,h1,h2,h3,h4,h5,h6,a,span").css("font-family","<?php echo $page->font ?>");
+	
 	});
+
 	</script>
   </head>
 
-  <body>
+  <body >
 
     <div class="blog-masthead">
       <div class="container">
@@ -89,11 +93,10 @@ if ( !empty($_GET['id']) ){
     </div>
 
     <div class="container container2">
-
+	
 	<div class="blog-cover-image"></div>
-<div class="paddingfix">	
+	<div class="paddingfix">	
       <div class="blog-header">
-	  
         <h1 class="blog-title"><?php echo $page->blog_title; ?></h1>
 		<?php if(!empty($page->blog_description)):?>
         <p class="lead blog-description"><?php echo $page->blog_description; ?></p>
@@ -123,9 +126,12 @@ if ( !empty($_GET['id']) ){
 				<h2 class="blog-post-title"><?php echo $pages->title; ?></h2>
 				<p class="blog-post-meta"><?php echo $formatedTime; ?> <?php echo $page->username; ?></p>
 				<?php if(!empty($pages->image_url)):?>
-				<img src="<?php echo $pages->image_url; ?>"></img>
+				<img class="pic" src="testi.jpg"></img>
+				<img class="pic" src="<?php echo $pages->image_url; ?>"></img>
 				<?php endif; ?>
-				<p><?php echo $pages->content; ?></p>
+				<div class="blogtext">
+					<p ><?php echo $pages->content; ?></p>
+				</div>
 			  </div><!-- /.blog-post -->
 		  <?php 
 				endwhile; 
@@ -142,11 +148,11 @@ if ( !empty($_GET['id']) ){
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
-            <h4>About</h4>
+            <h4>Kirjoittajasta</h4>
             <p><?php echo $page->about; ?></p>
           </div>
           <div class="sidebar-module">
-            <h4>Archives</h4>
+            <h4>Arkistot</h4>
             <ol class="list-unstyled">
               <li><a href="#">January 2014</a></li>
               <li><a href="#">December 2013</a></li>
@@ -163,7 +169,7 @@ if ( !empty($_GET['id']) ){
             </ol>
           </div>
           <div class="sidebar-module">
-            <h4>Elsewhere</h4>
+            <h4>Muualla</h4>
             <ol class="list-unstyled">
               <li><a href="#">GitHub</a></li>
               <li><a href="#">Twitter</a></li>
@@ -184,10 +190,11 @@ if ( !empty($_GET['id']) ){
     </div>
 
 
-    <!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript 
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/docs.min.js"></script>
+
   </body>
 </html>
