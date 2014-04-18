@@ -3,7 +3,22 @@
  * Värit: Tumma vihreä: #16464E 16464E , kirkas vihreä:#3C8D9B 3C8D9B  , vaalea vihreä: #70D6E7  70D6E7
  * korostusvärit: tumma liila:#291B10 291B10 vaaleampi liila: #9B6A45 9B6A45 #be916e
  */
+ 
+/* Kuvakoon rajoitus*/
+ img{
+	width: 100%;
+ }
+ .pic{
+	max-width: 800px;
 
+}
+/*Tekstien rajoitus*/
+.blogtext{
+	max-width: 800px;
+	word-wrap:break-word;
+}
+ 
+ 
 body {
   font-family:"Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
    background-image: url('../img/cream_dust_blue.png');
@@ -165,7 +180,7 @@ padding-right: 5%;
 /* Sidebar modules for boxing content */
 .sidebar-module {
   padding: 5%;
-
+	word-wrap:break-word;
   margin: 0 -5px 15px;
 }
 .sidebar-module-inset {
