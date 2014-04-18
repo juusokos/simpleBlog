@@ -16,8 +16,12 @@ if (login_check($mysqli) != true) :
 				<link href="css/login.css" rel="stylesheet">
         </head>
         <body>
-			 <a class="brand" href="index.php"><img src="img/logo.png" alt="Simple Blog logo" width= "200px"></a>
-            <?php
+		<a id="luoBlogi" class="btn btn-success" href="register.php">Luo Blogi</a>
+			<div id="logo">
+				<a class="brand" href="index.php"><img src="img/logo.png" alt="Simple Blog logo" width= "200px"></a>
+            </div>
+			
+			<?php
 				if (isset($_GET['error'])) {
 					echo '<p class="error">Error Logging In!</p>';
 				}
