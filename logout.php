@@ -3,7 +3,6 @@ include_once 'db_connect.php';
 include 'functions.php';
 SSLon();
 sec_session_start();
-$url = htmlentities($_SESSION['user_id']); 
 // Unset all session values
 $_SESSION = array();
 // get session parameters
