@@ -126,7 +126,6 @@ if ( !empty($_GET['id']) ){
 				<h2 class="blog-post-title"><?php echo $pages->title; ?></h2>
 				<p class="blog-post-meta"><?php echo $formatedTime; ?> <?php echo $page->username; ?></p>
 				<?php if(!empty($pages->image_url)):?>
-				<img class="pic" src="testi.jpg"></img>
 				<img class="pic" src="<?php echo $pages->image_url; ?>"></img>
 				<?php endif; ?>
 				<div class="blogtext">
