@@ -4,7 +4,10 @@ include_once 'functions.php';
 SSLon();
 sec_session_start();	
 
-$SQL = "SELECT * FROM simple_sites INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID LIMIT 0, 6";
+$SQL = "SELECT * FROM simple_sites 
+INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID 
+INNER JOIN simple_banner ON simple_sites.ID = simple_banner.site_ID
+LIMIT 0, 6";
 $STH = @$DBH->query($SQL);
 $STH->setFetchMode(PDO::FETCH_OBJ);
 ?>
@@ -104,11 +107,12 @@ $STH->setFetchMode(PDO::FETCH_OBJ);
 		  <h1>Uusimmat blogit:</h1>
 		  <?php while($row = $STH->fetch()): ?>
             <div class="col-6 col-sm-6  blogit">
-			 
+			 <img src="<?php echo $row->banner_url; ?>" width="100px">
 			 <h2><?php echo $row->blog_title; ?></h2>
 			 
 			 <p><i><?php echo $row->blog_description; ?></i></p> <br/>
               <p><?php echo $row->about; ?></p>
+			  
               <a class="btn btn-info " href="blogisivu.php?id=<?php echo $row->user_ID  ?>" role="button">Katso blogi &raquo;</a>
             </div><!--/span-->
 			<?php endwhile; ?>
@@ -140,7 +144,7 @@ $STH->setFetchMode(PDO::FETCH_OBJ);
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/offcanvas.js"></script>
   </body>
