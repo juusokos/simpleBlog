@@ -34,6 +34,6 @@ if (login_check($mysqli) != true) :
 </html>
 <?php 
 else:
-	header('Location: moi.php');
+	header('Location: index.php');
 endif;
 ?>
