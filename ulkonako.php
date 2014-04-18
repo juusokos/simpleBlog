@@ -64,28 +64,41 @@ sec_session_start();
 				  	
 					<?php
 						$site_id = htmlentities($_SESSION['site_id']);
-						
+					
 						if(isset($_GET['submit'])){
-							if(!empty($_GET['teema'])){
-								$data = array($_GET['teema']);
-								$STH = $DBH->prepare("UPDATE simple_sites SET theme_ID = ? WHERE ID = '$site_id';");
-								$STH->execute($data);
-							}					
+							if(!empty($_GET['teema'])&& !empty($_GET['fontti'])){
+								$data = array();
+								$data['theme'] = $_GET['teema'];
+								$data['font'] = $_GET['fontti'];
+								
+								$teema_testi = '/^[1-2]{1}$/i';
+								$fontti_testi = '/^[1-4]{1}$/i';
+								
+								if(preg_match($teema_testi, $data['theme'])&&preg_match($fontti_testi, $data['font'])){
+									$STH = $DBH->prepare("UPDATE simple_sites SET font_id = :font,
+									theme_id = :theme WHERE ID = '$site_id';");
+									$STH->execute($data);
+								}else{
+									header('Location: ulkonako.php');
+								}
+							}else{
+								header('Location: ulkonako.php');
+							}				
 						}
 					?>	
 					<form action="<?php echo $_SERVER['PHP_SELF']; ?>">
 						<h3 class="subtitle">Teema</h3>
-						<input type='radio' name='teema' value='1' class="teemanapit" id="vaaleaTeema" checked/><label for="vaaleaTeema">Vaalea</label><span> </span>
+						<input type='radio' name='teema' value='1' class="teemanapit" id="vaaleaTeema" ><label for="vaaleaTeema">Vaalea</label><span> </span>
 						<br/>
 						<input type='radio' name='teema' value='2' class="teemanapit" id="tummanSininenTeema"/><label for="tummanSininenTeema" >Tummansininen</label> <span> </span>
 
 						<h3 class="subtitle">Fontti</h3>
 
 						<ul class="list-group">
-							<li class="list-group-item"><input type="radio" name="fontti" value="times"><span style="font-family: times, 'Times New Roman', serif; margin-left: 5px;">Times New Roman</span></li>
-							<li class="list-group-item"><input type="radio" name="fontti" value="verdana"><span style="font-family: verdana; margin-left: 5px;">Verdana</span></li>
-							<li class="list-group-item"><input type="radio" name="fontti" value="georgia"><span style="font-family: Georgia; margin-left: 5px;">Georgia</span></li>
-							<li class="list-group-item"><input type="radio" name="fontti" value="comic"><span style="font-family: 'Comic Sans MS', cursive, sans-serif; margin-left: 5px;">Comic Sans</span></li>
+							<li class="list-group-item"><input type="radio" name="fontti" value="1" ><span style="font-family: verdana; margin-left: 5px;">Verdana</span></li>
+							<li class="list-group-item"><input type="radio" name="fontti" value="2"><span style="font-family: times, 'Times New Roman', serif; margin-left: 5px;">Times New Roman</span></li>
+							<li class="list-group-item"><input type="radio" name="fontti" value="3"><span style="font-family: Georgia; margin-left: 5px;">Georgia</span></li>
+							<li class="list-group-item"><input type="radio" name="fontti" value="4"><span style="font-family: 'Comic Sans MS', cursive, sans-serif; margin-left: 5px;">Comic Sans</span></li>
 						</ul>
 
 						<input type="submit" name="submit" class="btn btn-success" value="Hyväksy"></input>
@@ -122,5 +135,8 @@ sec_session_start();
 			 <script src="./js/bootstrap.js"></script>
 			<script src="./js/docs.min.js"></script>
          <?php else : header('Location: ./login.php'); endif; ?>
+		 <script>
+	
+		 </script>
     </body>
 </html>
