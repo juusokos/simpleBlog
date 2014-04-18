@@ -71,7 +71,7 @@ sec_session_start();
 								$data['theme'] = $_GET['teema'];
 								$data['font'] = $_GET['fontti'];
 								
-								$teema_testi = '/^[1-2]{1}$/i';
+								$teema_testi = '/^[1-5]{1}$/i';
 								$fontti_testi = '/^[1-4]{1}$/i';
 								
 								if(preg_match($teema_testi, $data['theme'])&&preg_match($fontti_testi, $data['font'])){
