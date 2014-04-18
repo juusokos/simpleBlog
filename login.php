@@ -16,12 +16,14 @@ if (login_check($mysqli) != true) :
 				<link href="css/login.css" rel="stylesheet">
         </head>
         <body>
+			 <a class="brand" href="index.php"><img src="img/logo.png" alt="Simple Blog logo" width= "200px"></a>
             <?php
 				if (isset($_GET['error'])) {
 					echo '<p class="error">Error Logging In!</p>';
 				}
 			?> 
                 <form class="form-signin" action="process_login.php" method="post" name="login_form">
+				
 				<h2 class="form-signin-heading">Kirjaudu sisään</h2>
                 Email: <input type="text" name="email" class="form-control" placeholder="Sähköpostiosoite"  /> <br/>
                 Password: <input type="password" name="password" class="form-control" placeholder="Salasana" id="password" /> <br/>
@@ -32,6 +34,6 @@ if (login_check($mysqli) != true) :
 </html>
 <?php 
 else:
-	header('Location: ./index.php');
+	header('Location: moi.php');
 endif;
 ?>
