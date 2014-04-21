@@ -13,6 +13,9 @@ Helpot nakit:
 
 - Fontit
 
+- Virheilmoitukset! Esim jos kirjautuminen menee pieleen, ei ohjata vaan etusivulle.. 
+
+
 
 Rankat lenkkimakkarat:
 
