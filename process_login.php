@@ -11,20 +11,20 @@ if (isset($_POST['email'], $_POST['p'])) {
     if (login($email, $password, $mysqli) == true) {
         // Login success 
         
-        $user_id = htmlentities($_SESSION['user_id']);
+        $id = htmlentities($_SESSION['user_id']);
         $SQL = "SELECT simple_sites.ID FROM simple_sites
                     		INNER JOIN simple_users ON simple_users.ID = simple_sites.user_ID
-    						WHERE simple_users.ID = '$user_id';";
+    						WHERE simple_users.ID = ".$id.";";
 	
 					$STH = @$DBH->query($SQL);
 					$STH->setFetchMode(PDO::FETCH_OBJ);
 					$site_id = $STH->fetch();
 					
 					$_SESSION['site_id'] = $site_id->ID;
-        header('Location: ./artikkelit.php');
+        header('Location: ./sivuAsetukset.php');
     } else {
         // Login failed 
-        header('Location: ../index.php?error=1');
+        header('Location: ./error.php?error=1');
     }
 } else {
     // The correct POST variables were not sent to this page. 
