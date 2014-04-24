@@ -5,12 +5,43 @@
 html,
 body {
   overflow-x: hidden; /* Prevent scroll on narrow devices */
+  
 }
 body {
   padding-top: 70px;
+  /*background-image: url('../img/logo.png');*/
 }
 footer {
   padding: 30px 0;
+}
+
+#logo{	
+	max-width: 970px;
+	height: 100px;
+	margin-top: -42.5px;
+	margin-bottom: 5px;
+}
+
+@media (max-width: 764px) {
+   #logo {
+   
+   margin-top: 0px;
+  }
+}
+@media (min-width: 1000px) {
+   #logo {
+   margin-left: 70px;
+  }
+}
+
+
+
+#logo > a > img{
+	width: 200px;
+}
+
+.navbar{
+	border-radius: 0 !important;
 }
 
 /*
@@ -19,22 +50,45 @@ footer {
  */
  
  /*Blogipostausjutut*/
+ /* Kuvakoon rajoitus*/
+ img{
+	width: 100%;
+ }
  
+ .pic{
+	max-width: 800px;
+	
+}
+ 
+
  .blogit{
 	border: 1px dotted grey;
 	margin: 10px;
 	padding: 10px;
-	height: 300px;
+	max-height: 500px;
 	max-width: 200px;
 	display: block;
+	overflow: hidden;
  }
  
- .blogit > a{
+ .bDescription{
+	word-wrap:break-word;
+	height: 30px;
+	text-overflow: "...";
+	border: 1px solid blue;
+ }
+ 
+ .bAbout{
+	word-wrap:break-word;
+	height: 30px;
+	text-overflow: "...";
+	border: 1px solid red;
+ }
+ 
+ /*.blogit > a{
 	position: absolute;
 	bottom: 10px;
-	
- 
- }
+ }*/
  
  
 @media screen and (max-width: 767px) {
