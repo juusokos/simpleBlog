@@ -7,14 +7,9 @@ TODO-lintu:
 
 Helpot nakit:
 
-- css tiedostojen parantelua + registration.php/.css kuntoon
-
 - Lisää palikka/rautalanka selvennöksiä kaikkialle!!!
 
-- Fontit
-
 - Virheilmoitukset! Esim jos kirjautuminen menee pieleen, ei ohjata vaan etusivulle.. 
-
 
 
 Rankat lenkkimakkarat:
