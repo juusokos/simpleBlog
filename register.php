@@ -32,6 +32,10 @@ if (login_check($mysqli) != true):
 			}
         ?>
 		
+		 <h1>Rekisteröidy
+			<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">?</button>
+		</h1>
+		
 		<!--Ohjemodaali-->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -63,9 +67,7 @@ if (login_check($mysqli) != true):
 	
 		
         <form role="form" method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" class="form-horizontal">
-            <h1>Rekisteröidy
-			<button class="btn btn-primary" "data-toggle="modal" data-target="#myModal">?</button>
-		</h1>
+           
 			<div id="form-group col-sm-2">
 				<label for="username" class="control-label">Käyttäjätunnus:</label>
 				<input id="username" name="username" type="text" class="form-control" 
