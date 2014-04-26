@@ -61,7 +61,7 @@ sec_session_start();
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				  <h1 class="page-header">Artikkelit</h1>
 
-				  <form action="uusiArtikkeliUpload.php" method="post" enctype="multipart/form-data">
+				  <form id="uusiArtikkeli" action="uusiArtikkeliUpload.php" method="post" enctype="multipart/form-data">
 					<input type="text" name="title" placeholder="Otsikkosi" /><br/><br/>
 					<textarea placeholder="Kirjoita tekstisi tänne" name="content" rows="10" cols="100"></textarea><br/>
 					<h3>Artikkeleihin voi myös liittää halutessa kuvan</h3>
@@ -86,9 +86,43 @@ sec_session_start();
 			<!-- Bootstrap core JavaScript
 			================================================== -->
 			<!-- Placed at the end of the document so the pages load faster -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<script src="./js/jquery-2.0.3.min.js"></script>
+			<script src="./js/jquery.validate.min.js"></script>
 			<script src="./js/bootstrap.js"></script>
 			<script src="./js/docs.min.js"></script>
+			<script>
+			$(function() {	
+			$("#uusiArtikkeli").validate({
+				rules: {
+					title: {
+						required: true,
+						minlength: 2,
+						maxlength: 50
+					},			
+					content: {
+						required: true,
+						minlength: 20,
+						maxlength: 3000
+					},
+				},
+				messages: {
+					title: {
+						required: " Anna artikkelille otsikko",
+						minlength: " Otsikon on oltava vähintään 2 merkkiä pitkä",
+						maxlength: " Otsikon on oltava enintään 50 numeroa pitkä"
+					},
+					content: {
+						required: " Anna artikkelille otsikko",
+						minlength: " Otsikon on oltava vähintään 20 merkkiä pitkä",
+						maxlength: " Otsikon on oltava enintään 3000 numeroa pitkä"
+					},
+				},
+				submitHandler: function(form) {
+   	        		form.submit();
+   	     		}
+			});
+			});
+			</script>
          <?php else : header('Location: ./login.php'); endif; ?>
     </body>
 </html>
