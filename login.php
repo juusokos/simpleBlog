@@ -12,6 +12,7 @@ if (login_check($mysqli) != true) :
 				<meta charset="utf-8">
                 <script type="text/javascript" src="js/sha512.js"></script>
                 <script type="text/javascript" src="js/forms.js"></script>
+                <script src="./js/jquery-2.0.3.min.js"></script>
                 <link href="css/bootstrap.min.css" rel="stylesheet">
 				<link href="css/login.css" rel="stylesheet">
         </head>
@@ -21,13 +22,15 @@ if (login_check($mysqli) != true) :
 				<a class="brand" href="index.php"><img src="img/logo.png" alt="Simple Blog logo" width= "200px"></a>
             </div>
 			
-			<?php
-				if (isset($_GET['error'])) {
-					echo '<p class="error">Error Logging In!</p>';
-				}
-			?> 
                 <form class="form-signin" action="process_login.php" method="post" name="login_form">
-				
+				<?php
+				if (isset($_GET['error'])) {
+					echo '<p style="color:red">Sisään kirjautuminen epäonnistui</p>';
+				}
+				if (isset($_GET['register'])) {
+					echo '<p style="color:green">Rekisröityminen onnistui! Seuraavaksi sinun tarvitsee kirjautua sisään äsken luodulla tunnuksella.</p>';
+				}
+				?> 
 				<h2 class="form-signin-heading">Kirjaudu sisään</h2>
                 Email: <input type="text" name="email" class="form-control" placeholder="Sähköpostiosoite"  /> <br/>
                 Password: <input type="password" name="password" class="form-control" placeholder="Salasana" id="password" /> <br/>
