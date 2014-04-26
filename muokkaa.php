@@ -94,7 +94,7 @@ sec_session_start();
 					$STH->setFetchMode(PDO::FETCH_OBJ);
 					while($row = $STH->fetch()):
 				 ?>
-				  <form action="muokkaaArtikkeliUpload.php" method="post" enctype="multipart/form-data">
+				  <form id="muokkaaArtikkeli" action="muokkaaArtikkeliUpload.php" method="post" enctype="multipart/form-data">
 					<h3>Otsikko</h3>
 					<input type="text" name="title" value="<?php echo $row->title; ?>" /><br/><br/>
 					<h3>Teksti</h3>
@@ -126,9 +126,43 @@ sec_session_start();
 			<!-- Bootstrap core JavaScript
 			================================================== -->
 			<!-- Placed at the end of the document so the pages load faster -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<script src="./js/jquery-2.0.3.min.js"></script>
+			<script src="./js/jquery.validate.min.js"></script>
 			<script src="./js/bootstrap.js"></script>
 			<script src="./js/docs.min.js"></script>
+			<script>
+			$(function() {	
+			$("#muokkaaArtikkeli").validate({
+				rules: {
+					title: {
+						required: true,
+						minlength: 2,
+						maxlength: 50
+					},			
+					content: {
+						required: true,
+						minlength: 20,
+						maxlength: 3000
+					},
+				},
+				messages: {
+					title: {
+						required: " Anna artikkelille otsikko",
+						minlength: " Otsikon on oltava vähintään 2 merkkiä pitkä",
+						maxlength: " Otsikon on oltava enintään 50 numeroa pitkä"
+					},
+					content: {
+						required: " Anna artikkelille otsikko",
+						minlength: " Otsikon on oltava vähintään 20 merkkiä pitkä",
+						maxlength: " Otsikon on oltava enintään 3000 numeroa pitkä"
+					},
+				},
+				submitHandler: function(form) {
+   	        		form.submit();
+   	     		}
+			});
+			});
+			</script>
         <?php else : header('Location: ./login.php'); endif; ?>
     </body>
 </html>
