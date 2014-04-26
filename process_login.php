@@ -24,7 +24,7 @@ if (isset($_POST['email'], $_POST['p'])) {
         header('Location: ./sivuAsetukset.php');
     } else {
         // Login failed 
-        header('Location: ./error.php?error=1');
+        header('Location: ./login.php?error=1');
     }
 } else {
     // The correct POST variables were not sent to this page. 
