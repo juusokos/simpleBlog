@@ -9,11 +9,6 @@ Helpot nakit:
 
 - Lisää palikka/rautalanka selvennöksiä kaikkialle!!!
 
-- Virheilmoitukset! Esim jos kirjautuminen menee pieleen, ei ohjata vaan etusivulle.. 
- 
-- Jqueryn validation plugari sinne missä syötetyillä jutuilla on jotain rajoitteita
-
-
 Rankat lenkkimakkarat:
 
 - Salasanan palautus
