@@ -24,11 +24,11 @@ sec_session_start();
     <body>
         <?php if (login_check($mysqli) == true) : 
 			$user_id = htmlentities($_SESSION['user_id']);
-	
+
 			$SQL = "SELECT * FROM simple_sites
 					INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
 					WHERE simple_users.ID = '$user_id';";
-							
+
 			$STH = @$DBH->query($SQL);
 			$STH->setFetchMode(PDO::FETCH_OBJ);
 			$page = $STH->fetch();
@@ -68,14 +68,14 @@ sec_session_start();
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 				  <h1 class="page-header">Sivun Tiedot</h1>
 				<?php
-					
+
 					$site_id = htmlentities($_SESSION['site_id']);
 					$SQL = "SELECT * FROM simple_sites WHERE ID = '$site_id';";								
 					$STH = @$DBH->query($SQL);
 					$STH->setFetchMode(PDO::FETCH_OBJ);
 					while($row = $STH->fetch()):
 				 ?>
-				 <form action="sivuAsetuksetUpload.php" method="post" enctype="multipart/form-data">
+				 <form id="sivuAsetukset" action="sivuAsetuksetUpload.php" method="post" enctype="multipart/form-data">
 					<h3>Blogin otsikko</h3>
 					<input type="text" name="blog_title" value="<?php echo $row->blog_title; ?>" /><br/><br/>
 					<h3>Blogin kuvaus</h3>
@@ -104,9 +104,43 @@ sec_session_start();
 			<!-- Bootstrap core JavaScript
 			================================================== -->
 			<!-- Placed at the end of the document so the pages load faster -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+			<script src="./js/jquery-2.0.3.min.js"></script>
+			<script src="./js/jquery.validate.min.js"></script>
 			<script src="./js/bootstrap.js"></script>
 			<script src="./js/docs.min.js"></script>
+			<script>
+			$(function() {	
+			$("#sivuAsetukset").validate({
+				rules: {
+				blog_title: {
+					required: true,
+					minlength: 2,
+					maxlength: 50
+				},			
+				about: {
+					required: true,
+					minlength: 20,
+					maxlength: 500
+				}
+			},
+			messages: {
+				blog_title: {
+					required: " Anna blogille nimi",
+					minlength: " Nimen on oltava vähintään 2 merkkiä pitkä",
+					maxlength: " Nimen on oltava enintään 50 numeroa pitkä"
+				},
+				about: {
+					required: " Lisää blogiin kuvaus itsestäsi",
+					minlength: " Kuvauksen on oltava vähintään 20 merkkiä pitkä",
+					maxlength: " Kuvauksen on oltava enintään 500 numeroa pitkä"
+				}
+			},
+			submitHandler: function(form) {
+           		form.submit();
+        	}
+		});
+		});
+		</script>
          <?php else : header('Location: ./login.php'); endif; ?>
     </body>
 </html>
