@@ -101,7 +101,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
 				
 			}
         }
-       header('Location: login.php');
+       header('Location: login.php?register=success');
 	
     }
 	
