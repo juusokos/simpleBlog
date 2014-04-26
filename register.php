@@ -24,8 +24,7 @@ if (login_check($mysqli) != true):
 		<div id="logo">
 				<a class="brand" href="index.php"><img src="img/logo.png" alt="Simple Blog logo" width= "200px"></a>
             </div>
-        
-		
+     		
         <?php
 			if (!empty($error_msg)) {
 				echo $error_msg;
@@ -62,10 +61,7 @@ if (login_check($mysqli) != true):
 					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
-
-	
-		
+		</div><!-- /.modal -->	
         <form role="form" method="post" name="registration_form" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>" class="form-horizontal">
            
 			<div id="form-group col-sm-2">
@@ -100,15 +96,10 @@ if (login_check($mysqli) != true):
                                    this.form.confirmpwd);" /> 
 			<p class="help-block">Palaa <a href="index.php">etusivulle</a>.</p>
 			
-        </form>
-		
-        
-		
-		
-		
-		
+        </form>		
 	</div> <!-- /container -->
-	 <script src="js/bootstrap.min.js"></script>
+	<script src="./js/jquery-2.0.3.min.js"></script>
+	 <script src="./js/bootstrap.min.js"></script>
     </body>
 </html>
 <?php 
