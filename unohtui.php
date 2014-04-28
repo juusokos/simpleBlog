@@ -6,7 +6,7 @@
 				<meta charset="utf-8">
                 <script type="text/javascript" src="js/sha512.js"></script>
                 <script type="text/javascript" src="js/forms.js"></script>
-                <script src="./js/jquery-2.0.3.min.js"></script>
+     				<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
                 <link href="css/bootstrap.min.css" rel="stylesheet">
 				<link href="css/login.css" rel="stylesheet">
         </head>
@@ -96,15 +96,21 @@ if (isset($_POST['email'])){
         echo '<span style="color:red"> Ongelma salasanan lähettämisessä</span>';
     }
 }
+
+if($new_pass):
 ?>
 
 <script>
-$('#passform').submit(function(e) {
+$('#passform').on('submit',function(e) {
     e.preventDefault();
     return formhash( this.form,
-	<?php $new_pass ?>
+	<?php echo($new_pass); ?>
 	);
-	console.log("<?php $new_pass ?>")
+	console.log("<?php echo ($new_pass); ?>")
 });
 
 </script>
+
+<?php
+endif;
+?>
