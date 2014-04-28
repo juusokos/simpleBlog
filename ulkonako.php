@@ -91,6 +91,8 @@ sec_session_start();
 						<input type='radio' name='teema' value='1' class="teemanapit" id="vaaleaTeema" ><label for="vaaleaTeema">Vaalea</label><span> </span>
 						<br/>
 						<input type='radio' name='teema' value='2' class="teemanapit" id="tummanSininenTeema"/><label for="tummanSininenTeema" >Tummansininen</label> <span> </span>
+						<br/>
+						<input type='radio' name='teema' value='3' class="teemanapit" id="sunnyTeema"/><label for="sunnyTeema" >Aurinkoinen</label> <span> </span>
 
 						<h3 class="subtitle">Fontti</h3>
 
