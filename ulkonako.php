@@ -103,12 +103,12 @@ sec_session_start();
 							<li class="list-group-item"><input type="radio" name="fontti" value="4"><span style="font-family: 'Comic Sans MS', cursive, sans-serif; margin-left: 5px;">Comic Sans</span></li>
 						</ul>
 
-						<input type="submit" name="submit" class="btn btn-success" value="Hyväksy"></input>
+						<input type="submit" name="submit" class="btn btn-success" value="Hyvaksy"></input>
 						<button class="btn">Peruuta</button>
 					</form>
 
 						<?php
-						if (isset($_GET['submit'])==Hyväksy) {
+						if (isset($_GET['submit'])==Hyvaksy) {
 							echo '<p style="color:green">Muutokset tallennettu</p>';
 						}
 						?> 
