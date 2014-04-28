@@ -111,6 +111,11 @@ padding: 0 0 0 0px;
 	color: black;
 	}
 
+#sunnyTeema+label{
+	background-image:url('../img/sunny.png');
+	color: orange;
+	}
+
 
 
 
