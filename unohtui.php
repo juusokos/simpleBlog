@@ -1,10 +1,5 @@
 
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Unohtunut salasana</title>
-</head>
-<body>
    <head>
                 <title> Salasana unohtui </title>
 				
@@ -15,7 +10,7 @@
                 <link href="css/bootstrap.min.css" rel="stylesheet">
 				<link href="css/login.css" rel="stylesheet">
         </head>
-        <body>
+<body>
 	
 		<a id="luoBlogi" class="btn btn-success" href="register.php">Luo Blogi</a>
 			<div id="logo">
@@ -23,28 +18,25 @@
             </div>
 			
 
-<form class="form-signin" method="post" name="login_form" action="">
+	<form id="passform" class="form-signin" method="post" name="pass_form" action="">
 
-<h1 class="form-signin-heading">Luo uusi salasana</h1>
+		<h1 class="form-signin-heading">Luo uusi salasana</h1>
 
-<p>Syötä sähköpostiosoitteesi, lähetämme sinulle uuden salasanan</p>
+		<p>Syötä sähköpostiosoitteesi, lähetämme sinulle uuden salasanan</p>
 
-<p>Sähköpostiosoite: <input class="form-control" type="text" name="email" size="20″ maxlength="40″ value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
+		<p>Sähköpostiosoite: <input class="form-control" type="text" name="email" size="20″ maxlength="40″ value="<?php if (isset($_POST['email'])) echo $_POST['email']; ?>" /></p>
 
-<input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Lähetä" 
-				onclick="return regformhash(this.form,
-                                   this.form.username,
-                                   this.form.email,
-                                   this.form.password,
-                                   this.form.confirmpwd);"/>
+		<input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Lähetä" />
 
-</form>
+	</form>
 
 </body>
 </html>
 
-<?php session_start();
+<?php 
 include "db_connect.php"; //connects to the database
+include_once('new_password.php');
+
 if (isset($_POST['email'])){
     $email = $_POST['email'];
     $SQL="SELECT * FROM simple_users where email='$email'";
@@ -56,7 +48,7 @@ if (isset($_POST['email'])){
     if($STH->rowCount() == 0)
     {
 	  if ($_POST ['email'] != "") {
-    echo '<span style="color: #ff0000;">Sähköpostiosoitetta ei ole</span>';
+    echo '<span style="color: #ff0000;"> Not found your email in our database</span>';
         }
       
     } else {
@@ -92,7 +84,6 @@ if (isset($_POST['email'])){
         $headers1 .= "X-Mailer: Just My Server\r\n";
        $sentmail = mail ( $to, $subject, $body, $headers1 );
 	endwhile; 
-		include_once 'new_password.php';
         }
     //If the message is sent successfully, display sucess message otherwise display an error message.
     if($sentmail==1)
@@ -106,3 +97,14 @@ if (isset($_POST['email'])){
     }
 }
 ?>
+
+<script>
+$('#passform').submit(function(e) {
+    e.preventDefault();
+    return formhash( this.form,
+	<?php $new_pass ?>
+	);
+	console.log("<?php $new_pass ?>")
+});
+
+</script>
