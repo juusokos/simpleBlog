@@ -25,10 +25,10 @@ if (login_check($mysqli) != true) :
                 <form class="form-signin" action="process_login.php" method="post" name="login_form">
 				<?php
 				if (isset($_GET['error'])) {
-					echo '<p style="color:red">Sisään kirjautuminen epäonnistui</p>';
+					echo '<p style="color:red">Sisäänkirjautuminen epäonnistui. Salasana tai sähköpostiosoite on väärin.</p>';
 				}
 				if (isset($_GET['register'])) {
-					echo '<p style="color:green">Rekisröityminen onnistui! Seuraavaksi sinun tarvitsee kirjautua sisään äsken luodulla tunnuksella.</p>';
+					echo '<p style="color:green">Rekisteröityminen onnistui! Kirjaudu sisään luomallasi tunnuksella.</p>';
 				}
 				?> 
 				<h2 class="form-signin-heading">Kirjaudu sisään</h2>
