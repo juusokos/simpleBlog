@@ -30,12 +30,15 @@ if (login_check($mysqli) != true) :
 				if (isset($_GET['register'])) {
 					echo '<p style="color:green">Rekisteröityminen onnistui! Kirjaudu sisään luomallasi tunnuksella.</p>';
 				}
+				if (isset($_GET['newpass'])) {
+					echo '<p style="color:green">Uusi salasana lähetetty sähköpostiisi!</p>';
+				}
 				?> 
 				<h2 class="form-signin-heading">Kirjaudu sisään</h2>
                 Email: <input type="text" name="email" class="form-control" placeholder="Sähköpostiosoite"  /> <br/>
                 Password: <input type="password" name="password" class="form-control" placeholder="Salasana" id="password" /> <br/>
                 <input class="btn btn-lg btn-primary btn-block" type="button" value="Kirjaudu sisään" onclick="formhash(this.form, this.form.password);" />
-				<a href="#">Unohtuiko salasana?</a>
+				<a href="unohtui.php">Unohtuiko salasana?</a>
 				</form>
         </body>
 </html>
