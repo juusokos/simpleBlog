@@ -88,7 +88,7 @@ sec_session_start();
 					?>	
 					<form action="<?php echo $_SERVER['PHP_SELF']; ?>">
 						<h3 class="subtitle">Teema</h3>
-						<input type='radio' name='teema' value='1' class="teemanapit" id="vaaleaTeema" ><label for="vaaleaTeema">Vaalea</label><span> </span>
+						<input type='radio' name='teema' value='1' class="teemanapit" id="vaaleaTeema" required><label for="vaaleaTeema" >Vaalea</label><span> </span>
 						<br/>
 						<input type='radio' name='teema' value='2' class="teemanapit" id="tummanSininenTeema"/><label for="tummanSininenTeema" >Tummansininen</label> <span> </span>
 						<br/>
@@ -97,7 +97,7 @@ sec_session_start();
 						<h3 class="subtitle">Fontti</h3>
 
 						<ul class="list-group">
-							<li class="list-group-item"><input type="radio" name="fontti" value="1" ><span style="font-family: verdana; margin-left: 5px;">Verdana</span></li>
+							<li class="list-group-item"><input type="radio" name="fontti" value="1" required ><span style="font-family: verdana; margin-left: 5px;">Verdana</span></li>
 							<li class="list-group-item"><input type="radio" name="fontti" value="2"><span style="font-family: times, 'Times New Roman', serif; margin-left: 5px;">Times New Roman</span></li>
 							<li class="list-group-item"><input type="radio" name="fontti" value="3"><span style="font-family: Georgia; margin-left: 5px;">Georgia</span></li>
 							<li class="list-group-item"><input type="radio" name="fontti" value="4"><span style="font-family: 'Comic Sans MS', cursive, sans-serif; margin-left: 5px;">Comic Sans</span></li>
@@ -107,7 +107,11 @@ sec_session_start();
 						<button class="btn">Peruuta</button>
 					</form>
 
-					<span id="testi"> </span>
+						<?php
+						if (isset($_GET['submit'])==Hyväksy) {
+							echo '<p style="color:green">Muutokset tallennettu</p>';
+						}
+						?> 
 
 					
 				</div>  <!-- div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" -->
