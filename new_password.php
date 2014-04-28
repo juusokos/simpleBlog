@@ -4,6 +4,12 @@ include_once 'psl-config.php';
  
 $error_msg = "";
  
+function generate_password( $length = 8 ) {
+			$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
+			$password = substr( str_shuffle( $chars ), 0, $length );
+			return $password;
+}
+ 
 if (isset($_POST['email'],$_POST['p'])) {
     // Sanitize and validate the data passed in
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
@@ -25,27 +31,7 @@ if (isset($_POST['email'],$_POST['p'])) {
     // This should should be adequate as nobody gains any advantage from
     // breaking these rules.
     //
- 
-    $prep_stmt = "SELECT ID FROM simple_users WHERE email = ? LIMIT 1";
-    $stmt = $mysqli->prepare($prep_stmt);
- 
-    if ($stmt) {
-        $stmt->bind_param('s', $email);
-        $stmt->execute();
-        $stmt->store_result();
- 
-        if ($stmt->num_rows == 1) {
-            // A user with this email address already exists
-            $error_msg .= '<p class="error">A user with this email address already exists.</p>';
-        }
-    } else {
-        $error_msg .= '<p class="error">Database error</p>';
-    }
- 
-    // TODO: 
-    // We'll also have to account for the situation where the user doesn't have
-    // rights to do registration, by checking what type of user is attempting to
-    // perform the operation.
+
  
     if (empty($error_msg)) {
         // Create a random salt
@@ -53,19 +39,53 @@ if (isset($_POST['email'],$_POST['p'])) {
  
         // Create salted password 
         $password = hash('sha512', $password . $random_salt);
-		
-		
-        // Insert the new user into the database 
-        if ($insert_stmt = $mysqli->prepare("INSERT INTO simple_users (password, salt) VALUES (?, ?)")) {
-            $insert_stmt->bind_param('ss', $password, $random_salt);
-            // Execute the prepared query.
-            if (! $insert_stmt->execute()) {
-                header('Location: ./error.php?err=Registration failure: INSERT');
-            }else{
-				
-				
-			}
+        
+    	$SQL="SELECT * FROM simple_users where email='$email'";
+    	//$result   = mysql_query($query);
+		$STH = @$DBH->query($SQL);
+		$STH->setFetchMode(PDO::FETCH_OBJ);
+
+    	// If the count is equal to one, we will send message other wise display an error message.
+    	if($STH->rowCount() == 0){
+	  		if ($_POST ['email'] != "") {
+   				echo '<span style="color: #ff0000;"> Not found your email in our database</span>';
+        	}
+      	} else {
+
+			while ($row = $STH->fetch()):
+        	$pass  =  $row->password;//FETCHING PASS
+			$new_pass = generate_password();
+			echo "generated pass:".($new_pass)."";
+        	$to = $row->email;
+        	//echo "your email is ::".$email;
+        	//Details for sending E-mail
+        	$from = "Simple Blog";
+        	$url = "simpleblog.fi";
+        	$body  =  "Coding Cyber password recovery Script
+        	-----------------------------------------------
+        	Url : $url;
+        	email Details is : $to;
+        	Here is your password  : $new_pass;
+        	Sincerely,
+        	Simple Blog";
+        	$from = "simpleblog@simpleblog.com";
+        	$subject = "simpleBlog Password recovered";
+        	$headers1 = "From: $from\n";
+        	$headers1 .= "Content-type: text/html;charset=iso-8859-1\r\n";
+        	$headers1 .= "X-Priority: 1\r\n";
+        	$headers1 .= "X-MSMail-Priority: High\r\n";
+        	$headers1 .= "X-Mailer: Just My Server\r\n";
+       		$sentmail = mail ( $to, $subject, $body, $headers1 );
+			endwhile; 
         }
+    	//If the message is sent successfully, display sucess message otherwise display an error message.
+    	if($sentmail==1){
+       		echo '<span style="color:green;"> Salasanan lähetys onnistui!</span>';
+    	} else {
+        if($_POST['email']!="")
+        	echo '<span style="color:red"> Ongelma salasanan lähettämisessä</span>';
+    	}	
+		 
        header('Location: login.php?newpass=success');
 	
     }
