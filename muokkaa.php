@@ -99,14 +99,14 @@ sec_session_start();
 					<input type="text" name="title" value="<?php echo $row->title; ?>" /><br/><br/>
 					<h3>Teksti</h3>
 					<textarea class="editable" name="content" rows="10" cols="100"><?php echo $row->content; ?></textarea><br/>
-					<h3>Artikkeleihin voi myös liittää halutessa kuvan</h3>
-					<input type="file" name="image"/><br/>
+					<h3>Lisää kuva:</h3>
+					<input  type="file" name="image"/><br/>
 					<input type="hidden" name="id" value="<?php echo $post_id; ?>" />
-					<input type="submit" name="submit" value="Tallenna muutokset artikkeliin" />
-				  </form><br/><br/>
+					<input class="btn btn-primary" type="submit" name="submit" value="Tallenna muutokset artikkeliin" />
+				  </form><br>
 				  <form action="<?php echo $_SERVER['PHP_SELF']; ?>">
 				  	<input type="hidden" name="id" value="<?php echo $post_id; ?>" />
-					<input type="submit" name="poista" value="Poista artikkelin kuva" />
+					<input class="btn btn-danger" type="submit" name="poista" value="Poista artikkelin kuva" />
 				  </form>
 				 <?php endwhile; else: header('Location: ./artikkelit.php'); endif; ?>
 				  <div class="table-responsive">
