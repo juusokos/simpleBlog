@@ -77,7 +77,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['p'])) {
 				//  Tähän voit kirjoittaa kuvauksen itsestäsi tai blogistasi. Muokkaa tätä tekstiä Asetukset - välilehdellä.
 				$theme_id = 1;
 				$font_id = 1;
-				$about = 'Hei! Kerro, jotain sinustasi tai blogistasi';
+				$about = 'Hei! Kerro, jotain itsestäsi tai blogistasi';
 				$blog_title = 'Uusi Simple Blogi';
 				$blog_description = 'Kirjoita halutessasi blogillesi kuvaus';
 				
