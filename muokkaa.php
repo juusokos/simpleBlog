@@ -170,7 +170,7 @@ sec_session_start();
 					"searchreplace visualblocks code fullscreen",
 					"insertdatetime media table contextmenu paste"
 				],
-				toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent link",
+				toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent link image",
 				menubar: false
 			});
 
