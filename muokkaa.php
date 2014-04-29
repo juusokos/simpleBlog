@@ -98,7 +98,7 @@ sec_session_start();
 					<h3>Otsikko</h3>
 					<input type="text" name="title" value="<?php echo $row->title; ?>" /><br/><br/>
 					<h3>Teksti</h3>
-					<textarea name="content" rows="10" cols="100"><?php echo $row->content; ?></textarea><br/>
+					<textarea class="editable" name="content" rows="10" cols="100"><?php echo $row->content; ?></textarea><br/>
 					<h3>Artikkeleihin voi myös liittää halutessa kuvan</h3>
 					<input type="file" name="image"/><br/>
 					<input type="hidden" name="id" value="<?php echo $post_id; ?>" />
@@ -128,6 +128,7 @@ sec_session_start();
 			<!-- Placed at the end of the document so the pages load faster -->
 			<script src="./js/jquery-2.0.3.min.js"></script>
 			<script src="./js/jquery.validate.min.js"></script>
+			<script src="./js/tinymce.min.js"></script>
 			<script src="./js/bootstrap.js"></script>
 			<script src="./js/docs.min.js"></script>
 			<script>
@@ -161,6 +162,18 @@ sec_session_start();
    	        		form.submit();
    	     		}
 			});
+			
+			tinymce.init({
+				selector: "textarea.editable",
+				plugins: [
+					"advlist autolink lists link image charmap print preview anchor",
+					"searchreplace visualblocks code fullscreen",
+					"insertdatetime media table contextmenu paste"
+				],
+				toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent link",
+				menubar: false
+			});
+
 			});
 			</script>
         <?php else : header('Location: ./login.php'); endif; ?>
