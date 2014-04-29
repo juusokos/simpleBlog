@@ -125,14 +125,14 @@ sec_session_start();
 			},
 			messages: {
 				blog_title: {
-					required: " Anna blogille nimi",
-					minlength: " Nimen on oltava vähintään 2 merkkiä pitkä",
-					maxlength: " Nimen on oltava enintään 50 numeroa pitkä"
+					required: '<span style="color: red"> Anna blogille nimi</span>',
+					minlength: '<span style="color: red"> Nimen on oltava vähintään 2 merkkiä pitkä</span>',
+					maxlength: '<span style="color: red"> Nimen on oltava enintään 50 numeroa pitkä</span>'
 				},
 				about: {
-					required: " Lisää blogiin kuvaus itsestäsi",
-					minlength: " Kuvauksen on oltava vähintään 20 merkkiä pitkä",
-					maxlength: " Kuvauksen on oltava enintään 500 numeroa pitkä"
+					required: '<span style="color: red"> Lisää blogiin kuvaus itsestäsi</span>',
+					minlength: '<span style="color: red"> Kuvauksen on oltava vähintään 20 merkkiä pitkä</span>',
+					maxlength: '<span style="color: red"> Kuvauksen on oltava enintään 500 numeroa pitkä</span>'
 				}
 			},
 			submitHandler: function(form) {
