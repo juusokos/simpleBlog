@@ -42,7 +42,7 @@ if($_FILES['image']['size'] != 0 ){
 		$content = $purifier->purify($_POST['content']);
 							
 		$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
-		$testi2 = '/^[A-Za-z0-9\s\W]{20,3000}$/i';
+		$testi2 = '/^[A-Za-z0-9\s\W\/.,:<>_]{20,3000}$/i';
 
 		if(preg_match($testi1, $title) && preg_match($testi2, $content)){
 			$postDate = date("Y-m-d"); 
@@ -67,7 +67,7 @@ if($_FILES['image']['size'] != 0 ){
 		$content = $purifier->purify($_POST['content']);
 							
 		$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
-		$testi2 = '/^[A-Za-z0-9\s\W]{20,3000}$/i';
+		$testi2 = '/^[A-Za-z0-9\s\W\/.,:<>_]{20,3000}$/i';
 
 		if(preg_match($testi1, $title) && preg_match($testi2, $content)){
 			$postDate = date("Y-m-d"); 
