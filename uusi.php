@@ -64,9 +64,9 @@ sec_session_start();
 				  <form id="uusiArtikkeli" action="uusiArtikkeliUpload.php" method="post" enctype="multipart/form-data">
 					<input type="text" name="title" placeholder="Otsikkosi" /><br/><br/>
 					<textarea placeholder="Kirjoita tekstisi tänne" name="content" rows="10" cols="100"></textarea><br/>
-					<h3>Artikkeleihin voi myös liittää halutessa kuvan</h3>
+					<h3>Lisää kuva:</h3>
 					<input type="file" name="image"/><br/>
-					<input type="submit" name="submit" value="Tallenna artikkeli" />
+					<input class="btn btn-primary" type="submit" name="submit" value="Tallenna artikkeli" />
 				  </form>
 				
 				  <div class="table-responsive">
@@ -101,7 +101,7 @@ sec_session_start();
 					},			
 					content: {
 						required: true,
-						minlength: 20,
+						minlength: 0,
 						maxlength: 3000
 					},
 				},
@@ -113,8 +113,8 @@ sec_session_start();
 					},
 					content: {
 						required: " Anna artikkelille otsikko",
-						minlength: " Otsikon on oltava vähintään 20 merkkiä pitkä",
-						maxlength: " Otsikon on oltava enintään 3000 numeroa pitkä"
+						minlength: " ",
+						maxlength: " Artikkelin on oltava enintään 3000 numeroa pitkä"
 					},
 				},
 				submitHandler: function(form) {
