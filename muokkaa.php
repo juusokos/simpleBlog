@@ -147,15 +147,15 @@ sec_session_start();
 					},
 				},
 				messages: {
-					title: {
-						required: " Anna artikkelille otsikko",
-						minlength: " Otsikon on oltava vähintään 2 merkkiä pitkä",
-						maxlength: " Otsikon on oltava enintään 50 numeroa pitkä"
+						title: {
+						required: '<span style="color: red"> Anna artikkelille otsikko</span>',
+						minlength: '<span style="color: red"> Otsikon on oltava vähintään 2 merkkiä pitkä</span>',
+						maxlength: '<span style="color: red"> Otsikon on oltava enintään 50 numeroa pitkä</span>'
 					},
 					content: {
-						required: " Anna artikkelille otsikko",
-						minlength: " Otsikon on oltava vähintään 20 merkkiä pitkä",
-						maxlength: " Otsikon on oltava enintään 3000 numeroa pitkä"
+						required: '<span style="color: red">Kirjoita artikkeli</span>',
+						minlength: '<span style="color: red">Artikkelin on oltava vähintään 1 merkin pituinen</span>',
+						maxlength: '<span style="color: red"> Artikkelin on oltava enintään 6000 numeroa pitkä</span>'
 					},
 				},
 				submitHandler: function(form) {
