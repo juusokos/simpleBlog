@@ -127,7 +127,7 @@ if ( !empty($_GET['id']) ){
 				<h2 class="blog-post-title"><?php echo $pages->title; ?></h2>
 				<p class="blog-post-meta"><?php echo $formatedTime; ?> <?php echo $page->username; ?></p>
 				<?php if(($pages->image_url)==" "):?>
-					<p>ei kuvaa</p>
+					
 				<?php else:?>
 					<img class="pic" src="<?php echo $pages->image_url; ?>"></img>
 				<?php endif; ?>
