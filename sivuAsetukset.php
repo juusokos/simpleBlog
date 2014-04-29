@@ -84,7 +84,7 @@ sec_session_start();
 					<textarea name="about" rows="10" cols="100"><?php echo $row->about; ?></textarea><br/>
 					<h3>Blogin banner kuva</h3>
 					<input type="file" name="banner" /><br/>
-					<input type="submit" name="submit" value="Tallenna muutokset" />
+					<input class="btn btn-primary" type="submit" name="submit" value="Tallenna muutokset" />
 				  </form>
 				  <?php endwhile; ?>
 				  <div class="table-responsive">
