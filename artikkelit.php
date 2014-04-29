@@ -83,7 +83,6 @@ sec_session_start();
 						  <th>Päivämäärä</th>
 						  <th>Toiminnot</th>
 						  <th></th>
-						  <th>Kategoria</th>
 						</tr>
 					  </thead>
 					  <tbody>											
@@ -118,7 +117,6 @@ sec_session_start();
 						   <td><?php echo $formatedTime; ?></td>
 						   <td><a href="muokkaa.php?id=<?php echo $pages->ID; ?>">Muokkaa</a></td>
 						   <td><a href="poista.php?id=<?php echo $pages->ID; ?>">Poista</a></td>
-						   <td><a href="#">ipsum</a></td>
 						</tr>
 						<?php
 							endwhile; 
