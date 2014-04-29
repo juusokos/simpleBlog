@@ -1,6 +1,12 @@
 /*
  * Base structure
  */
+ 
+ /*Marginaaleja*/
+ .nav-sidebar>p, .nav-sidebar>li>h3{
+	margin: 10px;
+ }
+ 
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
