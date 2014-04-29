@@ -45,7 +45,7 @@ if($_FILES['image']['size'] != 0 ){
 		$content = $purifier->purify($_POST['content']);
 							
 		$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
-		$testi2 = '/^[A-Za-z0-9\s\W\/.,:<>_]{0,6000}$/i';
+		$testi2 = '/^[A-Za-z0-9\s\W\/.,:<>_]{1,6000}$/i';
 
 		if(preg_match($testi1, $title) && preg_match($testi2, $content)){
 			$data = array($title, $image_url ,$content);
@@ -69,7 +69,7 @@ if($_FILES['image']['size'] != 0 ){
 		$content = $purifier->purify($_POST['content']);
 							
 		$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
-		$testi2 = '/^[A-Za-z0-9\s\W\/.,:<>_]{0,6000}$/i';
+		$testi2 = '/^[A-Za-z0-9\s\W\/.,:<>_]{1,6000}$/i';
 
 		if(preg_match($testi1, $title) && preg_match($testi2, $content)){
 			$data = array($title, $content);
