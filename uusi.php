@@ -63,7 +63,7 @@ sec_session_start();
 
 				  <form id="uusiArtikkeli" action="uusiArtikkeliUpload.php" method="post" enctype="multipart/form-data">
 					<input type="text" name="title" placeholder="Otsikkosi" /><br/><br/>
-					<textarea placeholder="Kirjoita tekstisi tänne" name="content" rows="10" cols="100"></textarea><br/>
+					<textarea class="editable" placeholder="Kirjoita tekstisi tänne" name="content" rows="10" cols="100"></textarea><br/>
 					<h3>Lisää kuva:</h3>
 					<input type="file" name="image"/><br/>
 					<input class="btn btn-primary" type="submit" name="submit" value="Tallenna artikkeli" />
@@ -90,6 +90,7 @@ sec_session_start();
 			<script src="./js/jquery.validate.min.js"></script>
 			<script src="./js/bootstrap.js"></script>
 			<script src="./js/docs.min.js"></script>
+			<script src="./js/tinymce.min.js"></script>
 			<script>
 			$(function() {	
 			$("#uusiArtikkeli").validate({
@@ -121,6 +122,17 @@ sec_session_start();
    	        		form.submit();
    	     		}
 			});
+					tinymce.init({
+				selector: "textarea.editable",
+				plugins: [
+					"advlist autolink lists link image charmap print preview anchor",
+					"searchreplace visualblocks code fullscreen",
+					"insertdatetime media table contextmenu paste"
+				],
+				toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent link image",
+				menubar: false
+			});
+
 			});
 			</script>
          <?php else : header('Location: ./login.php'); endif; ?>
