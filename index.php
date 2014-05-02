@@ -6,7 +6,8 @@ sec_session_start();
 
 $SQL = "SELECT * FROM simple_sites 
 INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID 
-INNER JOIN simple_banner ON simple_sites.ID = simple_banner.site_ID
+INNER JOIN simple_banner ON simple_sites.ID = simple_banner.site_ID 
+ORDER BY simple_sites.ID DESC
 LIMIT 0, 6";
 $STH = @$DBH->query($SQL);
 $STH->setFetchMode(PDO::FETCH_OBJ);
