@@ -72,12 +72,18 @@ footer {
  
 
  .blogit{
-	border: 1px dotted grey;
+	background-color: rgb(238, 238, 238);
 	margin: 10px;
 	height: 450px;
 	max-width: 250px;
 	display: block;
 	overflow: hidden;
+	border-radius:6px;
+ }
+ .blogit>img{
+	width: 250px;
+	margin-left: -15px;
+	border-bottom: 2px solid grey;
  }
  
  .bDescription{
