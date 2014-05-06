@@ -96,11 +96,13 @@ $STH->setFetchMode(PDO::FETCH_OBJ);
 				<a href="blogilista.php" class="btn btn-primary"> Lue Blogeja </a>
 				<a href="logout.php" class="btn btn-default"> Kirjaudu ulos </a>
 			<?php else : ?>
+			<div id="rekisteroidy"><a href="register.php"><img src="img/rekisteroidy2.png" alt="rekisteröidy nyt"></a></div>
 				<h1>Hei, sinä!</h1>
-				<p> Luo uusi blogi tai lue muiden blogeja</p>
-				<a href="register.php" class="btn btn-success"> Luo uusi blogi </a>
+				<p> Rekisteröidy ja luo uusi blogi tai lue muiden blogeja!</p>
+				<a href="register.php" class="btn btn-success"> Rekisteröidy </a>
 				<a href="blogilista.php" class="btn btn-primary"> Lue Blogeja </a>
 				<a href="login.php" class="btn btn-default"> Kirjaudu sisään </a>
+				
 			  <?php endif; ?>
 			</div>
           </div>
