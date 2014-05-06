@@ -12,6 +12,7 @@ JUUSO:
 HENKKA:
 - salasanailmoitukset
 - blogisivuilta turha kakka pois
+-
 
 NELLI:
 - lisää palautetta (tallennus yms) 
