@@ -62,6 +62,7 @@ background-color: white;
 	   -moz-box-shadow: 0 5px 7px rgba(0, 0, 0, 0.22);
 	       box-shadow: 0 5px 7px rgba(0, 0, 0, 0.22);
  background-color: #f;
+ overflow: hidden;
 }
 
 .paddingfix{
@@ -142,12 +143,11 @@ padding-right: 5%;
  /* Kansikuva! */
  
 .blog-cover-image{
-	width: 100%;
+	width: 110%;
 	height: 20em;
 	background-image: url('../img/lugano-switzerland-cityscape-above-monte-san-salvatore-free-stock-photo.JPG');
 	background-size: cover;
-
-
+	margin-left: -15px;
 }
 
 .blog-header {
