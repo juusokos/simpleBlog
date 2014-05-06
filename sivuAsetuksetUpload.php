@@ -10,6 +10,7 @@ sec_session_start();
 if (login_check($mysqli) == true):
 
 $site_id = htmlentities($_SESSION['site_id']);
+$user_id = htmlentities($_SESSION['user_id']);
 
 if($_FILES['banner']['size'] != 0 ){
 
@@ -53,7 +54,7 @@ if($_FILES['banner']['size'] != 0 ){
 			$data = array($banner_url, $thumb_url);
 			$STH = $DBH->prepare("UPDATE simple_banner SET banner_url = ?, banner_url_thumb = ? WHERE site_ID = '$site_id';");
 			$STH->execute($data);
-			header('Location: ./sivuAsetukset.php');	
+			header('Location: ./sivuAsetukset.php?ok=ok');	
 		} 	else {
 			header('Location: ./sivuAsetukset.php');	
 		}
@@ -78,7 +79,9 @@ if($_FILES['banner']['size'] != 0 ){
 			$data = array($blog_title, $blog_description, $about);
 			$STH = $DBH->prepare("UPDATE simple_sites SET blog_title = ?, blog_description = ?, about = ? WHERE ID = '$site_id';");
 			$STH->execute($data);
-			header('Location: ./sivuAsetukset.php');	
+			
+			header('Location: ./sivuAsetukset.php?ok=ok');
+			//header('Location: ./blogisivu.php?id='.$user_id);
 		} 	else {
 			header('Location: ./sivuAsetukset.php');	
 		}
@@ -86,5 +89,6 @@ if($_FILES['banner']['size'] != 0 ){
 		header('Location: ./sivuAsetukset.php');
 	}	
 }
+				
 ?>
 <?php else : header('Location: ./login.php'); endif; ?>
