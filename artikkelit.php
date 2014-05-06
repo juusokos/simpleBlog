@@ -64,7 +64,9 @@ sec_session_start();
 					<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
 					<li class="active"><a href="artikkelit.php">Artikkelit</a></li>
 					<li><a href="ulkonako.php">Ulkonäkö</a></li>
-					 
+					<hr>
+					<li class=""><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Oma Blogi &raquo;</a></li>
+				  
 				  </ul>
 				  
 			
