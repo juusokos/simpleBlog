@@ -31,9 +31,7 @@ if (login_check($mysqli) != true):
 			}
         ?>
 		
-		 <h1>Rekisteröidy
-			<button class="btn btn-primary" data-toggle="modal" data-target="#myModal">?</button>
-		</h1>
+		 <h1>Rekisteröidy</h1>
 		
 		<!--Ohjemodaali-->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -43,19 +41,7 @@ if (login_check($mysqli) != true):
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title">Ohjeet</h4>
 					</div>
-					<div class="modal-body">
-						<ul>
-							<li>Käyttäjätunnus saa sisältää ainoastaan numeroita, isoja ja pieniä alkukirjaimia sekä alaviivoja</li>
-							<li>Sähköpostiosoite pitää olla  muotoa esim. aila@gmail.com </li>
-							<li>Salasanassa tulee olla vähintään kuusi merkkiä</li>
-							<li>Salasanan tulee sisältää:</li> 
-							<ul>
-								<li>Vähintään yksi iso kirjain (A..Z)</li>
-								<li>Vähintään yksi pieni kirjain (a..z)</li>
-								<li>Vähintään yksi numero (0..9)</li>
-							</ul> 
-						</ul>
-					</div>
+					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Sulje</button>
 					</div>
@@ -66,7 +52,7 @@ if (login_check($mysqli) != true):
            
 			<div id="form-group col-sm-2">
 				<label for="username" class="control-label">Käyttäjätunnus:</label>
-				<input id="username" name="username" type="text" class="form-control" 
+				<input id="username" data-content="Käyttäjätunnus saa sisältää ainoastaan numeroita, isoja ja pieniä alkukirjaimia sekä alaviivoja" data-placement="right" name="username" type="text" class="form-control" 
 						     placeholder="Käyttäjätunnus" ><br>
 			
 			</div>
@@ -106,11 +92,13 @@ if (login_check($mysqli) != true):
 	<script src="./js/jquery-2.0.3.min.js"></script>
 	 <script src="./js/bootstrap.min.js"></script>
 	 
-	 <!-- poistaa salasanaohjeet -->
+	 <!-- poistaa täyttöohjeet -->
 	 <script>
 		$("#password").popover({ trigger: "click" });
-		$("#confirmpwd").click(function() {
-			$("#password").popover('hide');
+		$("#username").popover({ trigger: "click" });
+		$("#confirmpwd, #email").click(function() {
+			$("#password, #username").popover('hide');
+			
 		});
 	 </script>
     </body>
