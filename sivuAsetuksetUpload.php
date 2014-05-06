@@ -44,7 +44,7 @@ if($_FILES['banner']['size'] != 0 ){
 							
 		$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
 		$testi2 = '/^[A-Za-z0-9\s\W]{0,500}$/i';
-		$testi3 = '/^[A-Za-z0-9\s\W]{20,500}$/i';
+		$testi3 = '/^[A-Za-z0-9\s\W]{2,500}$/i';
 							
 		if(preg_match($testi1, $blog_title) && preg_match($testi2, $blog_description) && preg_match($testi3, $about)){
 			$data = array($blog_title, $blog_description, $about);
@@ -73,7 +73,7 @@ if($_FILES['banner']['size'] != 0 ){
 							
 		$testi1 = '/^[A-Za-z0-9\s\W]{2,50}$/i';
 		$testi2 = '/^[A-Za-z0-9\s\W]{0,500}$/i';
-		$testi3 = '/^[A-Za-z0-9\s\W]{20,500}$/i';
+		$testi3 = '/^[A-Za-z0-9\s\W]{2,500}$/i';
 							
 		if(preg_match($testi1, $blog_title) && preg_match($testi2, $blog_description) && preg_match($testi3, $about)){
 			$data = array($blog_title, $blog_description, $about);
