@@ -2,7 +2,8 @@ simpleBlog
 ==========
 TODO:
 ==========
-TORSTAINA 6.5. VALMIIKSI KOKO HÖSKÄ!
+DEADLINE TORSTAINA 6.5.
+VALMIIKSI KOKO HÖSKÄ!
 
 JUUSO:
 - Salasanan palautus
