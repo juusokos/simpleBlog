@@ -63,6 +63,8 @@ sec_session_start();
 					<li class="active"><a href="sivuAsetukset.php">Sivun tiedot</a></li>
 					<li><a href="artikkelit.php">Artikkelit</a></li>
 					<li><a href="ulkonako.php">Ulkonäkö</a></li>					 
+				  	<hr>
+					<li class=""><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Oma Blogi &raquo;</a></li>
 				  </ul>			
 				</div>
 				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -73,6 +75,11 @@ sec_session_start();
 					$SQL = "SELECT * FROM simple_sites WHERE ID = '$site_id';";								
 					$STH = @$DBH->query($SQL);
 					$STH->setFetchMode(PDO::FETCH_OBJ);
+					 
+					if (isset($_GET['ok'])==ok) {
+						echo '<p style="color:green">Muutokset tallennettu. <a href="./blogisivu.php?id='.$user_id.'">Katso Blogi</a></p> ';
+					}
+			
 					while($row = $STH->fetch()):
 				 ?>
 				 <form id="sivuAsetukset" action="sivuAsetuksetUpload.php" method="post" enctype="multipart/form-data">
@@ -90,6 +97,8 @@ sec_session_start();
 				  <div class="table-responsive">
 					
 				  </div>
+				
+				  
 				</div>
 			  </div>
 			</div>
