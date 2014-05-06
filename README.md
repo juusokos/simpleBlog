@@ -10,7 +10,7 @@ JUUSO:
 - rajojen vaihto: Sivun kuvaus, blogiartikkelin pituus ainakin
 
 HENKKA:
-- salasanailmoitukset -> doned
+- salasanailmoitukset -> doned: salasana ja käyttäjätunnus infoboxi ilmestyy sivuun
 - blogisivuilta turha kakka pois -> doned
 -
 
