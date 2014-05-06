@@ -7,7 +7,7 @@ VALMIIKSI KOKO HÖSKÄ!
 
 JUUSO:
 - Salasanan palautus
-- rajojen vaihto
+- rajojen vaihto: Sivun kuvaus, blogiartikkelin pituus ainakin
 
 HENKKA:
 - salasanailmoitukset
