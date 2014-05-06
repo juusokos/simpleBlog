@@ -78,7 +78,12 @@ if (login_check($mysqli) != true):
 
 			 <div id="form-group col-sm-2">
 				<label for="password" class="control-label">Salasana:</label>
-				<input id="password" name="password" type="password" class="form-control" 
+				<input id="password" data-content="Salasanassa tulee olla vähintään kuusi merkkiä.
+							Salasanan tulee sisältää
+							vähintään yksi iso kirjain,
+							pieni kirjain ja
+							numero." data-placement="right"
+					   name="password" type="password" class="form-control" 
 							  placeholder="Salasana" ><br>
 			</div>			
 			 <div id="form-group col-sm-2">		
@@ -100,6 +105,14 @@ if (login_check($mysqli) != true):
 	</div> <!-- /container -->
 	<script src="./js/jquery-2.0.3.min.js"></script>
 	 <script src="./js/bootstrap.min.js"></script>
+	 
+	 <!-- poistaa salasanaohjeet -->
+	 <script>
+		$("#password").popover({ trigger: "click" });
+		$("#confirmpwd").click(function() {
+			$("#password").popover('hide');
+		});
+	 </script>
     </body>
 </html>
 <?php 
