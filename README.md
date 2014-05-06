@@ -1,8 +1,24 @@
 simpleBlog
 ==========
+TODO:
+==========
+JUUSO:
+- Salasanan palautus
+- rajojen vaihto
+
+HENKKA:
+- salasanailmoitukset
+- blogisivuilta turha kakka pois
+
+NELLI:
+- lisää palautetta (tallennus yms) 
+- rekisteröinappi etusivulle
+- dasboardiin Oma blogi sivupalkkiin
+
 
 Welcome to mummola!
 
+Vanhat:
 TODO-lintu:
 
 Helpot nakit:
