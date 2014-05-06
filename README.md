@@ -7,12 +7,11 @@ VALMIIKSI KOKO HÖSKÄ!
 
 JUUSO:
 - Salasanan palautus
-- rajojen vaihto: Sivun kuvaus, blogiartikkelin pituus ainakin
+- rajojen vaihto: Sivun kuvaus, blogiartikkelin pituus ainakin -> doned
 
 HENKKA:
 - salasanailmoitukset -> doned: salasana ja käyttäjätunnus infoboxi ilmestyy sivuun
 - blogisivuilta turha kakka pois -> doned
--
 
 NELLI:
 - lisää palautetta (tallennus yms) 
@@ -35,7 +34,6 @@ Rankat lenkkimakkarat:
 
 - Salasanan vaihto
 
-- Blogin archives toiminto
 
 
 ==========
