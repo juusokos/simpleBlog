@@ -128,7 +128,7 @@ sec_session_start();
 				},			
 				about: {
 					required: true,
-					minlength: 20,
+					minlength: 2,
 					maxlength: 500
 				}
 			},
@@ -140,7 +140,7 @@ sec_session_start();
 				},
 				about: {
 					required: '<span style="color: red"> Lisää blogiin kuvaus itsestäsi</span>',
-					minlength: '<span style="color: red"> Kuvauksen on oltava vähintään 20 merkkiä pitkä</span>',
+					minlength: '<span style="color: red"> Kuvauksen on oltava vähintään 2 merkkiä pitkä</span>',
 					maxlength: '<span style="color: red"> Kuvauksen on oltava enintään 500 numeroa pitkä</span>'
 				}
 			},
