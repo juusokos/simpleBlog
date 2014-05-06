@@ -141,10 +141,7 @@ if ( !empty($_GET['id']) ){
 		  ?>
 			<h2>Et ole kirjoittaut yhtäkään artikkelia! <a href="uusi.php">Kirjoita artikkeleja painamalla tätä linkkiä.</a></h2>
 		  <?php endif; ?>
-          <ul class="pager">
-            <li><a href="#">Previous</a></li>
-            <li><a href="#">Next</a></li>
-          </ul>
+      
 
         </div><!-- /.blog-main -->
 
@@ -153,31 +150,7 @@ if ( !empty($_GET['id']) ){
             <h4>Kirjoittajasta</h4>
             <p><?php echo $page->about; ?></p>
           </div>
-          <div class="sidebar-module">
-            <h4>Arkistot</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">January 2014</a></li>
-              <li><a href="#">December 2013</a></li>
-              <li><a href="#">November 2013</a></li>
-              <li><a href="#">October 2013</a></li>
-              <li><a href="#">September 2013</a></li>
-              <li><a href="#">August 2013</a></li>
-              <li><a href="#">July 2013</a></li>
-              <li><a href="#">June 2013</a></li>
-              <li><a href="#">May 2013</a></li>
-              <li><a href="#">April 2013</a></li>
-              <li><a href="#">March 2013</a></li>
-              <li><a href="#">February 2013</a></li>
-            </ol>
-          </div>
-          <div class="sidebar-module">
-            <h4>Muualla</h4>
-            <ol class="list-unstyled">
-              <li><a href="#">GitHub</a></li>
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
-            </ol>
-          </div>
+       
         </div><!-- /.blog-sidebar -->
 
       </div><!-- /.row -->
