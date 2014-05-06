@@ -68,7 +68,8 @@ sec_session_start();
 					<input type="file" name="image"/><br/>
 					<input class="btn btn-primary" type="submit" name="submit" value="Tallenna artikkeli" />
 				  </form>
-				
+					<br/>
+				  <a href="artikkelit.php" class="btn btn-danger">Peruuta</a>
 				  <div class="table-responsive">
 					
 				  </div>
