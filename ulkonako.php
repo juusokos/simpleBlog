@@ -3,6 +3,10 @@ include_once 'db_connect.php';
 include_once 'functions.php';
 SSLon();
 sec_session_start();
+
+
+$site_id = htmlentities($_SESSION['site_id']);
+$user_id = htmlentities($_SESSION['user_id']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,6 +59,8 @@ sec_session_start();
 					<li><a href="sivuAsetukset.php">Sivun tiedot</a></li>
 					<li><a href="artikkelit.php">Artikkelit</a></li>
 					<li class="active"><a href="ulkonako.php">Ulkonäkö</a></li>
+					<HR> 
+					<li class=""><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Oma Blogi &raquo;</a></li>
 				  </ul>
 
 				</div>
@@ -63,7 +69,6 @@ sec_session_start();
 				  <h1 class="page-header">Ulkonäkö</h1>
 				  	
 					<?php
-						$site_id = htmlentities($_SESSION['site_id']);
 					
 						if(isset($_GET['submit'])){
 							if(!empty($_GET['teema'])&& !empty($_GET['fontti'])){
@@ -109,7 +114,7 @@ sec_session_start();
 
 						<?php
 						if (isset($_GET['submit'])==Hyvaksy) {
-							echo '<p style="color:green">Muutokset tallennettu</p>';
+							echo '<p style="color:green">Muutokset tallennettu. <a href="./blogisivu.php?id='.$user_id.'">Katso Blogi</a></p>';
 						}
 						?> 
 
