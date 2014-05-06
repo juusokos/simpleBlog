@@ -45,7 +45,7 @@ if($_FILES['image']['size'] != 0 ){
 		$testi2 = '/^[A-Za-z0-9\s\W\/.,:<>_]{1,6000}$/i';
 
 		if(preg_match($testi1, $title) && preg_match($testi2, $content)){
-			$postDate = date("Y-m-d"); 
+			$postDate = date("Y-m-d H:i:s"); 
 			$data = array($site_id, $title, $image_url ,$content, $postDate);
 			$STH = $DBH->prepare("INSERT INTO simple_posts (site_ID, title, image_url, content, date) VALUES (?,?,?,?,?);");
 			$STH->execute($data);
@@ -70,7 +70,7 @@ if($_FILES['image']['size'] != 0 ){
 		$testi2 = '/^[A-Za-z0-9\s\W\/.,:<>_]{1,6000}$/i';
 
 		if(preg_match($testi1, $title) && preg_match($testi2, $content)){
-			$postDate = date("Y-m-d"); 
+			$postDate = date("Y-m-d H:i:s"); 
 			$data = array($site_id, $title, ' ' ,$content, $postDate);
 			$STH = $DBH->prepare("INSERT INTO simple_posts (site_ID, title, image_url, content, date) VALUES (?,?,?,?,?);");
 			$STH->execute($data);
