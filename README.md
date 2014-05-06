@@ -10,8 +10,8 @@ JUUSO:
 - rajojen vaihto: Sivun kuvaus, blogiartikkelin pituus ainakin
 
 HENKKA:
-- salasanailmoitukset
-- blogisivuilta turha kakka pois
+- salasanailmoitukset -> doned
+- blogisivuilta turha kakka pois -> doned
 -
 
 NELLI:
