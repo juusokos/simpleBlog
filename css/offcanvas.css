@@ -48,6 +48,7 @@ footer {
 
 #logo > a > img{
 	width: 200px;
+	
 }
 
 .navbar{
@@ -82,6 +83,7 @@ footer {
  }
  .blogit>img{
 	width: 250px;
+	height:180px;
 	margin-left: -15px;
 	border-bottom: 2px solid grey;
  }
