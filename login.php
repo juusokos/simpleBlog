@@ -8,7 +8,7 @@ if (login_check($mysqli) != true) :
 <!DOCTYPE html>
 <html>
         <head>
-                <title> Log In </title>
+                <title>Kirjaudu sisään</title>
 				<meta charset="utf-8">
                 <script type="text/javascript" src="js/sha512.js"></script>
                 <script type="text/javascript" src="js/forms.js"></script>
@@ -38,7 +38,7 @@ if (login_check($mysqli) != true) :
                 Email: <input type="text" name="email" class="form-control" placeholder="Sähköpostiosoite"  /> <br/>
                 Password: <input type="password" name="password" class="form-control" placeholder="Salasana" id="password" /> <br/>
                 <input class="btn btn-lg btn-primary btn-block" type="button" value="Kirjaudu sisään" onclick="formhash(this.form, this.form.password);" />
-				<a href="unohtui.php">Unohtuiko salasana?</a>
+				<!-- Ei vielä toiminnassa <a href="unohtui.php">Unohtuiko salasana?</a> -->
 				</form>
         </body>
 </html>
