@@ -138,9 +138,13 @@ if ( !empty($_GET['id']) ){
 				    <?php 
 						endwhile; 
 					else:
-				    ?>
-					<h2>Et ole kirjoittaut yhtäkään artikkelia! <a href="uusi.php">Kirjoita artikkeleja painamalla tätä linkkiä.</a></h2>
+						if (login_check($mysqli) == true && $user_id == $_SESSION['user_id']) : ?>
+							<h2>Et ole kirjoittaut yhtäkään artikkelia! <a href="uusi.php">Kirjoita artikkeleja painamalla tätä linkkiä.</a></h2>
+						<?php else: ?>
+							<h2>Blogissa ei valitettavasti ole yhtäkään artikkelia.</h2>
+					
 				    <?php endif; 
+					endif; 
 								
 			else:
 				$testi = '/^[0-9]{1,2}$/i';
@@ -183,7 +187,7 @@ if ( !empty($_GET['id']) ){
 					<?php endif; 
 					
 				else:
-					header('Location: ./index.php');				
+					header('Location: ./blogisivu.php?id='.$_SESSION['user_id']);				
 				endif;
 			
 			endif;    
