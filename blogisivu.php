@@ -108,41 +108,86 @@ if ( !empty($_GET['id']) ){
 
         <div class="col-sm-8 blog-main">
 		  <?php
-			
-		  $SQL = "SELECT * FROM simple_posts
+		  if(empty($_GET['month'])):
+				$SQL = "SELECT * FROM simple_posts
 				INNER JOIN simple_sites ON simple_sites.ID = simple_posts.site_ID
 				INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
 				WHERE simple_users.ID = '$user_id' ORDER BY date DESC";
-			
-          $STH = @$DBH->query($SQL);
-          $STH->setFetchMode(PDO::FETCH_OBJ);
-		  if($STH->rowCount() != 0):
-			  while ($pages = $STH->fetch()):
-			  
-				$time = strtotime($pages->date);
-				$formatedTime = date('d.m.Y',$time);
+				$STH = @$DBH->query($SQL);
 				
-			  ?>
-			  <div class="blog-post">
-				<h2 class="blog-post-title"><?php echo $pages->title; ?></h2>
-				<p class="blog-post-meta"><?php echo $formatedTime; ?> <?php echo $page->username; ?></p>
-				<?php if(($pages->image_url)==" "):?>
-					
-				<?php else:?>
-					<img class="pic" src="<?php echo $pages->image_url; ?>"></img>
-				<?php endif; ?>
-				<div class="blogtext">
-					<p ><?php echo $pages->content; ?></p>
-				</div>
-			  </div><!-- /.blog-post -->
-		  <?php 
-				endwhile; 
+				$STH->setFetchMode(PDO::FETCH_OBJ);
+				if($STH->rowCount() != 0):
+					while ($pages = $STH->fetch()):
+					  
+						$time = strtotime($pages->date);
+						$formatedTime = date('d.m.Y',$time);
+						
+					?>
+					  <div class="blog-post">
+						<h2 class="blog-post-title"><?php echo $pages->title; ?></h2>
+						<p class="blog-post-meta"><?php echo $formatedTime; ?> <?php echo $page->username; ?></p>
+						<?php if(($pages->image_url)==" "):?>
+							
+						<?php else:?>
+							<img class="pic" src="<?php echo $pages->image_url; ?>"></img>
+						<?php endif; ?>
+						<div class="blogtext">
+							<p ><?php echo $pages->content; ?></p>
+						</div>
+					  </div><!-- /.blog-post -->
+				    <?php 
+						endwhile; 
+					else:
+				    ?>
+					<h2>Et ole kirjoittaut yhtäkään artikkelia! <a href="uusi.php">Kirjoita artikkeleja painamalla tätä linkkiä.</a></h2>
+				    <?php endif; 
+								
 			else:
-		  ?>
-			<h2>Et ole kirjoittaut yhtäkään artikkelia! <a href="uusi.php">Kirjoita artikkeleja painamalla tätä linkkiä.</a></h2>
-		  <?php endif; ?>
-      
-
+				$testi = '/^[0-9]{1,2}$/i';
+				$month = $_GET['month'];
+	
+				if(preg_match($testi, $month)):
+					
+					$SQL = "SELECT * FROM simple_posts
+					INNER JOIN simple_sites ON simple_sites.ID = simple_posts.site_ID
+					INNER JOIN simple_users ON simple_sites.user_ID = simple_users.ID
+					WHERE simple_users.ID = '$user_id' AND MONTH(date) = $month  ORDER BY date DESC";
+					
+					$STH = @$DBH->query($SQL);
+				
+					$STH->setFetchMode(PDO::FETCH_OBJ);
+					if($STH->rowCount() != 0):
+						while ($pages = $STH->fetch()):
+						  
+							$time = strtotime($pages->date);
+							$formatedTime = date('d.m.Y',$time);
+							
+						?>
+						  <div class="blog-post">
+							<h2 class="blog-post-title"><?php echo $pages->title; ?></h2>
+							<p class="blog-post-meta"><?php echo $formatedTime; ?> <?php echo $page->username; ?></p>
+							<?php if(($pages->image_url)==" "):?>
+								
+							<?php else:?>
+								<img class="pic" src="<?php echo $pages->image_url; ?>"></img>
+							<?php endif; ?>
+							<div class="blogtext">
+								<p ><?php echo $pages->content; ?></p>
+							</div>
+						  </div><!-- /.blog-post -->
+						<?php 
+							endwhile; 
+						else:
+						?>
+						<h2>Valitettavasti hakemaltasi kuukaudelta ei löydy yhtäkään artikkelia!</h2>
+					<?php endif; 
+					
+				else:
+					header('Location: ./index.php');				
+				endif;
+			
+			endif;    
+		?>
         </div><!-- /.blog-main -->
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
@@ -150,6 +195,25 @@ if ( !empty($_GET['id']) ){
             <h4>Kirjoittajasta</h4>
             <p><?php echo $page->about; ?></p>
           </div>
+		  <div class="sidebar-module">
+             <h4>Arkistot</h4>
+              <ol class="list-unstyled">
+				<li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Kaikki</a></li>
+				<br/>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=12">Joulukuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=11">Marraskuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=10">Lokakuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=9">Syyskuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=8">Elokuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=7">Heinäkuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=6">Kesäkuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=5">Toukokuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=4">Huhtikuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=3">Maaliskuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=2">Helmikuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=1">Tammikuu</a></li>
+              </ol>
+            </div>
        
         </div><!-- /.blog-sidebar -->
 
