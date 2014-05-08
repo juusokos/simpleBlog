@@ -42,7 +42,6 @@ $user_id = htmlentities($_SESSION['user_id']);
 				  <ul class="nav navbar-nav navbar-right">
 				  <li ></li>
 				   <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Oma blogi</a></li>
-					<li><a href="#">Profiili</a></li>
 					<li><a href="logout.php">Kirjaudu ulos</a></li>
 					<li></li>
 				  </ul>
