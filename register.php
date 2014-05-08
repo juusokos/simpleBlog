@@ -94,12 +94,18 @@ if (login_check($mysqli) != true):
 	 
 	 <!-- poistaa täyttöohjeet -->
 	 <script>
-		$("#password").popover({ trigger: "click" });
-		$("#username").popover({ trigger: "click" });
-		$("#confirmpwd, #email").click(function() {
-			$("#password, #username").popover('hide');
-			
-		});
+		$("#password, #username").popover({ trigger: "click" });
+		
+		$(document).mouseup(function (e) {
+		var container = $("#password, #username");
+
+		if (!container.is(e.target) // if the target of the click isn't the container...
+        && container.has(e.target).length === 0) // ... nor a descendant of the container
+		{
+			container.popover('hide');
+		}
+	});
+		
 	 </script>
     </body>
 </html>
