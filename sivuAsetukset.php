@@ -47,7 +47,6 @@ sec_session_start();
 				<div class="navbar-collapse collapse">
 				  <ul class="nav navbar-nav navbar-right">
 				   <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Oma blogi</a></li>
-					<li><a href="#">Profiili</a></li>
 					<li><a href="logout.php">Kirjaudu ulos</a></li>
 				  </ul>
 				</div>
