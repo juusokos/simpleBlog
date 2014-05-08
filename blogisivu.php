@@ -120,7 +120,7 @@ if ( !empty($_GET['id']) ){
 					while ($pages = $STH->fetch()):
 					  
 						$time = strtotime($pages->date);
-						$formatedTime = date('d.m.Y',$time);
+						$formatedTime = date('d.m.Y H:i',$time);
 						
 					?>
 					  <div class="blog-post">
@@ -160,7 +160,7 @@ if ( !empty($_GET['id']) ){
 						while ($pages = $STH->fetch()):
 						  
 							$time = strtotime($pages->date);
-							$formatedTime = date('d.m.Y',$time);
+							$formatedTime = date('d.m.Y H:i',$time);
 							
 						?>
 						  <div class="blog-post">
