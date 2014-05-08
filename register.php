@@ -9,7 +9,7 @@ if (login_check($mysqli) != true):
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Secure Login: Registration Form</title>
+        <title>Rekisteröidy</title>
         <script type="text/JavaScript" src="js/sha512.js"></script> 
         <link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/register.css" rel="stylesheet">
