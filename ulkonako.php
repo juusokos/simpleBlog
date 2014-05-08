@@ -69,6 +69,11 @@ $user_id = htmlentities($_SESSION['user_id']);
 				  <h1 class="page-header">Ulkonäkö</h1>
 				  	
 					<?php
+						//Muutokset tallennettu
+						if (isset($_GET['submit'])==Hyvaksy) {
+							echo '<p style="color:green">Muutokset tallennettu. <a href="./blogisivu.php?id='.$user_id.'">Katso Blogi</a></p>';
+						}
+						
 					
 						if(isset($_GET['submit'])){
 							if(!empty($_GET['teema'])&& !empty($_GET['fontti'])){
@@ -112,11 +117,6 @@ $user_id = htmlentities($_SESSION['user_id']);
 						<button class="btn">Peruuta</button>
 					</form>
 
-						<?php
-						if (isset($_GET['submit'])==Hyvaksy) {
-							echo '<p style="color:green">Muutokset tallennettu. <a href="./blogisivu.php?id='.$user_id.'">Katso Blogi</a></p>';
-						}
-						?> 
 
 					
 				</div>  <!-- div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" -->
