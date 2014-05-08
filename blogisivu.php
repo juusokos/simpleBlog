@@ -198,8 +198,6 @@ if ( !empty($_GET['id']) ){
 		  <div class="sidebar-module">
              <h4>Arkistot</h4>
               <ol class="list-unstyled">
-				<li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Kaikki</a></li>
-				<br/>
                 <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=12">Joulukuu</a></li>
                 <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=11">Marraskuu</a></li>
                 <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=10">Lokakuu</a></li>
@@ -212,6 +210,8 @@ if ( !empty($_GET['id']) ){
                 <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=3">Maaliskuu</a></li>
                 <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=2">Helmikuu</a></li>
                 <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=1">Tammikuu</a></li>
+				<br/>
+				<li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Kaikki</a></li>
               </ol>
             </div>
        
