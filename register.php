@@ -94,15 +94,11 @@ if (login_check($mysqli) != true):
 	 
 	 <!-- poistaa täyttöohjeet -->
 	 <script>
-		$("#username").popover({ trigger: "click" });
 		
-		$('#password').popover();
-
-		$('#password').on('click', function (e) {
+		$('#password, #username ').on('click', function (e) {
+			$("#username").popover();
+			$('#password').popover();
 			$('#username').not(this).popover('hide');
-		});
-		
-		$('#username').on('click', function (e) {
 			$('#password').not(this).popover('hide');
 		});
 		
@@ -114,7 +110,7 @@ if (login_check($mysqli) != true):
 			{
 				container.popover('hide');
 			}
-	});
+		});
 		
 	 </script>
     </body>
