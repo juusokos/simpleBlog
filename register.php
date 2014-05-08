@@ -9,7 +9,7 @@ if (login_check($mysqli) != true):
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Rekisteröidy</title>
+        <title>Secure Login: Registration Form</title>
         <script type="text/JavaScript" src="js/sha512.js"></script> 
         <link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/register.css" rel="stylesheet">
@@ -94,16 +94,26 @@ if (login_check($mysqli) != true):
 	 
 	 <!-- poistaa täyttöohjeet -->
 	 <script>
-		$("#password, #username").popover({ trigger: "click" });
+		$("#username").popover({ trigger: "click" });
+		
+		$('#password').popover();
+
+		$('#password').on('click', function (e) {
+			$('#username').not(this).popover('hide');
+		});
+		
+		$('#username').on('click', function (e) {
+			$('#password').not(this).popover('hide');
+		});
 		
 		$(document).mouseup(function (e) {
-		var container = $("#password, #username");
+			var container = $("#password, #username");
 
-		if (!container.is(e.target) // if the target of the click isn't the container...
-        && container.has(e.target).length === 0) // ... nor a descendant of the container
-		{
-			container.popover('hide');
-		}
+			if (!container.is(e.target) // if the target of the click isn't the container...
+			&& container.has(e.target).length === 0) // ... nor a descendant of the container
+			{
+				container.popover('hide');
+			}
 	});
 		
 	 </script>
