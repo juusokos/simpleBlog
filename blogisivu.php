@@ -202,20 +202,20 @@ if ( !empty($_GET['id']) ){
 		  <div class="sidebar-module">
              <h4>Arkistot</h4>
               <ol class="list-unstyled">
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=12">Joulukuu</a></li>
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=11">Marraskuu</a></li>
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=10">Lokakuu</a></li>
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=9">Syyskuu</a></li>
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=8">Elokuu</a></li>
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=7">Heinäkuu</a></li>
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=6">Kesäkuu</a></li>
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=5">Toukokuu</a></li>
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=4">Huhtikuu</a></li>
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=3">Maaliskuu</a></li>
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=2">Helmikuu</a></li>
-                <li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>&month=1">Tammikuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=12">Joulukuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=11">Marraskuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=10">Lokakuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=9">Syyskuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=8">Elokuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=7">Heinäkuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=6">Kesäkuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=5">Toukokuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=4">Huhtikuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=3">Maaliskuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=2">Helmikuu</a></li>
+                <li><a href="blogisivu.php?id=<?php echo $user_id; ?>&month=1">Tammikuu</a></li>
 				<br/>
-				<li><a href="blogisivu.php?id=<?php echo htmlentities($_SESSION['user_id']); ?>">Kaikki</a></li>
+				<li><a href="blogisivu.php?id=<?php echo $user_id; ?>">Kaikki</a></li>
               </ol>
             </div>
        
